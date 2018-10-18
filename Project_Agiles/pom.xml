@@ -31,10 +31,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>UIResources</groupId>
-            <artifactId>JTextBox</artifactId>
-            <version>1.0</version>
-            <type>UI Resource</type>
+            <groupId>com.zenjava</groupId>
+            <artifactId>javafx-maven-plugin</artifactId>
+            <version>8.8.3</version>
         </dependency>
     </dependencies>
 </project>
