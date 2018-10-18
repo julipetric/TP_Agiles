@@ -9,6 +9,14 @@ package Gestores;
  *
  * @author tomas
  */
-public class NewClass {
+public class GestorUsuario {
+
+    public GestorUsuario() {
+    }
+    
+    public Boolean darDeAltaUsuario(String nombre, String apellido, String user, String pass) {
+        //dar de alta en BD
+        return true;
+    }
     
 }

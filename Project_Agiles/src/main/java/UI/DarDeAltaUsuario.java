@@ -5,6 +5,8 @@
  */
 package UI;
 
+import Gestores.GestorUsuario;
+
 /**
  *
  * @author tomas
@@ -27,42 +29,47 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
+        permisosLabel = new javax.swing.JLabel();
         permisos = new javax.swing.JComboBox<>();
-        NombreEditText = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        ApellidoEditText = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        UserEditText = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        PassEditText = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        Pass2EditText = new javax.swing.JTextField();
-        VolverButton = new javax.swing.JButton();
-        AceptarButton = new javax.swing.JButton();
+        nombreEditText = new javax.swing.JTextField();
+        nombreLabel = new javax.swing.JLabel();
+        apellidoLabel = new javax.swing.JLabel();
+        apellidoEditText = new javax.swing.JTextField();
+        userLabel = new javax.swing.JLabel();
+        userEditText = new javax.swing.JTextField();
+        pass1Label = new javax.swing.JLabel();
+        passEditText = new javax.swing.JTextField();
+        pass2Label = new javax.swing.JLabel();
+        pass2EditText = new javax.swing.JTextField();
+        volverButton = new javax.swing.JButton();
+        aceptarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dar de alta usuario");
         setAlwaysOnTop(true);
 
-        jLabel3.setText("Permisos:");
+        permisosLabel.setText("Permisos:");
 
         permisos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel1.setText("Nombre:");
+        nombreLabel.setText("Nombre:");
 
-        jLabel2.setText("Apellido:");
+        apellidoLabel.setText("Apellido:");
 
-        jLabel4.setText("Nombre de Usuario:");
+        userLabel.setText("Nombre de Usuario:");
 
-        jLabel5.setText("Contraseña:");
+        pass1Label.setText("Contraseña:");
 
-        jLabel6.setText("Repetir contraseña:");
+        pass2Label.setText("Repetir contraseña:");
 
-        VolverButton.setText("Volver");
+        volverButton.setText("Volver");
 
-        AceptarButton.setText("Aceptar");
+        aceptarButton.setText("Aceptar");
+        aceptarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,33 +79,33 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(permisosLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(permisos, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(userLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(UserEditText))
+                        .addComponent(userEditText))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(pass1Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PassEditText, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(passEditText, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(nombreLabel)
+                            .addComponent(apellidoLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ApellidoEditText)
-                            .addComponent(NombreEditText)))
+                            .addComponent(apellidoEditText)
+                            .addComponent(nombreEditText)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(pass2Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Pass2EditText))
+                        .addComponent(pass2EditText))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(VolverButton)
+                        .addComponent(volverButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(AceptarButton)))
+                        .addComponent(aceptarButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -106,37 +113,57 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(permisosLabel)
                     .addComponent(permisos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(NombreEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nombreLabel)
+                    .addComponent(nombreEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(ApellidoEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(apellidoLabel)
+                    .addComponent(apellidoEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(UserEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(userLabel)
+                    .addComponent(userEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(PassEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pass1Label)
+                    .addComponent(passEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(Pass2EditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pass2Label)
+                    .addComponent(pass2EditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(VolverButton)
-                    .addComponent(AceptarButton))
+                    .addComponent(volverButton)
+                    .addComponent(aceptarButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
+
+        if (this.validar()) {
+            String nombre = nombreEditText.getText();
+            String apellido = apellidoEditText.getText();
+            String user = userEditText.getText();
+            String pass = passEditText.getText();
+
+            GestorUsuario gestor = new GestorUsuario();
+            gestor.darDeAltaUsuario(nombre, apellido, user, pass);
+        }
+        else{
+            ErrorPlaceholder error = new ErrorPlaceholder();
+            error.setVisible(true);
+            
+        }
+
+
+    }//GEN-LAST:event_aceptarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,23 +198,27 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
                 new DarDeAltaUsuario().setVisible(true);
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AceptarButton;
-    private javax.swing.JTextField ApellidoEditText;
-    private javax.swing.JTextField NombreEditText;
-    private javax.swing.JTextField Pass2EditText;
-    private javax.swing.JTextField PassEditText;
-    private javax.swing.JTextField UserEditText;
-    private javax.swing.JButton VolverButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton aceptarButton;
+    private javax.swing.JTextField apellidoEditText;
+    private javax.swing.JLabel apellidoLabel;
+    private javax.swing.JTextField nombreEditText;
+    private javax.swing.JLabel nombreLabel;
+    private javax.swing.JLabel pass1Label;
+    private javax.swing.JTextField pass2EditText;
+    private javax.swing.JLabel pass2Label;
+    private javax.swing.JTextField passEditText;
     private javax.swing.JComboBox<String> permisos;
+    private javax.swing.JLabel permisosLabel;
+    private javax.swing.JTextField userEditText;
+    private javax.swing.JLabel userLabel;
+    private javax.swing.JButton volverButton;
     // End of variables declaration//GEN-END:variables
+
+    private boolean validar() {
+        return false;
+    }
 }
