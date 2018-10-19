@@ -5,10 +5,16 @@
  */
 package Gestores;
 
+import Modelo.Licencia;
+import java.util.ArrayList;
+
 /**
  *
  * @author tomas
  */
 public class GestorLicencias {
-    
+ 
+    public static ArrayList<Licencia> getLicenciasExpiradas() {
+        return LicenciaDao.getExpiradas();
+    }
 }
