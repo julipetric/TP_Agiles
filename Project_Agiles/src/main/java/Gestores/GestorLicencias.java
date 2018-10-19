@@ -5,6 +5,7 @@
  */
 package Gestores;
 
+import Daos.LicenciaDao;
 import Modelo.Licencia;
 import java.util.ArrayList;
 
