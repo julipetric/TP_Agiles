@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Exeptions;
+package Exceptions;
 
 /**
  *
  * @author Julian
  */
-public class DatosUsuarioInvalidosExeption {
+public class DatosUsuarioInvalidosException extends Exception {
+
+    public DatosUsuarioInvalidosException() {
+    }
+
+
     
 }
+
