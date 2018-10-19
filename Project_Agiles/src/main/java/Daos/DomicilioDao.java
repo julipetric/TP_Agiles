@@ -7,8 +7,8 @@ package Daos;
 
 /**
  *
- * @author tomas
+ * @author matij
  */
-public class NewClass {
+public class DomicilioDao {
     
 }
