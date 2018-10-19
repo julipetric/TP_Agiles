@@ -17,6 +17,7 @@ import org.hibernate.Transaction;
  * @author matij
  */
 public class UsuarioDao {
+
     private static Session sesion;
 
     public static Session getSesion() {
@@ -26,8 +27,8 @@ public class UsuarioDao {
     public static void setSesion(Session sesion) {
         UsuarioDao.sesion = sesion;
     }
-    
-        public static Usuario find(Integer dni) {
+
+    public static Usuario find(Integer dni) {
         Transaction tx = null;
         List usuarios = new ArrayList<>();
         try {
@@ -40,15 +41,15 @@ public class UsuarioDao {
             }
             e.printStackTrace();
         }
-        
+
         if (usuarios.size() == 1) {
             return (Usuario) usuarios.get(0);
         } else {
             return null;
         }
     }
-        
-            public static ArrayList<Usuario> getAllUsuarios() {
+
+    public static ArrayList<Usuario> getAllUsuarios() {
         Transaction tx = null;
         List usuarios = new ArrayList<>();
         try {
@@ -66,5 +67,33 @@ public class UsuarioDao {
             user.add((Usuario) o);
         }
         return user;
+    }
+
+    public static void modify(Usuario mU) {
+        Transaction tx = null;
+        try {
+            tx = sesion.beginTransaction();
+            sesion.update(mU);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    public static void insert(Usuario nU) {
+        Transaction tx = null;
+        try {
+            tx = sesion.beginTransaction();
+            sesion.save(nU);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }
     }
 }
