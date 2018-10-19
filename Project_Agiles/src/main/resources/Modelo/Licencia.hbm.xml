@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/10/2018 19:41:40 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Licencia" table="licencia" catalog="tpma2018" optimistic-lock="version">
+        <id name="uid" type="java.lang.Integer">
+            <column name="uid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="titular" class="Modelo.Titular" fetch="select">
+            <column name="dniTitular" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="Modelo.Usuario" fetch="select">
+            <column name="dniOperario" not-null="true" />
+        </many-to-one>
+        <property name="clase" type="string">
+            <column name="clase" length="2" not-null="true" />
+        </property>
+        <property name="fechaTramite" type="date">
+            <column name="fechaTramite" length="10" not-null="true" />
+        </property>
+        <property name="fechaExpiracion" type="date">
+            <column name="fechaExpiracion" length="10" not-null="true" />
+        </property>
+        <property name="costo" type="float">
+            <column name="costo" precision="12" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/10/2018 19:41:40 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Domicilio" table="domicilio" catalog="tpma2018" optimistic-lock="version">
+        <id name="uid" type="int">
+            <column name="uid" />
+            <generator class="assigned" />
+        </id>
+        <property name="ciudad" type="string">
+            <column name="ciudad" length="50" not-null="true" />
+        </property>
+        <property name="calle" type="string">
+            <column name="calle" length="50" not-null="true" />
+        </property>
+        <property name="numero" type="int">
+            <column name="numero" not-null="true" />
+        </property>
+        <property name="departamento" type="string">
+            <column name="departamento" length="10" not-null="true" />
+        </property>
+        <property name="piso" type="int">
+            <column name="piso" not-null="true" />
+        </property>
+        <set name="titulars" table="titular" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="uidDomicilio" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.Titular" />
+        </set>
+    </class>
+</hibernate-mapping>
