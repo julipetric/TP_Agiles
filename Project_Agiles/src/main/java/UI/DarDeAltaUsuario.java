@@ -5,6 +5,7 @@
  */
 package UI;
 
+import Exceptions.DatosUsuarioInvalidosException;
 import Gestores.GestorUsuario;
 
 /**
@@ -161,16 +162,17 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
 
     private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
 
-        if (this.validar()) {
+       try {
+            String dni = dniEditText.getText();
             String nombre = nombreEditText.getText();
             String apellido = apellidoEditText.getText();
             String user = userEditText.getText();
             String pass = passEditText.getText();
 
-            GestorUsuario gestor = new GestorUsuario(nombre, apellido, user, pass);
-            gestor.darDeAltaUsuario(nombre, apellido, user, pass);
+            GestorUsuario gestor = new GestorUsuario();
+            gestor.darDeAltaUsuario(dni, nombre, apellido, user, pass);
         }
-        else{
+        catch(DatosUsuarioInvalidosException e){
             ErrorPlaceholder error = new ErrorPlaceholder();
             error.setVisible(true);
         }
