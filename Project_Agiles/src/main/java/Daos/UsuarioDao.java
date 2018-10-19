@@ -48,6 +48,29 @@ public class UsuarioDao {
             return null;
         }
     }
+    
+    public static Usuario find(String nombreUsuario, String contra) {
+        Transaction tx = null;
+        List usuarios = new ArrayList<>();
+        try {
+            tx = sesion.beginTransaction();
+            usuarios = sesion.createQuery("FROM Usuario u WHERE u.usuarioNombre ='" + nombreUsuario+"' AND u.usuarioContrasena ='"+contra+"'").list();
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }
+
+        if (usuarios.size() == 1) {
+            return (Usuario) usuarios.get(0);
+        } else {
+            return null;
+        }
+    }
+    
+    
 
     public static ArrayList<Usuario> getAllUsuarios() {
         Transaction tx = null;
