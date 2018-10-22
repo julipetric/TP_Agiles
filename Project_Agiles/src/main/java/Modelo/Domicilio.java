@@ -91,7 +91,11 @@ public class Domicilio  implements java.io.Serializable {
         this.titulars = titulars;
     }
 
-
+    public String asString(){
+        Integer num = this.getNumero();
+        String d = this.getCalle() + ' ' + num.toString() + ", " + this.getCiudad();
+        return d;
+    }
 
 
 }
