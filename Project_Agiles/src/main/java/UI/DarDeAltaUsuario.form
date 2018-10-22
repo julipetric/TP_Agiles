@@ -28,53 +28,55 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="permisosLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="permisos" min="-2" pref="212" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="userLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="userEditText" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="pass1Label" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="passEditText" min="-2" pref="192" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="nombreLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="apellidoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dniLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="apellidoEditText" max="32767" attributes="0"/>
-                                  <Component id="nombreEditText" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" pref="82" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="nombreEditText" alignment="1" pref="266" max="32767" attributes="0"/>
+                                  <Component id="apellidoEditText" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="dniEditText" alignment="1" max="32767" attributes="0"/>
                               </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="pass2Label" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="pass2EditText" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="volverButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="aceptarButton" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="pass1Label" min="-2" max="-2" attributes="0"/>
+                                  <Component id="pass2Label" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="userLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="userEditText" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                                      <Component id="passEditText" min="-2" pref="263" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="pass2EditText" min="-2" pref="263" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="permisosLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                              <Component id="permisos" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="dniLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="dniEditText" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="volverButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="aceptarButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -87,41 +89,41 @@
                   <Component id="permisos" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="nombreLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="nombreEditText" alignment="0" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="nombreEditText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nombreLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="apellidoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="apellidoEditText" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="dniLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="dniEditText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="dniLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="userLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="userEditText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="userLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="pass1Label" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="passEditText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="pass1Label" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="pass2Label" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="pass2EditText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="pass2Label" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="25" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="volverButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="aceptarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="volverButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
