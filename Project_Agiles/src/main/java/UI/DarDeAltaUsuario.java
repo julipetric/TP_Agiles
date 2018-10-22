@@ -7,6 +7,8 @@ package UI;
 
 import Exceptions.DatosUsuarioInvalidosException;
 import Gestores.GestorUsuario;
+import java.awt.Color;
+import javax.swing.BorderFactory;
 
 /**
  *
@@ -120,9 +122,9 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
                     .addComponent(permisosLabel)
                     .addComponent(permisos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombreLabel)
-                    .addComponent(nombreEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(apellidoLabel)
@@ -137,16 +139,16 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
                     .addComponent(userEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pass1Label)
-                    .addComponent(passEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pass1Label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pass2Label)
                     .addComponent(pass2EditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(volverButton)
-                    .addComponent(aceptarButton))
+                    .addComponent(aceptarButton)
+                    .addComponent(volverButton))
                 .addContainerGap())
         );
 
@@ -161,13 +163,17 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
             String apellido = apellidoEditText.getText();
             String user = userEditText.getText();
             String pass = passEditText.getText();
+            String pass2 = pass2EditText.getText();
 
             GestorUsuario gestor = new GestorUsuario();
-            gestor.darDeAltaUsuario(dni, nombre, apellido, user, pass);
+            gestor.darDeAltaUsuario(dni, nombre, apellido, user, pass, pass2);
         }
         catch(DatosUsuarioInvalidosException e){
             ErrorPlaceholder error = new ErrorPlaceholder();
+            
             error.setVisible(true);
+            
+            if(e.getApellido()) apellidoEditText.setBorder(BorderFactory.createLineBorder(Color.RED,));
         }
 
 
