@@ -96,4 +96,10 @@ public class DomicilioDao {
             e.printStackTrace();
         }
     }
+
+    public static void setSession(Session sesion) {
+          
+        DomicilioDao.sesion = sesion;
+    
+    }
 }

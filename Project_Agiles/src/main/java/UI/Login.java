@@ -5,12 +5,17 @@
  */
 package UI;
 
+import Daos.DomicilioDao;
+import Daos.LicenciaDao;
+import Daos.TitularDao;
+import Daos.UsuarioDao;
 import Exceptions.DatosUsuarioInvalidosException;
 import Gestores.GestorSesion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 
@@ -146,6 +151,11 @@ public class Login extends javax.swing.JFrame {
                 new Login().setVisible(true);
             }
         });
+        
+        DomicilioDao.setSession(sesion);
+        LicenciaDao.setSesion(sesion);
+        TitularDao.setSesion(sesion);
+        UsuarioDao.setSesion(sesion);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -111,4 +111,10 @@ public class LicenciaDao {
         }
         return lic;
     }
+    
+        public static void setSession(Session sesion) {
+          
+        LicenciaDao.sesion = sesion;
+    
+    }
 }

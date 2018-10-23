@@ -119,4 +119,10 @@ public class UsuarioDao {
             e.printStackTrace();
         }
     }
+    
+        public static void setSession(Session sesion) {
+          
+        UsuarioDao.sesion = sesion;
+    
+    }
 }

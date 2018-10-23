@@ -97,4 +97,10 @@ public class TitularDao {
         }
 
     }
+    
+        public static void setSession(Session sesion) {
+          
+        TitularDao.sesion = sesion;
+    
+    }
 }
