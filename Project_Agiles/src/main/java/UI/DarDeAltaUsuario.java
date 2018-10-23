@@ -172,56 +172,41 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
             String user = userEditText.getText();
             String pass = passEditText.getText();
             String pass2 = pass2EditText.getText();
+            String permiso = (String) permisos.getSelectedItem();
 
             GestorUsuario gestor = new GestorUsuario();
-            gestor.darDeAltaUsuario(dni, nombre, apellido, user, pass, pass2);
+            gestor.darDeAltaUsuario(dni, nombre, apellido, user, pass, pass2, permiso);
         }
         catch(DatosUsuarioInvalidosException e){
             ErrorPlaceholder error = new ErrorPlaceholder();
             
             error.setVisible(true);
             
-            if(e.getApellido()) apellidoEditText.setBorder(BorderFactory.createLineBorder(Color.RED,));
+            if(!e.getApellido()) apellidoEditText.setBorder(BorderFactory.createLineBorder(Color.RED,5));
+            else apellidoEditText.setBorder(BorderFactory.createLineBorder(Color.GRAY,5));
+            
+            if(!e.getNombre()) nombreEditText.setBorder(BorderFactory.createLineBorder(Color.RED,5));
+            else nombreEditText.setBorder(BorderFactory.createLineBorder(Color.GRAY,5));
+            
+            if(!e.getDni()) dniEditText.setBorder(BorderFactory.createLineBorder(Color.RED,5));
+            else dniEditText.setBorder(BorderFactory.createLineBorder(Color.GRAY,5));
+            
+            if(!e.getUsuario()) userEditText.setBorder(BorderFactory.createLineBorder(Color.RED,5));
+            else userEditText.setBorder(BorderFactory.createLineBorder(Color.GRAY,5));
+            
+            if(!e.getPass()) passEditText.setBorder(BorderFactory.createLineBorder(Color.RED,5));
+            else
+            {
+                passEditText.setBorder(BorderFactory.createLineBorder(Color.GRAY,5));
+                if(!e.getPass2()) pass2EditText.setBorder(BorderFactory.createLineBorder(Color.RED,5));
+                else pass2EditText.setBorder(BorderFactory.createLineBorder(Color.GRAY,5));
+            }
+            
         }
 
 
     }//GEN-LAST:event_aceptarButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DarDeAltaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DarDeAltaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DarDeAltaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DarDeAltaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DarDeAltaUsuario().setVisible(true);
-            }
-        });
-
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aceptarButton;

@@ -104,11 +104,11 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         if (GestorSesion.getUsuarioActual().isEsAdministrador()) {
-            MenuAdmin menu = new MenuAdmin()
+            MenuAdmin menu = new MenuAdmin();
             menu.setVisible(true);
             this.dispose();
         }else{
-            MenuOperario menu = new MenuOperario()
+            MenuOperario menu = new MenuOperario();
             menu.setVisible(true);
             this.dispose();
         }
