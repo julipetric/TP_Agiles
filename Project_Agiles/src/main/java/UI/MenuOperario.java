@@ -5,6 +5,8 @@
  */
 package UI;
 
+import Gestores.GestorSesion;
+
 /**
  *
  * @author tomas
@@ -51,13 +53,13 @@ public class MenuOperario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(61, 61, 61))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,8 +82,10 @@ public class MenuOperario extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        if (GestorSesion.getUsuarioActual() != null) {
-            GestorSesion.getUsuarioActual().cerrarSesion();
-            this.dispose();
+            GestorSesion.cerrarSesion();
+            Login login = new Login();
+            login.setVisible(true);
+            this.dispose(); 
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

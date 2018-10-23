@@ -32,5 +32,9 @@ public class GestorSesion {
             throw new DatosUsuarioInvalidosException();
         }
     }
+
+    public static void cerrarSesion() {
+       usuarioActual = null;
+    }
     
 }

@@ -68,6 +68,11 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         pass2Label.setText("Repetir contraseña:");
 
         volverButton.setText("Volver");
+        volverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverButtonActionPerformed(evt);
+            }
+        });
 
         aceptarButton.setText("Aceptar");
         aceptarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -112,8 +117,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
                             .addComponent(apellidoEditText, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                             .addComponent(nombreEditText)
                             .addComponent(userEditText, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passEditText))))
-                .addContainerGap())
+                            .addComponent(passEditText)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,8 +148,8 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
                     .addComponent(pass1Label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pass2Label)
-                    .addComponent(pass2EditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pass2EditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pass2Label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aceptarButton)
@@ -203,6 +207,12 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_aceptarButtonActionPerformed
+
+    private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
+       MenuAdmin menu = new MenuAdmin();
+       menu.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_volverButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

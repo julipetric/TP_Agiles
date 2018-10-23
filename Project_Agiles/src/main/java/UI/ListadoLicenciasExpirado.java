@@ -6,6 +6,7 @@
 package UI;
 
 import Gestores.GestorLicencias;
+import Gestores.GestorSesion;
 import Modelo.Licencia;
 import java.util.ArrayList;
 import java.util.Iterator;
