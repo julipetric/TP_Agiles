@@ -9,6 +9,7 @@ import Exceptions.DatosUsuarioInvalidosException;
 import Gestores.GestorUsuario;
 import java.awt.Color;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -167,7 +168,11 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
             String permiso = (String) permisos.getSelectedItem();
 
             GestorUsuario gestor = new GestorUsuario();
-            gestor.darDeAltaUsuario(dni, nombre, apellido, user, pass, pass2, permiso);
+            if(gestor.darDeAltaUsuario(dni, nombre, apellido, user, pass, pass2, permiso))
+            {
+                JOptionPane.showMessageDialog(null, "Usuario creado correctamente", "", JOptionPane.PLAIN_MESSAGE);
+                //Ahora habría que volver al meno admin.
+            }
         }
         catch(DatosUsuarioInvalidosException e){
             ErrorPlaceholder error = new ErrorPlaceholder();
