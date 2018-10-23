@@ -107,8 +107,15 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             GestorSesion.iniciarSesion(txtUsuario.getText(), new String(txtContra.getPassword()));
-            
-            //Ir a la pantalla siguiente...
+            if (GestorSesion.getUsuarioActual().isEsAdministrador()) {
+                MenuAdmin menu = new MenuAdmin();
+                menu.setVisible(true);
+                this.dispose();
+            } else {
+                MenuOperario menu = new MenuOperario();
+                menu.setVisible(true);
+                this.dispose();
+            }
         } catch (DatosUsuarioInvalidosException ex) {
             //Usuario o contraseña invalidos...
         }
