@@ -7,6 +7,7 @@ package Gestores;
 
 import Daos.UsuarioDao;
 import Exceptions.DatosUsuarioInvalidosException;
+import Modelo.Usuario;
 
 /**
  *
@@ -17,14 +18,18 @@ public class GestorUsuario {
     public GestorUsuario() {
     }
 
-    public static Boolean darDeAltaUsuario(String dni, String nombre, String apellido, String user, String pass, String pass2) throws DatosUsuarioInvalidosException {
+    public static Boolean darDeAltaUsuario(String dni, String nombre, String apellido, String user, String pass, String pass2, String permiso) throws DatosUsuarioInvalidosException {
         try{
-            validarDatosUsuario(dni, nombre, apellido, user, pass, pass2);
-            //TO-DO entrar usuario en BD
+            if(validarDatosUsuario(dni, nombre, apellido, user, pass, pass2))
+            {
+                //TO-DO entrar usuario en BD
+                UsuarioDao.insert(new Usuario(Integer.parseInt(dni), nombre, apellido, user, pass, permiso.equals("Administrador")));
+            }
         }
         catch(DatosUsuarioInvalidosException e){
             throw e;
         }
+        //Ojo, ver tema excepcion en inserción a la BD
         return true;
     }
 
