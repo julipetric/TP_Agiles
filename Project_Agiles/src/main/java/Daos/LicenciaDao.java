@@ -17,7 +17,8 @@ import org.hibernate.Transaction;
  * @author matij
  */
 public class LicenciaDao {
-        private static Session sesion;
+
+    private static Session sesion;
 
     public static Session getSesion() {
         return sesion;
@@ -95,15 +96,15 @@ public class LicenciaDao {
             e.printStackTrace();
         }
     }
-    
-    public static ArrayList<Licencia> getExpiradas(){
+
+    public static ArrayList<Licencia> getExpiradas() {
         Transaction tx = null;
         List licenciasexpiradas = new ArrayList<>();
-        try{
+        try {
             tx = sesion.beginTransaction();
             licenciasexpiradas = sesion.createQuery("FROM Licencia l WHERE l.fechaExpiracion <= CURDATE()").list();
         } catch (HibernateException e) {
-            
+
         }
         ArrayList<Licencia> lic = new ArrayList<>();
         for (Object o : licenciasexpiradas) {
@@ -111,10 +112,35 @@ public class LicenciaDao {
         }
         return lic;
     }
-    
-        public static void setSession(Session sesion) {
-          
+
+    public static void setSession(Session sesion) {
+
         LicenciaDao.sesion = sesion;
-    
+
     }
+
+    public static ArrayList<Licencia> buscarPorCriterios(ArrayList<String> criteriosString) {
+        ArrayList<Licencia> listaFinal = new ArrayList<>();
+        String crit = new String();
+
+        for (int i = 0; i < 11; i++) {
+            if (!criteriosString.get(i).equals(null)) {
+                if (crit.isEmpty()) {
+                    crit += "WHERE ";
+                } else {
+                    crit += "AND ";
+                }
+            }
+            switch (i) {
+                //MANEJAR EL CASO PARA CRITERIOS CORRESPONDIENTES A DATOS
+                //DEL TITULAR
+                case 3:
+                    crit += "l.uid = " + criteriosString.get(i);
+                case 7:
+                    crit += "l.clase = " + criteriosString.get(i);
+            }
+        }
+       return listaFinal;
+    }
+
 }
