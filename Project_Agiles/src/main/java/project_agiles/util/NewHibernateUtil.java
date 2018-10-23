@@ -29,7 +29,7 @@ public class NewHibernateUtil {
             throw new ExceptionInInitializerError(ex);
         }
     }
-    
+        
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
