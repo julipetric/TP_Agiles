@@ -11,7 +11,9 @@ import Daos.TitularDao;
 import Daos.UsuarioDao;
 import Exceptions.DatosUsuarioInvalidosException;
 import Gestores.GestorSesion;
+import Modelo.Licencia;
 import Modelo.Usuario;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.hibernate.Session;
@@ -146,11 +148,11 @@ public class Login extends javax.swing.JFrame {
         UsuarioDao.setSession(sesion);
         //Usuario user = new Usuario(88888,"juancito","perezco","jperez23","1234",false);
         //UsuarioDao.insert(user);
-        System.out.println(UsuarioDao.getAllUsuarios());
         
-       
-      
-
+        /*ArrayList<Usuario> asd = new ArrayList();
+        asd=UsuarioDao.getAllUsuarios();
+        System.out.println(asd.get(1).toString());*/
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -174,7 +176,10 @@ public class Login extends javax.swing.JFrame {
         //UsuarioDao.setSesion(sesion);
         
           //System.out.println(LicenciaDao.BuscarPorCriterio("","" ,null ,null ,"" ,"" ,"-" , null, Boolean.TRUE, Boolean.TRUE));
-         // System.out.println(LicenciaDao.getAllLicencia());
+        ArrayList<Licencia> asd = new ArrayList();
+            // nombre, apellido, dni, nroLic, grupo, factor, clase, donante, vencidas, no vencidas.
+          asd = LicenciaDao.BuscarPorCriterio("matias","" ,null,null ,"" ,"" ,"-" , Boolean.FALSE, Boolean.TRUE, Boolean.TRUE);
+        System.out.println(asd.toString());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

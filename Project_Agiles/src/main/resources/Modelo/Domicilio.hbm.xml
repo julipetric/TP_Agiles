@@ -23,11 +23,11 @@
         <property name="piso" type="int">
             <column name="piso" not-null="true" />
         </property>
-        <set name="titulars" table="titular" inverse="true" lazy="true" fetch="select">
+      <!--  <set name="titulars" table="titular" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="uidDomicilio" not-null="true" />
             </key>
             <one-to-many class="Modelo.Titular" />
-        </set>
+        </set> -->
     </class>
 </hibernate-mapping>

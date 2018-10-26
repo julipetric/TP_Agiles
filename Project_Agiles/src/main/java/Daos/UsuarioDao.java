@@ -79,7 +79,9 @@ public class UsuarioDao {
         List usuarios = new ArrayList<>();
         try {
             tx = sesion.beginTransaction();
-            usuarios = sesion.createQuery("FROM Usuario").list();
+            String asd = new String();
+            asd = "FROM Usuario";
+            usuarios = sesion.createQuery(asd).list();
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {

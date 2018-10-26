@@ -97,31 +97,28 @@ public class LicenciaDao {
         }
     }
 
-    public static List BuscarPorCriterio(String nombre, String apellido, Integer dni, Integer nroLic, String grupo, String factor, String clase, Boolean donante, Boolean vencidas, Boolean novencidas) {
+    public static ArrayList<Licencia> BuscarPorCriterio(String nombre, String apellido, Integer dni, Integer nroLic, String grupo, String factor, String clase, Boolean donante, Boolean vencidas, Boolean novencidas) {
         Transaction tx = null;
         List<Object> licencias = new ArrayList<>();
         try {
             tx = sesion.beginTransaction();
             String query = new String();
-            query = "SELECT l "
-                    + "FROM Licencia l ";
-                   // + "WHERE ";
             
             if (dni != null) {
                 query += "l.titular.dni = " + dni.toString() + " AND ";
             }
             if (!nombre.isEmpty()) {
-                query += "l.titular.nombre = " + nombre + " AND ";
+                query += "l.titular.nombre = '" + nombre + "' AND ";
             }
             if (!apellido.isEmpty()) {
-                query += "l.titular.apellido = " + apellido + " AND ";
+                query += "l.titular.apellido = '" + apellido + "' AND ";
             }
             if(nroLic!=null)
             {
                  query += "l.uid = " + nroLic.toString() + " AND ";
             }
             if (clase != "-") {
-                query += "l.clase = " + clase + " AND ";
+                query += "l.clase = '" + clase + "' AND ";
             }
             if (vencidas && !novencidas) {
                 query += "l.fechaExpiracion <= CURDATE()" + " AND ";
@@ -130,14 +127,19 @@ public class LicenciaDao {
                 query += "l.fechaExpiracion > CURDATE()" + " AND ";
             }
             if (!grupo.isEmpty()) {
-                query += "l.titular.grupoSanguineo = " + grupo + " AND ";
+                query += "l.titular.grupoSanguineo = '" + grupo + "' AND ";
             }
             if (!factor.isEmpty()) {
-                query += "l.titular.factorRh = " + factor + " AND ";
+                query += "l.titular.factorRh = '" + factor + "' AND ";
             }
             if (donante != null) {
                 query += "l.titular.esDonante = " + ((donante) ? "1" : "0") + " AND ";
             }
+            
+            if(!query.isEmpty()){
+                query = query.substring(0, query.length()-4);
+            }
+            query = "FROM Licencia l" + ((query.isEmpty())?"":" WHERE ") + query;
 
             //query += "l.titular.dni = t.dni";
             
