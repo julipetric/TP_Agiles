@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
@@ -25,6 +26,7 @@ public class UsuarioDao {
     }
 
     public static void setSesion(Session sesion) {
+        
         UsuarioDao.sesion = sesion;
     }
 

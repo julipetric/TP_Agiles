@@ -69,6 +69,7 @@ public class TitularDao {
         return titu;
     }
 
+
     public static void insert(Titular nT) {
         Transaction tx = null;
         try {
@@ -82,7 +83,7 @@ public class TitularDao {
             e.printStackTrace();
         }
     }
-    
+
     public static void modify(Titular mT) {
         Transaction tx = null;
         try {
@@ -97,10 +98,10 @@ public class TitularDao {
         }
 
     }
-    
-        public static void setSession(Session sesion) {
-          
+
+    public static void setSession(Session sesion) {
+
         TitularDao.sesion = sesion;
-    
+
     }
 }

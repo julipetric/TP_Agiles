@@ -112,6 +112,11 @@ public class Titular  implements java.io.Serializable {
         this.licencias = licencias;
     }
 
+    @Override
+    public String toString() {
+        return "Titular{" + "dni=" + dni + ", domicilio=" + domicilio + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", grupoSanguineo=" + grupoSanguineo + ", factorRh=" + factorRh + ", esDonante=" + esDonante + ", licencias=" + licencias + '}';
+    }
+
 
 
 

@@ -80,6 +80,11 @@ public class Licencia  implements java.io.Serializable {
         this.costo = costo;
     }
 
+    @Override
+    public String toString() {
+        return "Licencia{" + "uid=" + uid + ", titular={" + titular + "} , clase=" + clase + ", fechaTramite=" + fechaTramite + ", fechaExpiracion=" + fechaExpiracion + ", costo=" + costo + '}';
+    }
+
 }
 
 

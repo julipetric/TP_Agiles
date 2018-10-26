@@ -11,6 +11,7 @@ import Daos.TitularDao;
 import Daos.UsuarioDao;
 import Exceptions.DatosUsuarioInvalidosException;
 import Gestores.GestorSesion;
+import Modelo.Usuario;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.hibernate.Session;
@@ -131,11 +132,24 @@ public class Login extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         
+
+        
+        
+        
+        
         Configuration configuracion = new Configuration();
         configuracion.configure("hibernate.cfg.xml");
         StandardServiceRegistryBuilder ssrb = new StandardServiceRegistryBuilder().applySettings(configuracion.getProperties());
         SessionFactory fabricaSesion = configuracion.buildSessionFactory(ssrb.build());
         Session sesion = fabricaSesion.openSession();
+        
+        UsuarioDao.setSession(sesion);
+        //Usuario user = new Usuario(88888,"juancito","perezco","jperez23","1234",false);
+        //UsuarioDao.insert(user);
+        System.out.println(UsuarioDao.getAllUsuarios());
+        
+       
+      
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -157,7 +171,10 @@ public class Login extends javax.swing.JFrame {
         DomicilioDao.setSession(sesion);
         LicenciaDao.setSesion(sesion);
         TitularDao.setSesion(sesion);
-        UsuarioDao.setSesion(sesion);
+        //UsuarioDao.setSesion(sesion);
+        
+          //System.out.println(LicenciaDao.BuscarPorCriterio("","" ,null ,null ,"" ,"" ,"-" , null, Boolean.TRUE, Boolean.TRUE));
+         // System.out.println(LicenciaDao.getAllLicencia());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
