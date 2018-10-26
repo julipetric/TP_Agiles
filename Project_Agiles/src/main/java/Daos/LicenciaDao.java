@@ -17,7 +17,8 @@ import org.hibernate.Transaction;
  * @author matij
  */
 public class LicenciaDao {
-        private static Session sesion;
+
+    private static Session sesion;
 
     public static Session getSesion() {
         return sesion;
@@ -53,7 +54,7 @@ public class LicenciaDao {
         List licencias = new ArrayList<>();
         try {
             tx = sesion.beginTransaction();
-            licencias = sesion.createQuery("FROM Usuario").list();
+            licencias = sesion.createQuery("FROM Licencia").list();
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -95,15 +96,78 @@ public class LicenciaDao {
             e.printStackTrace();
         }
     }
-    
-    public static ArrayList<Licencia> getExpiradas(){
+
+    public static ArrayList<Licencia> BuscarPorCriterio(String nombre, String apellido, Integer dni, Integer nroLic, String grupo, String factor, String clase, Boolean donante, Boolean vencidas, Boolean novencidas) {
+        Transaction tx = null;
+        List<Object> licencias = new ArrayList<>();
+        try {
+            tx = sesion.beginTransaction();
+            String query = new String();
+            
+            if (dni != null) {
+                query += "l.titular.dni = " + dni.toString() + " AND ";
+            }
+            if (!nombre.isEmpty()) {
+                query += "l.titular.nombre = '" + nombre + "' AND ";
+            }
+            if (!apellido.isEmpty()) {
+                query += "l.titular.apellido = '" + apellido + "' AND ";
+            }
+            if(nroLic!=null)
+            {
+                 query += "l.uid = " + nroLic.toString() + " AND ";
+            }
+            if (clase != "-") {
+                query += "l.clase = '" + clase + "' AND ";
+            }
+            if (vencidas && !novencidas) {
+                query += "l.fechaExpiracion <= CURDATE()" + " AND ";
+            }
+            if (!vencidas && novencidas) {
+                query += "l.fechaExpiracion > CURDATE()" + " AND ";
+            }
+            if (!grupo.isEmpty()) {
+                query += "l.titular.grupoSanguineo = '" + grupo + "' AND ";
+            }
+            if (!factor.isEmpty()) {
+                query += "l.titular.factorRh = '" + factor + "' AND ";
+            }
+            if (donante != null) {
+                query += "l.titular.esDonante = " + ((donante) ? "1" : "0") + " AND ";
+            }
+            
+            if(!query.isEmpty()){
+                query = query.substring(0, query.length()-4);
+            }
+            query = "FROM Licencia l" + ((query.isEmpty())?"":" WHERE ") + query;
+
+            //query += "l.titular.dni = t.dni";
+            
+            licencias = sesion.createQuery(query).list();
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }
+        ArrayList<Licencia> result = new ArrayList<>();
+        for (Object o : licencias) {
+            result.add((Licencia) o);
+        }
+        
+        return result;
+        
+    }
+
+    public static ArrayList<Licencia> getExpiradas() {
         Transaction tx = null;
         List licenciasexpiradas = new ArrayList<>();
-        try{
+        try {
             tx = sesion.beginTransaction();
             licenciasexpiradas = sesion.createQuery("FROM Licencia l WHERE l.fechaExpiracion <= CURDATE()").list();
         } catch (HibernateException e) {
-            
+
         }
         ArrayList<Licencia> lic = new ArrayList<>();
         for (Object o : licenciasexpiradas) {
@@ -111,10 +175,10 @@ public class LicenciaDao {
         }
         return lic;
     }
-    
-        public static void setSession(Session sesion) {
-          
+
+    public static void setSession(Session sesion) {
+
         LicenciaDao.sesion = sesion;
-    
+
     }
 }

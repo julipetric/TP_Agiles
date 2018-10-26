@@ -97,6 +97,11 @@ public class Domicilio  implements java.io.Serializable {
         return d;
     }
 
+    @Override
+    public String toString() {
+        return "Domicilio{" + "uid=" + uid + ", ciudad=" + ciudad + ", calle=" + calle + ", numero=" + numero + ", departamento=" + departamento + ", piso=" + piso + '}';
+    }
+    
 
 }
 

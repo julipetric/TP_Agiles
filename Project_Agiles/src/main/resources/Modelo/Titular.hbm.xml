@@ -29,11 +29,11 @@
         <property name="esDonante" type="boolean">
             <column name="esDonante" not-null="true" />
         </property>
-        <set name="licencias" table="licencia" inverse="true" lazy="true" fetch="select">
+        <!--<set name="licencias" table="licencia" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="dniTitular" not-null="true" />
             </key>
             <one-to-many class="Modelo.Licencia" />
-        </set>
+        </set> -->
     </class>
 </hibernate-mapping>

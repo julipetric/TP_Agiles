@@ -19,6 +19,8 @@ public class Usuario  implements java.io.Serializable {
      private boolean esAdministrador;
      private Set licencias = new HashSet(0);
 
+     
+     
     public Usuario() {
     }
 
@@ -89,6 +91,11 @@ public class Usuario  implements java.io.Serializable {
     
     public void setLicencias(Set licencias) {
         this.licencias = licencias;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", usuarioNombre=" + usuarioNombre + ", usuarioContrasena=" + usuarioContrasena + ", esAdministrador=" + esAdministrador + ", licencias=" + licencias + '}';
     }
 
 

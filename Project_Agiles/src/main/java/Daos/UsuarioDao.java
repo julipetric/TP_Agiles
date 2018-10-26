@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
@@ -25,6 +26,7 @@ public class UsuarioDao {
     }
 
     public static void setSesion(Session sesion) {
+        
         UsuarioDao.sesion = sesion;
     }
 
@@ -77,7 +79,9 @@ public class UsuarioDao {
         List usuarios = new ArrayList<>();
         try {
             tx = sesion.beginTransaction();
-            usuarios = sesion.createQuery("FROM Usuario").list();
+            String asd = new String();
+            asd = "FROM Usuario";
+            usuarios = sesion.createQuery(asd).list();
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
