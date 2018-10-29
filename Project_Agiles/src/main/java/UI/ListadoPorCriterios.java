@@ -9,6 +9,9 @@ import Gestores.GestorLicencias;
 import Modelo.Licencia;
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -55,7 +58,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         donanteNoButton = new javax.swing.JRadioButton();
         vigenteLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaLicencias = new javax.swing.JTable();
         buscarButton = new javax.swing.JButton();
         volverButton = new javax.swing.JButton();
         vigenteSiCheck = new javax.swing.JCheckBox();
@@ -97,17 +100,21 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
 
         vigenteLabel.setText("Licencia vigente:");
 
-        jTable1.setAutoCreateRowSorter(true);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaLicencias.setAutoCreateRowSorter(true);
+        tablaLicencias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
                 "Apellido", "Nombre", "DNI", "Domicilio", "Tipo Licencia", "Fecha Vencimiento", "Grupo/Factor Sanguineo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -121,9 +128,9 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setColumnSelectionAllowed(true);
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablaLicencias.setColumnSelectionAllowed(true);
+        jScrollPane1.setViewportView(tablaLicencias);
+        tablaLicencias.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         buscarButton.setText("Buscar");
         buscarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -168,10 +175,9 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                                 .addGap(31, 31, 31)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(claseCombo, 0, 319, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(domicilioEditText, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                                .addComponent(nombreEditText)
-                                .addComponent(dniEditText)))
+                            .addComponent(domicilioEditText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                            .addComponent(nombreEditText, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dniEditText, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nroLabel)
@@ -247,10 +253,9 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
-        
+
         //Se crea un arreglo para pasarle al metodo de búsqueda del gestor
         //de licencias para la búsqueda
-        
         ArrayList<Object> criterios = new ArrayList<>(11);
         criterios.set(0, this.nombreEditText.getText());
         criterios.set(1, this.apellidoEditText.getText());
@@ -263,11 +268,12 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         criterios.set(8, this.donanteSiButton.isSelected());
         criterios.set(9, this.vigenteSiCheck.isSelected());
         criterios.set(10, this.vigenteNoCheck.isSelected());
-        
+
         ArrayList<Licencia> lista = new ArrayList<>();
         lista = GestorLicencias.buscarPorCriterios(criterios);
-        
-        
+
+        //Agregar lista a la tabla
+
     }//GEN-LAST:event_buscarButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -288,11 +294,11 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> grupoCombo;
     private javax.swing.JLabel grupoLabel;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField nombreEditText;
     private javax.swing.JLabel nombreLabel;
     private javax.swing.JTextField nroEditText;
     private javax.swing.JLabel nroLabel;
+    private javax.swing.JTable tablaLicencias;
     private javax.swing.JLabel titleLabel;
     private javax.swing.ButtonGroup vigenteGroup;
     private javax.swing.JLabel vigenteLabel;

@@ -97,7 +97,7 @@ public class LicenciaDao {
         }
     }
 
-    public static ArrayList<Licencia> BuscarPorCriterio(String nombre, String apellido, Integer dni, Integer nroLic, String grupo, String factor, String clase, Boolean donante, Boolean vencidas, Boolean novencidas) {
+    public static ArrayList<Licencia> buscarPorCriterios(String nombre, String apellido, Integer dni, Integer nroLic, String grupo, String factor, String clase, Boolean donante, Boolean vencidas, Boolean novencidas) {
         Transaction tx = null;
         List<Object> licencias = new ArrayList<>();
         try {
@@ -180,30 +180,6 @@ public class LicenciaDao {
 
         LicenciaDao.sesion = sesion;
 
-    }
-
-    public static ArrayList<Licencia> buscarPorCriterios(ArrayList<String> criteriosString) {
-        ArrayList<Licencia> listaFinal = new ArrayList<>();
-        String crit = new String();
-
-        for (int i = 0; i < 11; i++) {
-            if (!criteriosString.get(i).equals(null)) {
-                if (crit.isEmpty()) {
-                    crit += "WHERE ";
-                } else {
-                    crit += "AND ";
-                }
-            }
-            switch (i) {
-                //MANEJAR EL CASO PARA CRITERIOS CORRESPONDIENTES A DATOS
-                //DEL TITULAR
-                case 3:
-                    crit += "l.uid = " + criteriosString.get(i);
-                case 7:
-                    crit += "l.clase = " + criteriosString.get(i);
-            }
-        }
-       return listaFinal;
     }
 
 }
