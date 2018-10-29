@@ -5,6 +5,9 @@
  */
 package UI;
 
+import Gestores.GestorLicencias;
+import Modelo.Licencia;
+import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 
 /**
@@ -244,7 +247,27 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
-        // TODO add your handling code here:
+        
+        //Se crea un arreglo para pasarle al metodo de búsqueda del gestor
+        //de licencias para la búsqueda
+        
+        ArrayList<Object> criterios = new ArrayList<>(11);
+        criterios.set(0, this.nombreEditText.getText());
+        criterios.set(1, this.apellidoEditText.getText());
+        criterios.set(2, this.dniEditText.getText());
+        criterios.set(3, this.nroEditText.getText());
+        criterios.set(4, this.domicilioEditText.getText());
+        criterios.set(5, this.grupoCombo.getSelectedItem());
+        criterios.set(6, this.factorCombo.getSelectedItem());
+        criterios.set(7, this.claseCombo.getSelectedItem());
+        criterios.set(8, this.donanteSiButton.isSelected());
+        criterios.set(9, this.vigenteSiCheck.isSelected());
+        criterios.set(10, this.vigenteNoCheck.isSelected());
+        
+        ArrayList<Licencia> lista = new ArrayList<>();
+        lista = GestorLicencias.buscarPorCriterios(criterios);
+        
+        
     }//GEN-LAST:event_buscarButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
