@@ -5,16 +5,22 @@
  */
 package UI;
 
+import Exceptions.DatosDomicilioException;
 import Exceptions.DatosTitularException;
 import Exceptions.DatosUsuarioInvalidosException;
 import Gestores.GestorLicencias;
 import Gestores.GestorTitular;
 import Modelo.Licencia;
+import java.awt.Color;
 import java.awt.RenderingHints;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
 
 /**
  *
@@ -22,73 +28,80 @@ import javax.swing.JOptionPane;
  */
 public class DarDeAltaAUnTitular extends javax.swing.JFrame {
 
+    private Border borde;
+    
     /**
      * Creates new form DarDeAltaAUnTitular
      */
     public DarDeAltaAUnTitular() {
         initComponents();
+        borde=nombreET.getBorder();
         this.setLocationRelativeTo(null);
+        fecha.setMaxSelectableDate(new Date());
+        Date minDate = new Date();
+        minDate.setTime(minDate.getTime()-TimeUnit.DAYS.toMillis(365*100));
+        fecha.setMinSelectableDate(minDate);
 
-        nombre.addKeyListener(new KeyAdapter() {
+        nombreET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (nombre.getText().length() >= 26) {
+                if (nombreET.getText().length() >= 26) {
                     k.consume();
                 }
             }
         });
-        apellido.addKeyListener(new KeyAdapter() {
+        apellidoET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (apellido.getText().length() >= 26) {
+                if (apellidoET.getText().length() >= 26) {
                     k.consume();
                 }
             }
         });
-        dni.addKeyListener(new KeyAdapter() {
+        dniET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (dni.getText().length() >= 10 && k.getKeyChar() >= '0' && k.getKeyChar() <= '9') {
+                if (dniET.getText().length() >= 8 || k.getKeyChar() < '0' || k.getKeyChar() > '9') {
                     k.consume();
                 }
             }
         });
-        ciudad.addKeyListener(new KeyAdapter() {
+        ciudadET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (ciudad.getText().length() >= 50) {
+                if (ciudadET.getText().length() >= 50) {
                     k.consume();
                 }
             }
         });
-        calle.addKeyListener(new KeyAdapter() {
+        calleET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (calle.getText().length() >= 50) {
+                if (calleET.getText().length() >= 50) {
                     k.consume();
                 }
             }
         });
-        piso.addKeyListener(new KeyAdapter() {
+        pisoET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (piso.getText().length() >= 3) {
+                if (pisoET.getText().length() >= 3 || k.getKeyChar() < '0' || k.getKeyChar() > '9') {
                     k.consume();
                 }
             }
         });
-        numero.addKeyListener(new KeyAdapter() {
+        numeroET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (numero.getText().length() >= 7 && k.getKeyChar() >= '0' && k.getKeyChar() <= '9') {
+                if (numeroET.getText().length() >= 6 || k.getKeyChar() < '0' || k.getKeyChar() > '9') {
                     k.consume();
                 }
             }
         });
-        departamento.addKeyListener(new KeyAdapter() {
+        departamentoET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (departamento.getText().length() >= 2) {
+                if (departamentoET.getText().length() >= 2) {
                     k.consume();
                 }
             }
@@ -107,20 +120,20 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
         jTextField7 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        nombre = new javax.swing.JTextField();
+        nombreET = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        apellido = new javax.swing.JTextField();
+        apellidoET = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        calle = new javax.swing.JTextField();
+        calleET = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        numero = new javax.swing.JTextField();
+        numeroET = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        departamento = new javax.swing.JTextField();
+        departamentoET = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        piso = new javax.swing.JTextField();
+        pisoET = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        ciudad = new javax.swing.JTextField();
+        ciudadET = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         fecha = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
@@ -131,7 +144,7 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        dni = new javax.swing.JTextField();
+        dniET = new javax.swing.JTextField();
 
         jButton2.setText("Guardar");
 
@@ -166,18 +179,18 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(piso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pisoET, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(departamento, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(departamentoET, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(calle, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(calleET, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(ciudad))
+                        .addComponent(numeroET, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ciudadET))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -185,20 +198,20 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ciudadET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(calle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(calleET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(numeroET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(piso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pisoET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(departamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(departamentoET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -238,15 +251,15 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(nombreET, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel11))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dni)
-                                    .addComponent(apellido))))
+                                    .addComponent(dniET)
+                                    .addComponent(apellidoET))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -276,7 +289,7 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
-                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nombreET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel8))
                     .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -284,7 +297,7 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
                     .addComponent(grupoSang, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
-                        .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(apellidoET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel9)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,7 +307,7 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
                         .addComponent(donante))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11)
-                        .addComponent(dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(dniET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -309,48 +322,58 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        ArrayList<Object> datosTitular = new ArrayList<>(12);
         try {
-            datosTitular.set(0, this.nombre.getText());
-            datosTitular.set(1, this.apellido.getText());
-            datosTitular.set(2, this.dni.getText());
-            datosTitular.set(9, this.fecha.getDate());
-
-            datosTitular.set(10, this.grupoSang.getSelectedItem());
-            datosTitular.set(11, this.factor.getSelectedItem());
-            datosTitular.set(8, this.donante.isSelected());
-
+            String nombre = nombreET.getText();
+            String apellido = apellidoET.getText();
+            String dni = dniET.getText();
+            Date fechaNacimiento = fecha.getDate();
+            String grupoSanguineo = (String) grupoSang.getSelectedItem();
+            String factorRh = (String) factor.getSelectedItem();
+            Boolean esDonante = donante.isSelected();
+            
             //Domicilio
-            datosTitular.set(3, this.numero.getText());
-            datosTitular.set(4, this.departamento.getText());
-            datosTitular.set(5, this.calle.getText());
-            datosTitular.set(6, this.ciudad.getText());
-            datosTitular.set(7, this.piso.getText());
+            String ciudad = ciudadET.getText();
+            String calle = calleET.getText();
+            String numero = numeroET.getText();
+            String piso = pisoET.getText();
+            String departamento = departamentoET.getText();
             //
+            
+            nombreET.setBorder(borde);
+            apellidoET.setBorder(borde);
+            dniET.setBorder(borde);
+            ciudadET.setBorder(borde);
+            calleET.setBorder(borde);
+            numeroET.setBorder(borde);
 
-            if (GestorTitular.guardarTitular(datosTitular)) {
-                JOptionPane.showMessageDialog(null, "Titular dado de alta", "", JOptionPane.PLAIN_MESSAGE);
-                //Ahora habría que volver al meno admin.
+            if (GestorTitular.guardarTitular(nombre, apellido, dni, fechaNacimiento, grupoSanguineo, factorRh, esDonante, ciudad, calle, numero, piso, departamento)) {
+                JOptionPane.showMessageDialog(null, "Titular dado de alta correctamente", "", JOptionPane.PLAIN_MESSAGE);
+                initComponents();
             }
 
         } catch (DatosTitularException e) {
-            ErrorPlaceholder error = new ErrorPlaceholder();
-            error.setVisible(true);
-
+            
+            if(!e.getApellido()) apellidoET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
+            
+            if(!e.getNombre()) nombreET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
+            
+            if(!e.getDni()) dniET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
+            
+            if(!e.getDomicilioException().getCiudad()) ciudadET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
+            
+            if(!e.getDomicilioException().getCalle()) calleET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
+            
+            if(!e.getDomicilioException().getNumero()) numeroET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
         }
-
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
+        /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
+               
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -358,31 +381,24 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DarDeAltaAUnTitular.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DarDeAltaAUnTitular.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DarDeAltaAUnTitular.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DarDeAltaAUnTitular.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            System.out.println(ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new DarDeAltaAUnTitular().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField apellido;
-    private javax.swing.JTextField calle;
-    private javax.swing.JTextField ciudad;
-    private javax.swing.JTextField departamento;
-    private javax.swing.JTextField dni;
+    private javax.swing.JTextField apellidoET;
+    private javax.swing.JTextField calleET;
+    private javax.swing.JTextField ciudadET;
+    private javax.swing.JTextField departamentoET;
+    private javax.swing.JTextField dniET;
     private javax.swing.JCheckBox donante;
     private javax.swing.JComboBox<String> factor;
     private com.toedter.calendar.JDateChooser fecha;
@@ -403,8 +419,8 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField nombre;
-    private javax.swing.JTextField numero;
-    private javax.swing.JTextField piso;
+    private javax.swing.JTextField nombreET;
+    private javax.swing.JTextField numeroET;
+    private javax.swing.JTextField pisoET;
     // End of variables declaration//GEN-END:variables
 }

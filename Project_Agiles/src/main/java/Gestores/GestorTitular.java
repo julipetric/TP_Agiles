@@ -6,6 +6,7 @@
 package Gestores;
 
 import Daos.TitularDao;
+import Exceptions.DatosDomicilioException;
 import Exceptions.DatosTitularException;
 import Modelo.Domicilio;
 import Modelo.Titular;
@@ -18,28 +19,57 @@ import java.util.Date;
  */
 public class GestorTitular {
 
-    public static boolean guardarTitular(ArrayList t) throws DatosTitularException {
-
-        try {
-            if (validarDatosTitular((String)  t.get(0),(String) t.get(1) ,(int) t.get(2) ,(Date) t.get(9)) && GestorDomicilio.validarDomicilio((String)t.get(3),(String)t.get(4),(String)t.get(5),(String)t.get(6),(String)t.get(7))) {
-
-            } else {
-            }
-            //Titular titular = new Titular(t.get(0);, domicilio, nombre, apellido, fechaNacimiento, grupoSanguineo, factorRh, true)
-        } catch (DatosTitularException e) {
-            throw e;
+    public static boolean guardarTitular(String nombre, String apellido, String dni, Date fechaNacimiento, String grupoSanguineo,
+            String factorRh, Boolean esDonante, String ciudad, String calle, String numero, String piso, String departamento)
+            throws DatosTitularException {
+        boolean ok=true;
+        DatosTitularException exception = new DatosTitularException();
+        
+        try{
+            validarDatosTitular(nombre, apellido, dni);
         }
-
-//        TitularDao.insert(t);
-        return true;
+        catch(DatosTitularException e)
+        {
+            ok=false;
+            exception = e;
+        }
+        try{
+            GestorDomicilio.validarDomicilio(ciudad, calle, numero, piso, departamento);
+        }
+        catch(DatosDomicilioException e)
+        {
+            ok=false;
+            exception.setDomicilioException(e);
+        }
+        
+        if(!ok) throw exception;
+        else{
+            Domicilio domicilio = new Domicilio(ciudad, calle, Integer.valueOf(numero), Integer.valueOf(piso), departamento);
+            Titular titular = new Titular(Integer.valueOf(dni),domicilio,nombre,apellido,fechaNacimiento,grupoSanguineo,factorRh,esDonante);
+            TitularDao.insert(titular);
+        }
+        return ok;
     }
 
-    private static boolean validarDatosTitular(String nombre, String apellido, int dni, Date fecha) throws  DatosTitularException{
-        if (nombre.length() >= 0 && apellido.length() >= 0 && String.valueOf(dni).length() >= 0) {
-            //FALTA VALIDAR LA FECHA QUE NO SEA CUALQUIER COSA
-            return true;
-        }else{
-          return false;
-        }     
+    private static boolean validarDatosTitular(String nombre, String apellido, String dni) throws DatosTitularException {
+        boolean ok=true;
+        DatosTitularException exception = new DatosTitularException();
+        if(dni.length()<6)
+        {
+            ok=false;
+            exception.setDni(false);
+        }
+        if(nombre.length()==0)
+        {
+            ok=false;
+            exception.setNombre(false);
+        }
+        if(apellido.length()==0)
+        {
+            ok=false;
+            exception.setApellido(false);
+        }
+        if(!ok) throw exception;
+        return ok;
     }
 }

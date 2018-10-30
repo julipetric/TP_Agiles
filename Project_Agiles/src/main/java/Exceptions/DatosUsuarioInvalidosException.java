@@ -12,14 +12,25 @@ package Exceptions;
 public class DatosUsuarioInvalidosException extends Exception {
     
     private boolean nombre,apellido,dni,usuario,pass,pass2;
+    DatosDomicilioException domicilioException;
     
     public DatosUsuarioInvalidosException() {
+        super("Datos de usuario incorrectos");
+        domicilioException = new DatosDomicilioException();
         nombre=true;
         apellido=true;
         dni=true;
         usuario=true;
         pass=true;
         pass2=true;
+    }
+    
+    public void setDomicilioException(DatosDomicilioException domicilioException){
+        this.domicilioException = domicilioException;
+    }
+    
+    public DatosDomicilioException getDomicilioException(){
+        return domicilioException;
     }
 
     public boolean getNombre() {

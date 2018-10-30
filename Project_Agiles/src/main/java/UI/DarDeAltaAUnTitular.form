@@ -41,7 +41,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="nombre" min="-2" pref="175" max="-2" attributes="0"/>
+                              <Component id="nombreET" min="-2" pref="175" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -50,8 +50,8 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="dni" max="32767" attributes="0"/>
-                                  <Component id="apellido" max="32767" attributes="0"/>
+                                  <Component id="dniET" max="32767" attributes="0"/>
+                                  <Component id="apellidoET" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -93,7 +93,7 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreET" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="fecha" min="-2" max="-2" attributes="0"/>
@@ -103,7 +103,7 @@
                   <Component id="grupoSang" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="apellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="apellidoET" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -116,7 +116,7 @@
                   </Group>
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dni" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dniET" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -137,14 +137,14 @@
         <Property name="text" type="java.lang.String" value="Nombre:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="nombre">
+    <Component class="javax.swing.JTextField" name="nombreET">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Apellido"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="apellido">
+    <Component class="javax.swing.JTextField" name="apellidoET">
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
@@ -168,20 +168,20 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="piso" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="pisoET" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="departamento" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="departamentoET" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="calle" min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="calleET" min="-2" pref="152" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="numero" min="-2" pref="44" max="-2" attributes="0"/>
+                          <Component id="numeroET" min="-2" pref="44" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="ciudad" max="32767" attributes="0"/>
+                      <Component id="ciudadET" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="59" max="32767" attributes="0"/>
               </Group>
@@ -192,22 +192,22 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="ciudad" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ciudadET" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="calle" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="calleET" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="numero" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="numeroET" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="piso" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pisoET" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="departamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="departamentoET" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -220,35 +220,35 @@
             <Property name="text" type="java.lang.String" value="Calle"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="calle">
+        <Component class="javax.swing.JTextField" name="calleET">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="text" type="java.lang.String" value="N&#xb0;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="numero">
+        <Component class="javax.swing.JTextField" name="numeroET">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="text" type="java.lang.String" value="Piso:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="departamento">
+        <Component class="javax.swing.JTextField" name="departamentoET">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="text" type="java.lang.String" value="Departamento:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="piso">
+        <Component class="javax.swing.JTextField" name="pisoET">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ciudad:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="ciudad">
+        <Component class="javax.swing.JTextField" name="ciudadET">
         </Component>
       </SubComponents>
     </Container>
@@ -320,7 +320,7 @@
         <Property name="text" type="java.lang.String" value="DNI:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="dni">
+    <Component class="javax.swing.JTextField" name="dniET">
     </Component>
   </SubComponents>
 </Form>
