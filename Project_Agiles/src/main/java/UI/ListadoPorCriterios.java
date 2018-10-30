@@ -6,6 +6,7 @@
 package UI;
 
 import Gestores.GestorLicencias;
+import Gestores.GestorSesion;
 import Modelo.Licencia;
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
@@ -24,6 +25,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
      */
     public ListadoPorCriterios() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -81,22 +83,27 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         domicilioLabel.setText("Domicilio:");
 
         grupoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        grupoCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         grupoLabel.setText("Grupo/Factor:");
 
         factorCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        factorCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         claseLabel.setText("Clase:");
 
         claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "A", "B", "C", "D", "E", "F" }));
+        claseCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         donanteLabel.setText("Donante:");
 
         donanteGroup.add(donanteSiButton);
         donanteSiButton.setText("Sí");
+        donanteSiButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         donanteGroup.add(donanteNoButton);
         donanteNoButton.setText("No");
+        donanteNoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         vigenteLabel.setText("Licencia vigente:");
 
@@ -133,6 +140,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         tablaLicencias.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         buscarButton.setText("Buscar");
+        buscarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buscarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarButtonActionPerformed(evt);
@@ -140,12 +148,20 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         });
 
         volverButton.setText("Volver");
+        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        volverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverButtonActionPerformed(evt);
+            }
+        });
 
         vigenteSiCheck.setSelected(true);
         vigenteSiCheck.setText("Sí");
+        vigenteSiCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         vigenteNoCheck.setSelected(true);
         vigenteNoCheck.setText("No");
+        vigenteNoCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,9 +171,9 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(volverButton)
+                        .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buscarButton))
+                        .addComponent(buscarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,10 +259,10 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buscarButton)
-                    .addComponent(volverButton))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buscarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -275,6 +291,18 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         //Agregar lista a la tabla
 
     }//GEN-LAST:event_buscarButtonActionPerformed
+
+    private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
+        if (GestorSesion.getUsuarioActual().isEsAdministrador()) {
+            MenuAdmin menu = new MenuAdmin();
+            menu.setVisible(true);
+            this.dispose();
+        } else {
+            MenuOperario menu = new MenuOperario();
+            menu.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_volverButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoEditText;
