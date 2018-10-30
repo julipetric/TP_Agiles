@@ -20,7 +20,6 @@ public class GestorLicencias {
     }
 
     public static ArrayList<Licencia> buscarPorCriterios(ArrayList<Object> criterios) {
-
         String nombre = (String) criterios.get(0);
         String apellido = (String) criterios.get(1);
         Integer dni = Integer.parseInt((String) criterios.get(2));
@@ -32,10 +31,8 @@ public class GestorLicencias {
         Boolean vencidas = Boolean.parseBoolean((String) criterios.get(8));
         Boolean noVencidas = Boolean.parseBoolean((String) criterios.get(9));
         
-
         ArrayList<Licencia> lista = new ArrayList<>();
         lista = LicenciaDao.buscarPorCriterios(nombre, apellido, dni, nroLic, grupo, factor, clase, donante, vencidas, noVencidas);
         return lista;
-
     }
 }
