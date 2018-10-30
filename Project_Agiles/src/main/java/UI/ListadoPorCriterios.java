@@ -288,8 +288,20 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         ArrayList<Licencia> lista = new ArrayList<>();
         lista = GestorLicencias.buscarPorCriterios(criterios);
 
-        //Agregar lista a la tabla
-
+        DefaultTableModel model = (DefaultTableModel) this.tablaLicencias.getModel();
+        for (int i = 0; i < lista.size(); i++) {
+            String grupoFactor = lista.get(i).getTitular().getGrupoSanguineo() + lista.get(i).getTitular().getFactorRh();
+            Object[] fila = new Object[]{
+                lista.get(i).getTitular().getApellido(),
+                lista.get(i).getTitular().getNombre(),
+                lista.get(i).getTitular().getDni(),
+                lista.get(i).getTitular().getDomicilio().asString(),
+                lista.get(i).getClase(),
+                lista.get(i).getFechaExpiracion(),
+                grupoFactor
+            };
+            model.addRow(fila);
+        }
     }//GEN-LAST:event_buscarButtonActionPerformed
 
     private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
