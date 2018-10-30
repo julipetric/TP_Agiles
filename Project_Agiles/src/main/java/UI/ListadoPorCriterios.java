@@ -80,11 +80,11 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
 
         domicilioLabel.setText("Domicilio:");
 
-        grupoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        grupoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "A", "B", "AB", "0" }));
 
         grupoLabel.setText("Grupo/Factor:");
 
-        factorCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        factorCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Positivo", "Negativo" }));
 
         claseLabel.setText("Clase:");
 
