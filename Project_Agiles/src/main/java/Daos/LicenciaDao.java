@@ -97,7 +97,7 @@ public class LicenciaDao {
         }
     }
 
-    public static ArrayList<Licencia> buscarPorCriterios(String nombre, String apellido, Integer dni, Integer nroLic, String grupo, String factor, String clase, Boolean donante, Boolean vencidas, Boolean novencidas) {
+    public static ArrayList<Licencia> buscarPorCriterios(String nombre, String apellido, Integer dni, Integer nroLic, String grupo, String factor, String clase, Boolean donante, Boolean vencidas, Boolean noVencidas) {
         Transaction tx = null;
         List<Object> licencias = new ArrayList<>();
         try {
@@ -120,16 +120,16 @@ public class LicenciaDao {
             if (clase != "-") {
                 query += "l.clase = '" + clase + "' AND ";
             }
-            if (vencidas && !novencidas) {
+            if (vencidas && !noVencidas) {
                 query += "l.fechaExpiracion <= CURDATE()" + " AND ";
             }
-            if (!vencidas && novencidas) {
+            if (!vencidas && noVencidas) {
                 query += "l.fechaExpiracion > CURDATE()" + " AND ";
             }
-            if (!grupo.isEmpty()) {
+            if (grupo != "-") {
                 query += "l.titular.grupoSanguineo = '" + grupo + "' AND ";
             }
-            if (!factor.isEmpty()) {
+            if (factor != "-") {
                 query += "l.titular.factorRh = '" + factor + "' AND ";
             }
             if (donante != null) {
