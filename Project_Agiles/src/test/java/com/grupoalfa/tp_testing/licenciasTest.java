@@ -67,9 +67,9 @@ public class licenciasTest {
         criteriosVacio.add("-"); //grupo
         criteriosVacio.add("-"); //factor
         criteriosVacio.add("-"); //clase
-        criteriosVacio.add(true);
-        criteriosVacio.add(true);
-        criteriosVacio.add(true);
+        criteriosVacio.add(true); //donanteSi
+        criteriosVacio.add(true); //vencidas
+        criteriosVacio.add(true); //noVencidas
         
     }
 
