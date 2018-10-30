@@ -171,8 +171,8 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
             String pass2 = pass2EditText.getText();
             String permiso = (String) permisos.getSelectedItem();
 
-            GestorUsuario gestor = new GestorUsuario();
-            if(gestor.darDeAltaUsuario(dni, nombre, apellido, user, pass, pass2, permiso))
+           
+            if(GestorUsuario.darDeAltaUsuario(dni, nombre, apellido, user, pass, pass2, permiso))
             {
                 JOptionPane.showMessageDialog(null, "Usuario creado correctamente", "", JOptionPane.PLAIN_MESSAGE);
                 //Ahora habría que volver al meno admin.
