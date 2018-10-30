@@ -7,24 +7,20 @@ package Exceptions;
 
 /**
  *
- * @author Julian
+ * @author tomas
  */
-public class DatosUsuarioInvalidosException extends Exception {
-    
-    private boolean nombre,apellido,dni,usuario,pass,pass2;
+public class DatosTitularException extends Exception  {
+    private boolean nombre, apellido, dni;
     DatosDomicilioException domicilioException;
     
-    public DatosUsuarioInvalidosException() {
-        super("Datos de usuario incorrectos");
+      public DatosTitularException() {
+        super("Datos de titular incorrectos");
         domicilioException = new DatosDomicilioException();
         nombre=true;
         apellido=true;
         dni=true;
-        usuario=true;
-        pass=true;
-        pass2=true;
     }
-    
+      
     public void setDomicilioException(DatosDomicilioException domicilioException){
         this.domicilioException = domicilioException;
     }
@@ -56,32 +52,7 @@ public class DatosUsuarioInvalidosException extends Exception {
     public void setDni(boolean dni) {
         this.dni = dni;
     }
-
-    public boolean getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(boolean usuario) {
-        this.usuario = usuario;
-    }
-
-    public boolean getPass() {
-        return pass;
-    }
-
-    public void setPass(boolean pass) {
-        this.pass = pass;
-    }
-
-    public boolean getPass2() {
-        return pass2;
-    }
-
-    public void setPass2(boolean pass2) {
-        this.pass2 = pass2;
-    }
-
-
+      
+      
     
 }
-

@@ -21,6 +21,14 @@ public class Domicilio  implements java.io.Serializable {
 
     public Domicilio() {
     }
+    
+    public Domicilio(String ciudad, String calle, int numero, int piso, String departamento){
+        this.ciudad = ciudad;
+        this.calle = calle;
+        this.numero = numero;
+        this.piso = piso;
+        this.departamento = departamento;
+    }
 
 	
     public Domicilio(String ciudad, String calle, int numero, String departamento, int piso) {

@@ -19,18 +19,21 @@ public class GestorUsuario {
     }
 
     public static Boolean darDeAltaUsuario(String dni, String nombre, String apellido, String user, String pass, String pass2, String permiso) throws DatosUsuarioInvalidosException {
+       boolean a = false;
         try{
             if(validarDatosUsuario(dni, nombre, apellido, user, pass, pass2))
             {
                 //TO-DO entrar usuario en BD
                 UsuarioDao.insert(new Usuario(Integer.parseInt(dni), nombre, apellido, user, pass, permiso.equals("Administrador")));
+                a = true;
             }
         }
         catch(DatosUsuarioInvalidosException e){
+            a = false;
             throw e;
         }
         //Ojo, ver tema excepcion en inserción a la BD
-        return true;
+        return a;
     }
 
     private static Boolean validarDatosUsuario(String dni, String nombre, String apellido, String user, String pass, String pass2) throws DatosUsuarioInvalidosException {

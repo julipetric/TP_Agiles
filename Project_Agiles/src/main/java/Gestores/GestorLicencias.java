@@ -66,7 +66,6 @@ public class GestorLicencias {
                 (Boolean) criteriosArray.get(9)
         );
         return lista;
-
     }
     
     
