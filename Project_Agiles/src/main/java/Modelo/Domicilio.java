@@ -23,16 +23,14 @@ public class Domicilio  implements java.io.Serializable {
     }
 
 	
-    public Domicilio(int uid, String ciudad, String calle, int numero, String departamento, int piso) {
-        this.uid = uid;
+    public Domicilio(String ciudad, String calle, int numero, String departamento, int piso) {
         this.ciudad = ciudad;
         this.calle = calle;
         this.numero = numero;
         this.departamento = departamento;
         this.piso = piso;
     }
-    public Domicilio(int uid, String ciudad, String calle, int numero, String departamento, int piso, Set titulars) {
-       this.uid = uid;
+    public Domicilio(String ciudad, String calle, int numero, String departamento, int piso, Set titulars) {
        this.ciudad = ciudad;
        this.calle = calle;
        this.numero = numero;
@@ -45,9 +43,6 @@ public class Domicilio  implements java.io.Serializable {
         return this.uid;
     }
     
-    public void setUid(int uid) {
-        this.uid = uid;
-    }
     public String getCiudad() {
         return this.ciudad;
     }
