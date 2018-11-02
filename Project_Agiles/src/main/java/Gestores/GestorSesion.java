@@ -6,7 +6,7 @@
 package Gestores;
 
 import Daos.UsuarioDao;
-import Exceptions.DatosUsuarioInvalidosException;
+import Exceptions.DatosUsuarioException;
 import Modelo.Usuario;
 
 /**
@@ -24,12 +24,12 @@ public class GestorSesion {
         GestorSesion.usuarioActual = usuarioActual;
     }
     
-    public static void iniciarSesion(String nombre, String contra) throws DatosUsuarioInvalidosException {
+    public static void iniciarSesion(String nombre, String contra) throws DatosUsuarioException {
         Usuario user = UsuarioDao.find(nombre, contra);
         if (user != null) {
             usuarioActual = user;
         } else {
-            throw new DatosUsuarioInvalidosException();
+            throw new DatosUsuarioException();
         }
     }
 

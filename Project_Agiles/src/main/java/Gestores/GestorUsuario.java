@@ -6,7 +6,8 @@
 package Gestores;
 
 import Daos.UsuarioDao;
-import Exceptions.DatosUsuarioInvalidosException;
+import Exceptions.DatosDomicilioException;
+import Exceptions.DatosUsuarioException;
 import Modelo.Usuario;
 
 /**
@@ -18,27 +19,42 @@ public class GestorUsuario {
     public GestorUsuario() {
     }
 
-    public static Boolean darDeAltaUsuario(String dni, String nombre, String apellido, String user, String pass, String pass2, String permiso) throws DatosUsuarioInvalidosException {
-       boolean a = false;
+    public static Boolean darDeAltaUsuario(String dni, String nombre, String apellido, String user, String pass, String pass2, String permiso,
+            String ciudad, String calle, String numero, String piso, String departamento) throws DatosUsuarioException {
+        
+        Boolean ok=true;
+        DatosUsuarioException exception = new DatosUsuarioException();
+        
         try{
-            if(validarDatosUsuario(dni, nombre, apellido, user, pass, pass2))
-            {
-                //TO-DO entrar usuario en BD
-                UsuarioDao.insert(new Usuario(Integer.parseInt(dni), nombre, apellido, user, pass, permiso.equals("Administrador")));
-                a = true;
-            }
+            validarDatosUsuario(dni,nombre,apellido,user,pass,pass2);
         }
-        catch(DatosUsuarioInvalidosException e){
-            a = false;
-            throw e;
+        catch(DatosUsuarioException e){
+            ok = false;
+            exception = e;
         }
-        //Ojo, ver tema excepcion en inserción a la BD
-        return a;
+        
+        try{
+            GestorDomicilio.validarDomicilio(ciudad, calle, numero, piso, departamento);
+        }
+        catch(DatosDomicilioException e)
+        {
+            ok=false;
+            exception.setDomicilioException(e);
+        }
+        
+        if(!ok) throw exception;
+        /*else{
+            Domicilio domicilio = new Domicilio(ciudad, calle, Integer.valueOf(numero), Integer.valueOf(piso), departamento);
+            Usuario usuario = new Usuario(Integer.valueOf(dni),domicilio,nombre,apellido,user,pass,permiso);
+            UsuarioDao.insert(usuario);
+        }*///REVISAR CUESTION DEL DOMICILIO, EL CONSTRUCTOR QUE QUIERO USAR NO EXISTE. La base de datos creo que no le asigna domicilio a un usuario
+        
+        return ok;
     }
 
-    private static Boolean validarDatosUsuario(String dni, String nombre, String apellido, String user, String pass, String pass2) throws DatosUsuarioInvalidosException {
+    private static Boolean validarDatosUsuario(String dni, String nombre, String apellido, String user, String pass, String pass2) throws DatosUsuarioException {
         Boolean valido = true;
-        DatosUsuarioInvalidosException exception = new DatosUsuarioInvalidosException();
+        DatosUsuarioException exception = new DatosUsuarioException();
         
         try{
             Integer.parseInt(dni);

@@ -9,7 +9,7 @@ import Daos.DomicilioDao;
 import Daos.LicenciaDao;
 import Daos.TitularDao;
 import Daos.UsuarioDao;
-import Exceptions.DatosUsuarioInvalidosException;
+import Exceptions.DatosUsuarioException;
 import Gestores.GestorSesion;
 import Modelo.Licencia;
 import Modelo.Usuario;
@@ -140,7 +140,7 @@ public class Login extends javax.swing.JFrame {
                 menu.setVisible(true);
                 this.dispose();
             }
-        } catch (DatosUsuarioInvalidosException ex) {
+        } catch (DatosUsuarioException ex) {
             //Usuario o contraseña invalidos...
         }
     }//GEN-LAST:event_iniciarSesionButtonActionPerformed
