@@ -9,12 +9,12 @@ package Exceptions;
  *
  * @author Julian
  */
-public class DatosUsuarioInvalidosException extends Exception {
+public class DatosUsuarioException extends Exception {
     
     private boolean nombre,apellido,dni,usuario,pass,pass2;
     DatosDomicilioException domicilioException;
     
-    public DatosUsuarioInvalidosException() {
+    public DatosUsuarioException() {
         super("Datos de usuario incorrectos");
         domicilioException = new DatosDomicilioException();
         nombre=true;

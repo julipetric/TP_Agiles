@@ -7,7 +7,7 @@ package UI;
 
 import Exceptions.DatosDomicilioException;
 import Exceptions.DatosTitularException;
-import Exceptions.DatosUsuarioInvalidosException;
+import Exceptions.DatosUsuarioException;
 import Gestores.GestorLicencias;
 import Gestores.GestorTitular;
 import Modelo.Licencia;

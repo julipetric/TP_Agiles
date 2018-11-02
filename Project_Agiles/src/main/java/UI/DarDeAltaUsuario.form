@@ -28,41 +28,49 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="volverButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="261" max="32767" attributes="0"/>
-                      <Component id="aceptarButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="volverBtn" min="-2" pref="162" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="aceptarBtn" min="-2" pref="162" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="dniLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                      <Component id="dniEditText" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Component id="jPanel" alignment="1" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="pass2Label" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pass2EditText" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="pass2ET" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="permisosLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="permisos" min="-2" pref="212" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="userLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="nombreLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="apellidoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="pass1Label" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="dniLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="userLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nombreLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="apellidoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="pass1Label" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="permisosLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="permisosCombo" min="-2" pref="212" max="-2" attributes="0"/>
+                                          <Component id="apellidoET" alignment="1" pref="279" max="32767" attributes="0"/>
+                                          <Component id="usuarioET" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="dniET" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="nombreET" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="passET" min="-2" pref="279" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="apellidoEditText" pref="284" max="32767" attributes="0"/>
-                          <Component id="nombreEditText" max="32767" attributes="0"/>
-                          <Component id="userEditText" alignment="0" max="32767" attributes="0"/>
-                          <Component id="passEditText" max="32767" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -72,42 +80,44 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="permisosLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="permisos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="permisosCombo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="nombreEditText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nombreET" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nombreLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="apellidoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="apellidoEditText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="apellidoET" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="dniLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="dniEditText" min="-2" max="-2" attributes="0"/>
+                  <Component id="dniET" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="userLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="userEditText" min="-2" max="-2" attributes="0"/>
+                  <Component id="usuarioET" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="passEditText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="passET" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="pass1Label" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="pass2EditText" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="pass2Label" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="pass2ET" min="-2" max="-2" attributes="0"/>
+                  <Component id="pass2Label" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <Component id="jPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="aceptarButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="volverButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="aceptarBtn" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="volverBtn" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -120,14 +130,12 @@
         <Property name="text" type="java.lang.String" value="Permisos:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="permisos">
+    <Component class="javax.swing.JComboBox" name="permisosCombo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="2">
+            <StringItem index="0" value="Operario"/>
+            <StringItem index="1" value="Administrador"/>
           </StringArray>
         </Property>
       </Properties>
@@ -135,7 +143,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="nombreEditText">
+    <Component class="javax.swing.JTextField" name="nombreET">
     </Component>
     <Component class="javax.swing.JLabel" name="nombreLabel">
       <Properties>
@@ -147,43 +155,39 @@
         <Property name="text" type="java.lang.String" value="Apellido:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="apellidoEditText">
+    <Component class="javax.swing.JTextField" name="apellidoET">
     </Component>
     <Component class="javax.swing.JLabel" name="userLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nombre de Usuario:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="userEditText">
+    <Component class="javax.swing.JTextField" name="usuarioET">
     </Component>
     <Component class="javax.swing.JLabel" name="pass1Label">
       <Properties>
         <Property name="text" type="java.lang.String" value="Contrase&#xf1;a:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="passEditText">
-    </Component>
     <Component class="javax.swing.JLabel" name="pass2Label">
       <Properties>
         <Property name="text" type="java.lang.String" value="Repetir contrase&#xf1;a:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="pass2EditText">
-    </Component>
-    <Component class="javax.swing.JButton" name="volverButton">
+    <Component class="javax.swing.JButton" name="volverBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Volver"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="volverButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="volverBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="aceptarButton">
+    <Component class="javax.swing.JButton" name="aceptarBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Aceptar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aceptarButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aceptarBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="dniLabel">
@@ -191,7 +195,117 @@
         <Property name="text" type="java.lang.String" value="DNI:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="dniEditText">
+    <Component class="javax.swing.JTextField" name="dniET">
+    </Component>
+    <Container class="javax.swing.JPanel" name="jPanel">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Domicilio"/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="pisoET" min="-2" pref="40" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="departamentoET" min="-2" pref="34" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="calleET" min="-2" pref="152" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="numeroET" min="-2" pref="44" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="ciudadET" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="59" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="ciudadET" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="calleET" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="numeroET" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pisoET" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="departamentoET" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel18">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Calle"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="calleET">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel19">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="N&#xb0;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="numeroET">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel20">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Piso:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="departamentoET">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel21">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Departamento:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="pisoET">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel22">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ciudad:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="ciudadET">
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JPasswordField" name="passET">
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="pass2ET">
     </Component>
   </SubComponents>
 </Form>
