@@ -44,9 +44,9 @@ public class GestorTitular {
         
         if(!ok) throw exception;
         else{
-            Domicilio domicilio = new Domicilio(ciudad, calle, Integer.valueOf(numero), Integer.valueOf(piso), departamento);
+            /*Domicilio domicilio = new Domicilio(ciudad, calle, Integer.valueOf(numero), Integer.valueOf(piso), departamento);
             Titular titular = new Titular(Integer.valueOf(dni),domicilio,nombre,apellido,fechaNacimiento,grupoSanguineo,factorRh,esDonante);
-            TitularDao.insert(titular);
+            TitularDao.insert(titular);*/
         }
         return ok;
     }
