@@ -51,6 +51,10 @@ public class Domicilio  implements java.io.Serializable {
         return this.uid;
     }
     
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
+    
     public String getCiudad() {
         return this.ciudad;
     }
