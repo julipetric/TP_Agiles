@@ -36,6 +36,16 @@ public class Titular  implements java.io.Serializable {
         this.factorRh = factorRh;
         this.esDonante = esDonante;
     }
+    
+    public Titular(String nombre, String apellido, Date fechaNacimiento, String grupoSanguineo, String factorRh, boolean esDonante) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
+        this.grupoSanguineo = grupoSanguineo;
+        this.factorRh = factorRh;
+        this.esDonante = esDonante;
+    }
+    
     public Titular(int dni, Domicilio domicilio, String nombre, String apellido, Date fechaNacimiento, String grupoSanguineo, String factorRh, boolean esDonante, Set licencias) {
        this.dni = dni;
        this.domicilio = domicilio;

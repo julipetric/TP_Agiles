@@ -48,8 +48,6 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         dniEditText = new javax.swing.JTextField();
         nroLabel = new javax.swing.JLabel();
         nroEditText = new javax.swing.JTextField();
-        domicilioLabel = new javax.swing.JLabel();
-        domicilioEditText = new javax.swing.JTextField();
         grupoCombo = new javax.swing.JComboBox<>();
         grupoLabel = new javax.swing.JLabel();
         factorCombo = new javax.swing.JComboBox<>();
@@ -80,28 +78,28 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
 
         nroLabel.setText("Nro. Licencia:");
 
-        domicilioLabel.setText("Domicilio:");
-
         grupoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "A", "B", "AB", "0" }));
+        grupoCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         grupoLabel.setText("Grupo/Factor:");
 
         factorCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Positivo", "Negativo" }));
+        factorCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         claseLabel.setText("Clase:");
 
         claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "A", "B", "C", "D", "E", "F" }));
-        claseCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        claseCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         donanteLabel.setText("Donante:");
 
         donanteGroup.add(donanteSiButton);
         donanteSiButton.setText("Sí");
-        donanteSiButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        donanteSiButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         donanteGroup.add(donanteNoButton);
         donanteNoButton.setText("No");
-        donanteNoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        donanteNoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         vigenteLabel.setText("Licencia vigente:");
 
@@ -138,7 +136,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         tablaLicencias.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         buscarButton.setText("Buscar");
-        buscarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         buscarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarButtonActionPerformed(evt);
@@ -146,7 +144,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         });
 
         volverButton.setText("Volver");
-        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         volverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverButtonActionPerformed(evt);
@@ -155,11 +153,11 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
 
         vigenteSiCheck.setSelected(true);
         vigenteSiCheck.setText("Sí");
-        vigenteSiCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        vigenteSiCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         vigenteNoCheck.setSelected(true);
         vigenteNoCheck.setText("No");
-        vigenteNoCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        vigenteNoCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -175,21 +173,16 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(nombreLabel)
-                                        .addComponent(dniLabel))
-                                    .addGap(18, 18, 18))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(domicilioLabel)
-                                    .addGap(11, 11, 11)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombreLabel)
+                                    .addComponent(dniLabel))
+                                .addGap(18, 18, 18))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(claseLabel)
                                 .addGap(31, 31, 31)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(claseCombo, 0, 319, Short.MAX_VALUE)
-                            .addComponent(domicilioEditText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                             .addComponent(nombreEditText, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dniEditText, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(18, 18, 18)
@@ -239,15 +232,14 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                     .addComponent(nroEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(domicilioLabel)
-                    .addComponent(domicilioEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(grupoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(grupoLabel)
-                    .addComponent(factorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(factorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(claseLabel)
+                        .addComponent(claseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(claseLabel)
-                    .addComponent(claseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(donanteLabel)
                     .addComponent(donanteSiButton)
                     .addComponent(donanteNoButton)
@@ -275,7 +267,6 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         criterios.set(1, this.apellidoEditText.getText());
         criterios.set(2, this.dniEditText.getText());
         criterios.set(3, this.nroEditText.getText());
-        criterios.set(4, this.domicilioEditText.getText());
         criterios.set(5, this.grupoCombo.getSelectedItem());
         criterios.set(6, this.factorCombo.getSelectedItem());
         criterios.set(7, this.claseCombo.getSelectedItem());
@@ -322,8 +313,6 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     private javax.swing.JLabel claseLabel;
     private javax.swing.JTextField dniEditText;
     private javax.swing.JLabel dniLabel;
-    private javax.swing.JTextField domicilioEditText;
-    private javax.swing.JLabel domicilioLabel;
     private javax.swing.ButtonGroup donanteGroup;
     private javax.swing.JLabel donanteLabel;
     private javax.swing.JRadioButton donanteNoButton;

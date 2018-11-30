@@ -11,6 +11,7 @@ import Exceptions.DatosUsuarioException;
 import Gestores.GestorLicencias;
 import Gestores.GestorTitular;
 import Modelo.Licencia;
+import Modelo.Titular;
 import java.awt.Color;
 import java.awt.RenderingHints;
 import java.awt.event.KeyAdapter;
@@ -26,20 +27,20 @@ import javax.swing.border.Border;
  *
  * @author tomas
  */
-public class DarDeAltaAUnTitular extends javax.swing.JFrame {
+public class DarDeAltaTitular extends javax.swing.JFrame {
 
     private Border borde;
-    
+
     /**
      * Creates new form DarDeAltaAUnTitular
      */
-    public DarDeAltaAUnTitular() {
+    public DarDeAltaTitular() {
         initComponents();
-        borde=nombreET.getBorder();
+        borde = nombreET.getBorder();
         this.setLocationRelativeTo(null);
         fecha.setMaxSelectableDate(new Date());
         Date minDate = new Date();
-        minDate.setTime(minDate.getTime()-TimeUnit.DAYS.toMillis(365*100));
+        minDate.setTime(minDate.getTime() - TimeUnit.DAYS.toMillis(365 * 100));
         fecha.setMinSelectableDate(minDate);
 
         nombreET.addKeyListener(new KeyAdapter() {
@@ -141,7 +142,7 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         factor = new javax.swing.JComboBox<>();
         donante = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
+        guardarButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         dniET = new javax.swing.JTextField();
@@ -227,10 +228,10 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
 
         donante.setText("Donante");
 
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        guardarButton.setText("Guardar");
+        guardarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                guardarButtonActionPerformed(evt);
             }
         });
 
@@ -279,7 +280,7 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(guardarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -312,7 +313,7 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guardarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -320,60 +321,39 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
 
-        try {
-            String nombre = nombreET.getText();
-            String apellido = apellidoET.getText();
-            String dni = dniET.getText();
-            Date fechaNacimiento = fecha.getDate();
-            String grupoSanguineo = (String) grupoSang.getSelectedItem();
-            String factorRh = (String) factor.getSelectedItem();
-            Boolean esDonante = donante.isSelected();
-            
-            //Domicilio
-            String ciudad = ciudadET.getText();
-            String calle = calleET.getText();
-            String numero = numeroET.getText();
-            String piso = pisoET.getText();
-            String departamento = departamentoET.getText();
-            //
-            
-            nombreET.setBorder(borde);
-            apellidoET.setBorder(borde);
-            dniET.setBorder(borde);
-            ciudadET.setBorder(borde);
-            calleET.setBorder(borde);
-            numeroET.setBorder(borde);
+        String nombre = nombreET.getText();
+        String apellido = apellidoET.getText();
+        String dni = dniET.getText();
+        Date fechaNacimiento = fecha.getDate();
+        String grupoSanguineo = (String) grupoSang.getSelectedItem();
+        String factorRh = (String) factor.getSelectedItem();
+        Boolean esDonante = donante.isSelected();
+        //Domicilio
+        String ciudad = ciudadET.getText();
+        String calle = calleET.getText();
+        String numero = numeroET.getText();
+        String piso = pisoET.getText();
+        String departamento = departamentoET.getText();
+        //
+        nombreET.setBorder(borde);
+        apellidoET.setBorder(borde);
+        dniET.setBorder(borde);
+        ciudadET.setBorder(borde);
+        calleET.setBorder(borde);
+        numeroET.setBorder(borde);
+        Titular tit = new Titular(nombre, apellido, fechaNacimiento, grupoSanguineo, factorRh, esDonante);
+        EmitirLicencia emitirVentana = new EmitirLicencia(tit, dni, ciudad, calle, numero, piso, departamento);
+        emitirVentana.setVisible(true);
 
-            if (GestorTitular.guardarTitular(nombre, apellido, dni, fechaNacimiento, grupoSanguineo, factorRh, esDonante, ciudad, calle, numero, piso, departamento)) {
-                JOptionPane.showMessageDialog(null, "Titular dado de alta correctamente", "", JOptionPane.PLAIN_MESSAGE);
-                initComponents();
-            }
+    }//GEN-LAST:event_guardarButtonActionPerformed
 
-        } catch (DatosTitularException e) {
-            
-            if(!e.getApellido()) apellidoET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-            
-            if(!e.getNombre()) nombreET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-            
-            if(!e.getDni()) dniET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-            
-            if(!e.getDomicilioException().getCiudad()) ciudadET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-            
-            if(!e.getDomicilioException().getCalle()) calleET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-            
-            if(!e.getDomicilioException().getNumero()) numeroET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-        }
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-        /**
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
 
-               
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -384,13 +364,13 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             System.out.println(ex);
         }
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DarDeAltaAUnTitular().setVisible(true);
+                new DarDeAltaTitular().setVisible(true);
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -403,7 +383,7 @@ public class DarDeAltaAUnTitular extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> factor;
     private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JComboBox<String> grupoSang;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton guardarButton;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
