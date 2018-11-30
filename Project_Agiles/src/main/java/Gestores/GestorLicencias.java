@@ -30,21 +30,21 @@ public class GestorLicencias {
 
         criteriosArray.add(criterios.get(0)); //nombre
         criteriosArray.add(criterios.get(1)); //apellido
-        
+
         //dni
         if (!criterios.get(2).equals("")) {
             criteriosArray.add(Integer.parseInt((String) criterios.get(2)));
         } else {
             criteriosArray.add(null);
         }
-        
+
         //nroLic
         if (!criterios.get(3).equals("")) {
             criteriosArray.add(Integer.parseInt((String) criterios.get(3)));
         } else {
             criteriosArray.add(null);
         }
-        
+
         criteriosArray.add(criterios.get(4)); //grupo
         criteriosArray.add(criterios.get(5)); //factor
         criteriosArray.add(criterios.get(6)); //clase
@@ -67,8 +67,7 @@ public class GestorLicencias {
         );
         return lista;
     }
-    
-    
+
     public static void calcularVigencia(Licencia licencia) {
         /*Durante la emisión de la licencia, se establece la vigencia de la misma,
         de acuerdo a la siguiente tabla:
@@ -82,15 +81,15 @@ public class GestorLicencias {
         El día y mes de la fecha de vencimiento deben coincidir con el día y mes
         de la fecha de nacimiento del titular, respectivamente. La fecha de inicio
         de vigencia debe ser la fecha del sistema, y no puede cambiarse.*/
-        
+
         Date nacimiento = licencia.getTitular().getFechaNacimiento();
-        
+
         LocalDate inicioPeriodo = nacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate finPeriodo = LocalDate.now();
- 
+
         int diferencia = Period.between(inicioPeriodo, finPeriodo).getYears(); //Años del titular
         int vigencia = 0; //Vigencia de la licencia (en años)
-        
+
         if (diferencia < 21) {
             if (licencia.getTitular().getLicencias().isEmpty()) { //Si es su primera licencia
                 vigencia = 1;
@@ -99,23 +98,47 @@ public class GestorLicencias {
             }
         } else if (diferencia >= 21 && diferencia <= 46) {
             vigencia = 5;
-        }  else if (diferencia > 46 && diferencia <= 60) {
+        } else if (diferencia > 46 && diferencia <= 60) {
             vigencia = 4;
-        }  else if (diferencia > 60 && diferencia <= 70) {
+        } else if (diferencia > 60 && diferencia <= 70) {
             vigencia = 3;
         } else if (diferencia > 70) {
             vigencia = 1;
         }
-        
+
         Calendar cal = Calendar.getInstance(); //Fecha de hoy
         int anyoActual = cal.get(Calendar.YEAR); //Obtener año actual
-        
+
         cal.setTime(nacimiento); //Fecha de nacimieto
-        cal.set(Calendar.YEAR, anyoActual+vigencia);
+        cal.set(Calendar.YEAR, anyoActual + vigencia);
         Date vencimiento = cal.getTime(); //Dia y mes de nacimieto pero con año actual+años de vigencia
-        
+
         licencia.setFechaExpiracion(vencimiento);
         licencia.setFechaTramite(new Date()); //Fecha tramite = fecha actual
-
+        calcularCosto(vigencia, licencia);
     }
+
+    private static void calcularCosto(Integer vigencia, Licencia licencia) {
+        String clase = licencia.getClase();
+        ArrayList<String> clases = new ArrayList<String>();
+        clases.add("A");
+        clases.add("B");
+        clases.add("C");
+        clases.add("E");
+        clases.add("G");
+        ArrayList<Integer> vigencias = new ArrayList<Integer>();
+        vigencias.add(5);
+        vigencias.add(4);
+        vigencias.add(3);
+        vigencias.add(1);
+        Integer costo[][] = {{40, 30, 25, 20},
+        {48, 38, 25+8, 28},
+        {47+8, 35+8, 38, 23+8},
+        {59+8, 44+8, 39+8, 29+8},
+        {48, 38, 25+8, 28}};
+        int a = clases.indexOf(clase);
+        int b = vigencias.indexOf(vigencia);
+        licencia.setCosto(costo[a][b]);
+    }
+
 }
