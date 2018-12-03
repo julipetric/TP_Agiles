@@ -6,18 +6,35 @@
 package UI;
 
 import Exceptions.DatosTitularException;
+import Gestores.GestorArchivos;
+import Gestores.GestorLicencias;
+import Gestores.GestorSesion;
 import Gestores.GestorTitular;
+import Modelo.Licencia;
 import Modelo.Titular;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.JTextField;
+import javax.swing.filechooser.FileSystemView;
 
 /**
  *
  * @author Julian
  */
 public class EmitirLicencia extends javax.swing.JFrame {
-    
+
     Titular tit;
+
+    public Titular getTit() {
+        return tit;
+    }
     String dni;
     String ciudad;
     String calle;
@@ -85,8 +102,23 @@ public class EmitirLicencia extends javax.swing.JFrame {
         jButton4.setText("Volver");
 
         claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "E", "G" }));
+        claseCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                claseComboItemStateChanged(evt);
+            }
+        });
+        claseCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                claseComboActionPerformed(evt);
+            }
+        });
 
         expiracionText.setEditable(false);
+        expiracionText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                expiracionTextActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,14 +177,58 @@ public class EmitirLicencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void imprimirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirButtonActionPerformed
-        try {        
-            GestorTitular.guardarTitular(this.tit.getNombre(), this.tit.getApellido(), this.dni , this.tit.getFechaNacimiento(), this.tit.getGrupoSanguineo(), this.tit.getFactorRh(), this.tit.isEsDonante(), this.ciudad, this.calle, this.numero, this.piso, this.departamento);
+        try {
+            GestorTitular.guardarTitular(this.tit.getNombre(), this.tit.getApellido(), this.dni, this.tit.getFechaNacimiento(), this.tit.getGrupoSanguineo(), this.tit.getFactorRh(), this.tit.isEsDonante(), this.ciudad, this.calle, this.numero, this.piso, this.departamento);
         } catch (DatosTitularException ex) {
             Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //TODO: Guardar licencia con los datos de la interfaz
+        Licencia lic = GestorLicencias.crearLicencia(this.getTit(), GestorSesion.getUsuarioActual(), this.getClaseCombo().getSelectedItem());
+        GestorLicencias.guardarLicencia(lic);
+
+        try {
+            GestorArchivos.imprimir(lic);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        File escritorioDelUsuario = FileSystemView.getFileSystemView().getHomeDirectory();
+        
+        showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath().toString() + "/Comprobantes");
+        
+        
+        
+        this.dispose();
         
     }//GEN-LAST:event_imprimirButtonActionPerformed
+
+    private void expiracionTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expiracionTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_expiracionTextActionPerformed
+
+    private void claseComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_claseComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_claseComboActionPerformed
+
+    private void claseComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_claseComboItemStateChanged
+        //TODO: Crear el objeto licencia para calcular el costo y setear según el cambio de clase
+
+        Licencia lic = GestorLicencias.crearLicencia(this.getTit(), GestorSesion.getUsuarioActual(), this.getClaseCombo().getSelectedItem());
+        this.getCostoText().setText(((Float) lic.getCosto()).toString());
+        this.getExpiracionText().setText(lic.getFechaExpiracion().toString());
+
+    }//GEN-LAST:event_claseComboItemStateChanged
+
+    public JTextField getExpiracionText() {
+        return expiracionText;
+    }
+
+    public JTextField getCostoText() {
+        return costoText;
+    }
+
+    public JComboBox<String> getClaseCombo() {
+        return claseCombo;
+    }
 
     /**
      * @param args the command line arguments

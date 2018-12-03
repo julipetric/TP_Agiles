@@ -7,6 +7,8 @@ package Gestores;
 
 import Daos.LicenciaDao;
 import Modelo.Licencia;
+import Modelo.Titular;
+import Modelo.Usuario;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -117,5 +119,21 @@ public class GestorLicencias {
         licencia.setFechaExpiracion(vencimiento);
         licencia.setFechaTramite(new Date()); //Fecha tramite = fecha actual
 
+    }
+
+    public static Licencia crearLicencia(Titular tit, Usuario usuarioActual, Object selectedItem, Date date) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void guardarLicencia(Titular tit, Usuario usuarioActual, Object selectedItem, Date date) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void guardarLicencia(Licencia lic) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static Licencia crearLicencia(Titular tit, Usuario usuarioActual, Object selectedItem) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

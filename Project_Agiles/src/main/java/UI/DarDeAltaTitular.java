@@ -346,7 +346,8 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         Titular tit = new Titular(nombre, apellido, fechaNacimiento, grupoSanguineo, factorRh, esDonante);
         EmitirLicencia emitirVentana = new EmitirLicencia(tit, dni, ciudad, calle, numero, piso, departamento);
         emitirVentana.setVisible(true);
-
+        //TODO: Hacer que se cierre solo despues de haber impreso la licencia
+        this.dispose();
     }//GEN-LAST:event_guardarButtonActionPerformed
 
     /**
