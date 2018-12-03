@@ -28,9 +28,6 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 
-
-
-
 /**
  *
  * @author matij
@@ -56,12 +53,10 @@ public class GestorArchivos {
             
             if (!file.exists()) { //Si no hubo errores al crear el archivo...
                 
-                
                 //Agregamos los datos y el formato al pdf
                 PdfWriter writer = new PdfWriter(dest); //Explota con FileNotFoundException si "dest" es invalido
                 PdfDocument pdf = new PdfDocument(writer);
                 Document document = new Document(pdf);
-                
                 
                 Paragraph text1 = new Paragraph("Comprobante de Pago");
                 text1.setFontSize(24);
@@ -101,8 +96,7 @@ public class GestorArchivos {
             throw new ComprobanteDirectorioException();
         }
     }
-    
-    
+
     private static Image crearCodigoDeBarras(String code, Document pdfDoc) {
         Barcode39 barcode = new Barcode39(pdfDoc.getPdfDocument());
         barcode.setCodeType(Barcode39.ALIGN_CENTER);
