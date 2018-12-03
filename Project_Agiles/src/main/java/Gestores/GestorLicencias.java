@@ -6,7 +6,10 @@
 package Gestores;
 
 import Daos.LicenciaDao;
+import Exceptions.DatosLicenciaException;
 import Modelo.Licencia;
+import Modelo.Titular;
+import Modelo.Usuario;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -68,19 +71,16 @@ public class GestorLicencias {
         return lista;
     }
 
+    /**
+     * Durante la emisión de la licencia, se establece la vigencia de la misma,
+     * de acuerdo a la siguiente tabla: Menores de 21 años: 1 año la primera vez
+     * y 3 años las siguientes Hasta 46 años: 5 años Hasta 60 años: 4 años Hasta
+     * 70 años: 3 años Mayores de 70 años: 1 año El día y mes de la fecha de
+     * vencimiento deben coincidir con el día y mes de la fecha de nacimiento
+     * del titular, respectivamente. La fecha de inicio de vigencia debe ser la
+     * fecha del sistema, y no puede cambiarse.
+     */
     public static void calcularVigencia(Licencia licencia) {
-        /*Durante la emisión de la licencia, se establece la vigencia de la misma,
-        de acuerdo a la siguiente tabla:
-        
-        Menores de 21 años: 1 año la primera vez y 3 años las siguientes
-        Hasta 46 años: 5 años
-        Hasta 60 años: 4 años
-        Hasta 70 años: 3 años
-        Mayores de 70 años: 1 año
-        
-        El día y mes de la fecha de vencimiento deben coincidir con el día y mes
-        de la fecha de nacimiento del titular, respectivamente. La fecha de inicio
-        de vigencia debe ser la fecha del sistema, y no puede cambiarse.*/
 
         Date nacimiento = licencia.getTitular().getFechaNacimiento();
 
@@ -118,6 +118,13 @@ public class GestorLicencias {
         calcularCosto(vigencia, licencia);
     }
 
+    /**
+     * Este método se encarga de realizar el calculo del costo de la licencia.
+     *
+     * @author Tomás Fleitas - Jean Pierre Saint Martin
+     * @param vigencia es la cantidad de años que dura la licencia
+     * @param licencia es la licencia a la cual se le calculara el costo
+     */
     private static void calcularCosto(Integer vigencia, Licencia licencia) {
         String clase = licencia.getClase();
         ArrayList<String> clases = new ArrayList<String>();
@@ -132,13 +139,43 @@ public class GestorLicencias {
         vigencias.add(3);
         vigencias.add(1);
         Integer costo[][] = {{40, 30, 25, 20},
-        {48, 38, 25+8, 28},
-        {47+8, 35+8, 38, 23+8},
-        {59+8, 44+8, 39+8, 29+8},
-        {48, 38, 25+8, 28}};
+        {48, 38, 25 + 8, 28},
+        {47 + 8, 35 + 8, 38, 23 + 8},
+        {59 + 8, 44 + 8, 39 + 8, 29 + 8},
+        {48, 38, 25 + 8, 28}};
         int a = clases.indexOf(clase);
         int b = vigencias.indexOf(vigencia);
         licencia.setCosto(costo[a][b]);
+    }
+
+    /**
+     * Este método se encarga de crear una licencia y ademas le completa los datos de fecha de expiracion y el costo de la misma.
+     * @author Tomás Fleitas - Jean Pierre Saint Martin
+     * @param titular  es la instancia del titular de la licencia.
+     * @param usuario  es el operario actual de la sesion.
+     * @param clase  es el tipo de licencia.
+     * @return Instancia de una Licencia con todos los atributos seteados.
+     */
+    public static Licencia crearLicencia(Titular titular, Usuario usuario, String clase) throws DatosLicenciaException {
+        Licencia licencia = null;
+        if (titular != null && usuario != null && !clase.isEmpty()) {
+            licencia = new Licencia(titular, usuario, clase);
+            calcularVigencia(licencia);
+        } else {
+            throw new DatosLicenciaException();
+        }
+
+        return licencia;
+    }
+
+    /**
+     * Este método se encarga de comunicarse con el LicenciaDao para que el mismo lo persiste.
+     * @author Tomás Fleitas - Jean Pierre Saint Martin
+     * @param licencia   es la instancia de la licencia que se desea guardar.
+     */
+    public static void guardarLicencia(Licencia licencia) {
+        LicenciaDao Dao = new LicenciaDao();
+        Dao.insert(licencia);
     }
 
 }
