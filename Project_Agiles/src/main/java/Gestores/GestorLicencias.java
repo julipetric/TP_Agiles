@@ -22,11 +22,24 @@ import java.util.Date;
  * @author tomas
  */
 public class GestorLicencias {
-
+    
+    /**
+     * Este método se encarga de realizar la busqueda de licencias mediante diferentes criterios.
+     *
+     * @author Luciano Marthinez Almudevar 
+     * @return retorna las licencias expiradas
+     */
     public static ArrayList<Licencia> getLicenciasExpiradas() {
         return LicenciaDao.getExpiradas();
     }
-
+    
+   /**
+     * Este método se encarga de realizar la busqueda de licencias mediante diferentes criterios.
+     *
+     * @author Luciano Marthinez Almudevar 
+     * @param criterios  arreglo que contiene los criterios de busqueda.
+     * @return retorna las licencias que cumplan con los criterios
+     */
     public static ArrayList<Licencia> buscarPorCriterios(ArrayList<Object> criterios) {
 
         ArrayList<Object> criteriosArray = new ArrayList();
@@ -72,6 +85,8 @@ public class GestorLicencias {
     }
 
     /**
+     * Este método se encarga de calcular la fecha de expiracion de la licencia.
+     * 
      * Durante la emisión de la licencia, se establece la vigencia de la misma,
      * de acuerdo a la siguiente tabla: Menores de 21 años: 1 año la primera vez
      * y 3 años las siguientes Hasta 46 años: 5 años Hasta 60 años: 4 años Hasta
@@ -79,8 +94,12 @@ public class GestorLicencias {
      * vencimiento deben coincidir con el día y mes de la fecha de nacimiento
      * del titular, respectivamente. La fecha de inicio de vigencia debe ser la
      * fecha del sistema, y no puede cambiarse.
+     *
+     * @author Luciano Marthinez Almudevar 
+     * @param licencia instancia de una licencia a la que se le desea calcular la fecha de expiracion.s
+
      */
-    public static void calcularVigencia(Licencia licencia) {
+    private static void calcularVigencia(Licencia licencia) {
 
         Date nacimiento = licencia.getTitular().getFechaNacimiento();
 
@@ -150,6 +169,7 @@ public class GestorLicencias {
 
     /**
      * Este método se encarga de crear una licencia y ademas le completa los datos de fecha de expiracion y el costo de la misma.
+     * 
      * @author Tomás Fleitas - Jean Pierre Saint Martin
      * @param titular  es la instancia del titular de la licencia.
      * @param usuario  es el operario actual de la sesion.
@@ -170,6 +190,7 @@ public class GestorLicencias {
 
     /**
      * Este método se encarga de comunicarse con el LicenciaDao para que el mismo lo persiste.
+     * 
      * @author Tomás Fleitas - Jean Pierre Saint Martin
      * @param licencia   es la instancia de la licencia que se desea guardar.
      */
@@ -181,6 +202,7 @@ public class GestorLicencias {
     
     /**
      * Este método se encarga de buscar y retornar una licencia de la base de datos pasandole como parametro su uid.
+     * 
      * @author Tomás Fleitas - Jean Pierre Saint Martin
      * @param uid  ID de una licencia.
      */
