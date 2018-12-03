@@ -178,4 +178,14 @@ public class GestorLicencias {
         Dao.insert(licencia);
     }
 
+    
+    /**
+     * Este método se encarga de buscar y retornar una licencia de la base de datos pasandole como parametro su uid.
+     * @author Tomás Fleitas - Jean Pierre Saint Martin
+     * @param uid  ID de una licencia.
+     */
+    public static Licencia getLicencia(Integer uid){
+    LicenciaDao Dao = new LicenciaDao();
+       return Dao.find(uid);
+    }
 }
