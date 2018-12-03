@@ -22,7 +22,7 @@ public class GestorArchivos {
         PdfWriter writer = new PdfWriter(dest);
         PdfDocument pdf = new PdfDocument(writer);
         Document document = new Document(pdf);
-        document.add(new Paragraph("Braca la concha de tu madre"));
+        document.add(new Paragraph("***"));
         document.close();
     }
 }
