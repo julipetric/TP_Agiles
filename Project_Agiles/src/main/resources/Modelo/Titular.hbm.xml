@@ -25,7 +25,7 @@
     <property name="factorRh" type="string">
       <column length="9" name="factorRh" not-null="true"/>
     </property>
-    <property name="Donante" type="boolean">
+    <property name="esDonante" type="boolean">
       <column name="esDonante" not-null="true"/>
     </property>
     <!--<set name="licencias" table="licencia" inverse="true" lazy="true" fetch="select">

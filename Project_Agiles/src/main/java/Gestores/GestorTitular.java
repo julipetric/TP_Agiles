@@ -73,6 +73,26 @@ public class GestorTitular {
         return ok;
     }
     
+    
+    /**
+     * Este método se encarga de modificar los datos de un titular y retornar una instancia del mismo
+     * 
+     * @author Tomás Fleitas
+     * @param nombre  
+     * @param apellido  
+     * @param dni
+     * @param fechaNacimiento 
+     * @param grupoSanguineo 
+     * @param factorRh 
+     * @param esDonante 
+     * @param ciudad 
+     * @param calle
+     * @param numero 
+     * @param piso
+     * @param departamento 
+     *
+     * @return retorna un titular nuevo
+     */
      public static Titular modificarTitular(String nombre, String apellido, String dni, Date fechaNacimiento, String grupoSanguineo,
             String factorRh, Boolean esDonante, String ciudad, String calle, String numero, String piso, String departamento) throws DatosTitularException {
      
@@ -107,4 +127,5 @@ public class GestorTitular {
      
      return titular;
      }
+    
 }
