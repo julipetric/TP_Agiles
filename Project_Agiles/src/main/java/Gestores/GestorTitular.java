@@ -72,4 +72,8 @@ public class GestorTitular {
         if(!ok) throw exception;
         return ok;
     }
+
+    public static Titular modificarTitular(String text, String text0, String text1, Date date, String selectedItem, String selectedItem0, boolean selected, String text2, String text3, String text4, String text5, String text6) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

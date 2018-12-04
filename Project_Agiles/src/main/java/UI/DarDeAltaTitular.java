@@ -5,22 +5,11 @@
  */
 package UI;
 
-import Exceptions.DatosDomicilioException;
-import Exceptions.DatosTitularException;
-import Exceptions.DatosUsuarioException;
-import Gestores.GestorLicencias;
-import Gestores.GestorTitular;
-import Modelo.Licencia;
 import Modelo.Titular;
-import java.awt.Color;
-import java.awt.RenderingHints;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
-import javax.swing.BorderFactory;
-import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 
 /**
