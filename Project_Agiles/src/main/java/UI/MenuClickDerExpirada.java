@@ -17,7 +17,8 @@ import javax.swing.JPopupMenu;
  */
 public class MenuClickDerExpirada extends JPopupMenu {
 
-    public Licencia lic;
+    Licencia lic;
+    
 
     public Licencia getLic() {
         return lic;
