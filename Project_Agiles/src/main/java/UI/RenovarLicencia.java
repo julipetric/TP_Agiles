@@ -42,6 +42,21 @@ public class RenovarLicencia extends javax.swing.JFrame {
     public RenovarLicencia(Licencia lic) {
         initComponents();
         this.setLic(lic);
+        
+        /*Generamos en primera instancia una nueva licencia (sin guardar)
+        para que se calcule su fecha de caducidad y el costo, usando los datos
+        ya existentes de titular y clase. Se setean donde corresponda.
+        */
+        try {
+            lic = GestorLicencias.crearLicencia(this.getLic().getTitular(), GestorSesion.getUsuarioActual(), (String) this.getLic().getClase());
+        } catch (DatosLicenciaException ex) {
+            Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        this.getCostoText().setText(((Float) lic.getCosto()).toString());
+        this.getExpiracionText().setText(lic.getFechaExpiracion().toString());
+        
+        //Se llenan los campos con los datos actuales del titular
         llenarCampos();
 
     }
@@ -349,6 +364,12 @@ public class RenovarLicencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void imprimirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirButtonActionPerformed
+        
+        /*Guardamos el nuevo objeto licencia en la base de datos, con los
+        datos provenientes de la interfaz. Pasamos el nuevo titular (en caso
+        de que se hayan cambiado los datos) al metodo de modificar licencia.
+        */
+        
         try {
             this.setTit(GestorTitular.modificarTitular(
                     this.getNombreET().getText(),
@@ -372,8 +393,10 @@ public class RenovarLicencia extends javax.swing.JFrame {
         } catch (DatosLicenciaException ex) {
             Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
         }
-        GestorLicencias.guardarLicencia(lic);
-
+        
+        /*Una vez guardada la licencia, imprimo el archivo para el comprobante
+        de pago.
+        */
         try {
             GestorArchivos.imprimir(lic);
         } catch (FileNotFoundException ex) {
@@ -392,8 +415,12 @@ public class RenovarLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_imprimirButtonActionPerformed
 
     private void claseComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_claseComboItemStateChanged
-        //TODO: Crear el objeto licencia para calcular el costo y setear según el cambio de clase
-
+        /*Cada vez que cambiamos la clase de la licencia, se re-calcula
+        el costo y la fecha de caducidad de la misma. Para esto creamos un
+        nuevo objeto licencia (el cual no se guarda hasta que se confima
+        la operación. Solo se hace esto porque cuando se construye hacemos
+        automaticamente estos calculos.
+        */
         Licencia lic = null;
         try {
             lic = GestorLicencias.crearLicencia(this.getTit(), GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem());
@@ -564,17 +591,19 @@ public class RenovarLicencia extends javax.swing.JFrame {
     }
 
     private void llenarCampos() {
-        nombreET.setText(lic.getTitular().getNombre());
-        apellidoET.setText(lic.getTitular().getApellido());
-        dniET.setText(((Integer) lic.getTitular().getDni()).toString());
-        fecha.setDate(lic.getTitular().getFechaNacimiento());
-        grupoSang.setSelectedItem(lic.getTitular().getGrupoSanguineo());
-        factor.setSelectedItem(lic.getTitular().getFactorRh());
-        donante.setSelected(lic.getTitular().isEsDonante());
-        ciudadET.setText(lic.getTitular().getDomicilio().getCiudad());
-        calleET.setText(lic.getTitular().getDomicilio().getCalle());
-        numeroET.setText(((Integer) lic.getTitular().getDomicilio().getNumero()).toString());
-        pisoET.setText(((Integer) lic.getTitular().getDomicilio().getPiso()).toString());
-        departamentoET.setText(lic.getTitular().getDomicilio().getDepartamento());
+        this.getNombreET().setText(this.getLic().getTitular().getNombre());
+        this.getApellidoET().setText(this.getLic().getTitular().getApellido());
+        this.getDniET().setText(((Integer) this.getLic().getTitular().getDni()).toString());
+        this.getFecha().setDate(this.getLic().getTitular().getFechaNacimiento());
+        this.getGrupoSang().setSelectedItem(this.getLic().getTitular().getGrupoSanguineo());
+        this.getFactor().setSelectedItem(this.getLic().getTitular().getFactorRh());
+        this.getDonante().setSelected(this.getLic().getTitular().isEsDonante());
+        this.getCiudadET().setText(this.getLic().getTitular().getDomicilio().getCiudad());
+        this.getCalleET().setText(this.getLic().getTitular().getDomicilio().getCalle());
+        this.getNumeroET().setText(((Integer) this.getLic().getTitular().getDomicilio().getNumero()).toString());
+        this.getPisoET().setText(((Integer) this.getLic().getTitular().getDomicilio().getPiso()).toString());
+        this.getDepartamentoET().setText(this.getLic().getTitular().getDomicilio().getDepartamento());
+        this.getClaseCombo().setSelectedItem(this.getLic().getClase());
+        
     }
 }

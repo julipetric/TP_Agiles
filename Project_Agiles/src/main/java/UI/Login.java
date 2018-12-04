@@ -11,11 +11,6 @@ import Daos.TitularDao;
 import Daos.UsuarioDao;
 import Exceptions.DatosUsuarioException;
 import Gestores.GestorSesion;
-import Modelo.Licencia;
-import Modelo.Usuario;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -139,6 +134,9 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void iniciarSesionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionButtonActionPerformed
+        
+        //Se inicia la sesión en el sistema comparando con la base de datos
+        
         try {
             GestorSesion.iniciarSesion(txtUsuario.getText(), new String(txtContra.getPassword()));
             if (GestorSesion.getUsuarioActual().isEsAdministrador()) {

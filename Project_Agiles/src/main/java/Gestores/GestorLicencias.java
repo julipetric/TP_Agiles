@@ -10,6 +10,7 @@ import Exceptions.DatosLicenciaException;
 import Modelo.Licencia;
 import Modelo.Titular;
 import Modelo.Usuario;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -102,8 +103,10 @@ public class GestorLicencias {
     private static void calcularVigencia(Licencia licencia) {
 
         Date nacimiento = licencia.getTitular().getFechaNacimiento();
+        
+        LocalDate inicioPeriodo = Instant.ofEpochMilli(nacimiento.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
 
-        LocalDate inicioPeriodo = nacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        //LocalDate inicioPeriodo = nacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate finPeriodo = LocalDate.now();
 
         int diferencia = Period.between(inicioPeriodo, finPeriodo).getYears(); //Años del titular
