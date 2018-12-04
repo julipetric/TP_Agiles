@@ -10,6 +10,7 @@ import Gestores.GestorSesion;
 import Modelo.Licencia;
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
+import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -19,6 +20,9 @@ import javax.swing.table.TableModel;
  * @author Julian
  */
 public class ListadoPorCriterios extends javax.swing.JFrame {
+
+    JPopupMenu menuClickDerechoExpirada = new JPopupMenu();
+    JPopupMenu menuClickDerechoNoExpirada = new JPopupMenu();
 
     /**
      * Creates new form ListadoPorCriterios
@@ -132,6 +136,11 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
             }
         });
         tablaLicencias.setColumnSelectionAllowed(true);
+        tablaLicencias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaLicenciasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaLicencias);
         tablaLicencias.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -231,13 +240,14 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                     .addComponent(nroLabel)
                     .addComponent(nroEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(grupoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(grupoLabel)
-                    .addComponent(factorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(claseLabel)
-                        .addComponent(claseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(claseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(grupoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(grupoLabel)
+                        .addComponent(factorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(donanteLabel)
@@ -304,6 +314,10 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_volverButtonActionPerformed
+
+    private void tablaLicenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaLicenciasMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaLicenciasMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoEditText;

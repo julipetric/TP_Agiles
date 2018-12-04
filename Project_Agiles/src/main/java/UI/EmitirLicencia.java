@@ -190,15 +190,13 @@ public class EmitirLicencia extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         File escritorioDelUsuario = FileSystemView.getFileSystemView().getHomeDirectory();
-        
+
         showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath().toString() + "/Comprobantes");
-        
-        
-        
+
         this.dispose();
-        
+
     }//GEN-LAST:event_imprimirButtonActionPerformed
 
     private void expiracionTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expiracionTextActionPerformed

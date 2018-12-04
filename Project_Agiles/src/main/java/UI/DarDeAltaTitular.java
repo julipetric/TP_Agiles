@@ -143,7 +143,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         factor = new javax.swing.JComboBox<>();
         donante = new javax.swing.JCheckBox();
         guardarButton = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        volverButton = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         dniET = new javax.swing.JTextField();
 
@@ -153,19 +153,34 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre:");
 
+        nombreET.setFocusCycleRoot(true);
+        nombreET.setNextFocusableComponent(apellidoET);
+
         jLabel2.setText("Apellido");
+
+        apellidoET.setNextFocusableComponent(dniET);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Domicilio"));
 
         jLabel3.setText("Calle");
 
+        calleET.setNextFocusableComponent(numeroET);
+
         jLabel4.setText("N°");
+
+        numeroET.setNextFocusableComponent(pisoET);
 
         jLabel5.setText("Piso:");
 
+        departamentoET.setNextFocusableComponent(volverButton);
+
         jLabel6.setText("Departamento:");
 
+        pisoET.setNextFocusableComponent(departamentoET);
+
         jLabel7.setText("Ciudad:");
+
+        ciudadET.setNextFocusableComponent(calleET);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -218,26 +233,34 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
 
         jLabel8.setText("Fecha nacimiento:");
 
+        fecha.setNextFocusableComponent(grupoSang);
+
         jLabel9.setText("Grupo sanguineo:");
 
         grupoSang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "A", "B", "AB" }));
+        grupoSang.setNextFocusableComponent(factor);
 
         jLabel10.setText("Facor Rh:");
 
         factor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-" }));
+        factor.setNextFocusableComponent(ciudadET);
 
         donante.setText("Donante");
 
         guardarButton.setText("Guardar");
+        guardarButton.setNextFocusableComponent(nombreET);
         guardarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Volver");
+        volverButton.setText("Volver");
+        volverButton.setNextFocusableComponent(guardarButton);
 
         jLabel11.setText("DNI:");
+
+        dniET.setNextFocusableComponent(fecha);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -278,7 +301,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(guardarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -314,7 +337,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -386,7 +409,6 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> grupoSang;
     private javax.swing.JButton guardarButton;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -403,5 +425,6 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
     private javax.swing.JTextField nombreET;
     private javax.swing.JTextField numeroET;
     private javax.swing.JTextField pisoET;
+    private javax.swing.JButton volverButton;
     // End of variables declaration//GEN-END:variables
 }
