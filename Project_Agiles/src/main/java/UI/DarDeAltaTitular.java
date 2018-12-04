@@ -5,11 +5,17 @@
  */
 package UI;
 
+import Exceptions.DatosTitularException;
+import Gestores.GestorTitular;
 import Modelo.Titular;
+import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
 /**
@@ -341,6 +347,8 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         Date fechaNacimiento = fecha.getDate();
         String grupoSanguineo = (String) grupoSang.getSelectedItem();
         String factorRh = (String) factor.getSelectedItem();
+        if ("+".equals(factorRh)) factorRh = "Positivo";
+        else factorRh = "Negativo";
         Boolean esDonante = donante.isSelected();
         //Domicilio
         String ciudad = ciudadET.getText();
@@ -355,8 +363,26 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         ciudadET.setBorder(borde);
         calleET.setBorder(borde);
         numeroET.setBorder(borde);
-        Titular tit = new Titular(nombre, apellido, fechaNacimiento, grupoSanguineo, factorRh, esDonante);
-        EmitirLicencia emitirVentana = new EmitirLicencia(tit, dni, ciudad, calle, numero, piso, departamento);
+        
+        Titular tit = new Titular();
+        
+        try {
+            tit = GestorTitular.guardarTitular(nombre, apellido, dni, fechaNacimiento, grupoSanguineo, factorRh, esDonante, ciudad, calle, numero, piso, departamento);
+        } catch (DatosTitularException e) {
+            if(!e.getApellido()) apellidoET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
+            
+            if(!e.getNombre()) nombreET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
+            
+            if(!e.getDni()) dniET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
+            
+            if(!e.getDomicilioException().getCiudad()) ciudadET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
+            
+            if(!e.getDomicilioException().getCalle()) calleET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
+            
+            if(!e.getDomicilioException().getNumero()) numeroET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
+        }
+
+        EmitirLicencia emitirVentana = new EmitirLicencia(tit);
         emitirVentana.setVisible(true);
         //TODO: Hacer que se cierre solo despues de haber impreso la licencia
         this.dispose();

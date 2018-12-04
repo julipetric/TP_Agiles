@@ -85,9 +85,13 @@ public class DomicilioDao {
 
     public static void insert(Domicilio nD) {
         Transaction tx = null;
+        
         try {
             tx = sesion.beginTransaction();
-            sesion.save(nD);
+            System.out.println(nD.getUid());
+            Integer dID = (Integer) sesion.save(nD);
+            nD.setUid(dID);
+            System.out.println(nD.getUid());
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {

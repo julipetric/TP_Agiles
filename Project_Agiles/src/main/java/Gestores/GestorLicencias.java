@@ -194,8 +194,9 @@ public class GestorLicencias {
      * @author Tomás Fleitas - Jean Pierre Saint Martin
      * @param licencia   es la instancia de la licencia que se desea guardar.
      */
-    public static void guardarLicencia(Licencia licencia) {
+    public static boolean guardarLicencia(Licencia licencia) { // manejar excepciones de hibernate
         LicenciaDao.insert(licencia);
+        return true;
     }
 
     

@@ -7,12 +7,10 @@ package UI;
 
 import Exceptions.ComprobanteDirectorioException;
 import Exceptions.ComprobanteYaExisteException;
-<<<<<<< Updated upstream
 import Exceptions.DatosLicenciaException;
-=======
->>>>>>> Stashed changes
 import Exceptions.DatosTitularException;
 import Gestores.GestorArchivos;
+import Gestores.GestorDomicilio;
 import Gestores.GestorLicencias;
 import Gestores.GestorSesion;
 import Gestores.GestorTitular;
@@ -38,24 +36,11 @@ public class EmitirLicencia extends javax.swing.JFrame {
     public Titular getTit() {
         return tit;
     }
-    String dni;
-    String ciudad;
-    String calle;
-    String numero;
-    String piso;
-    String departamento;
-
     /**
      * Creates new form EmitirLicencia
      */
-    public EmitirLicencia(Titular tit, String dni, String ciudad, String calle, String numero, String piso, String departamento) {
+    public EmitirLicencia(Titular tit) {
         this.tit = tit;
-        this.dni = dni;
-        this.ciudad = ciudad;
-        this.calle = calle;
-        this.numero = numero;
-        this.piso = piso;
-        this.departamento = departamento;
         initComponents();
     }
 
@@ -180,17 +165,15 @@ public class EmitirLicencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void imprimirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirButtonActionPerformed
-        try {
-            GestorTitular.guardarTitular(this.tit.getNombre(), this.tit.getApellido(), this.dni, this.tit.getFechaNacimiento(), this.tit.getGrupoSanguineo(), this.tit.getFactorRh(), this.tit.isEsDonante(), this.ciudad, this.calle, this.numero, this.piso, this.departamento);
-        } catch (DatosTitularException ex) {
-            Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
         Licencia lic = null;
         try {
             lic = GestorLicencias.crearLicencia(this.getTit(), GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem());
         } catch (DatosLicenciaException ex) {
             Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
         }
+        GestorDomicilio.guardarDomicilio(tit.getDomicilio());
+        GestorTitular.guardarTitular(tit);
         GestorLicencias.guardarLicencia(lic);
 
         try {
@@ -208,6 +191,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath().toString() + "/Comprobantes");
 
         this.dispose();
+        
 
     }//GEN-LAST:event_imprimirButtonActionPerformed
 

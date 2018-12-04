@@ -5,6 +5,7 @@
  */
 package Gestores;
 
+import Daos.DomicilioDao;
 import Daos.TitularDao;
 import Exceptions.DatosDomicilioException;
 import Exceptions.DatosTitularException;
@@ -18,8 +19,14 @@ import java.util.Date;
  * @author tomas
  */
 public class GestorTitular {
+    
+    public static boolean guardarTitular(Titular titular) // manejar excepcion de hibernate
+    {
+        TitularDao.insert(titular);
+        return true;
+    }
 
-    public static boolean guardarTitular(String nombre, String apellido, String dni, Date fechaNacimiento, String grupoSanguineo,
+    public static Titular guardarTitular(String nombre, String apellido, String dni, Date fechaNacimiento, String grupoSanguineo,
             String factorRh, Boolean esDonante, String ciudad, String calle, String numero, String piso, String departamento)
             throws DatosTitularException {
         boolean ok=true;
@@ -41,14 +48,15 @@ public class GestorTitular {
             ok=false;
             exception.setDomicilioException(e);
         }
-        
+        Titular titular = new Titular();
         if(!ok) throw exception;
         else{
             Domicilio domicilio = new Domicilio(ciudad, calle, Integer.valueOf(numero), Integer.valueOf(piso), departamento);
-            Titular titular = new Titular(Integer.valueOf(dni),domicilio,nombre,apellido,fechaNacimiento,grupoSanguineo,factorRh,esDonante);
-            TitularDao.insert(titular);
+            //DomicilioDao.insert(domicilio);
+            titular = new Titular(Integer.valueOf(dni),domicilio,nombre,apellido,fechaNacimiento,grupoSanguineo,factorRh,esDonante);
+            //TitularDao.insert(titular);
         }
-        return ok;
+        return titular;
     }
 
     private static boolean validarDatosTitular(String nombre, String apellido, String dni) throws DatosTitularException {

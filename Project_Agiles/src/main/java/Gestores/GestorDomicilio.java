@@ -5,8 +5,10 @@
  */
 package Gestores;
 
+import Daos.DomicilioDao;
 import Exceptions.DatosDomicilioException;
 import Exceptions.DatosTitularException;
+import Modelo.Domicilio;
 
 /**
  *
@@ -14,7 +16,7 @@ import Exceptions.DatosTitularException;
  */
 public class GestorDomicilio {
 
-    static boolean validarDomicilio(String ciudad, String calle, String numero, String piso, String departamento) throws  DatosDomicilioException{
+    public static boolean validarDomicilio(String ciudad, String calle, String numero, String piso, String departamento) throws  DatosDomicilioException{
         DatosDomicilioException exception = new DatosDomicilioException();
         boolean ok=true;
         if(ciudad.length()==0)
@@ -34,6 +36,12 @@ public class GestorDomicilio {
         }
         if(!ok) throw exception;
         return ok;
+    }
+    
+    public static boolean guardarDomicilio(Domicilio domicilio) //throws hibernate exception o algo asi
+    {
+        DomicilioDao.insert(domicilio);
+        return true;
     }
     
 }

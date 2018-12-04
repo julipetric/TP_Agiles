@@ -19,7 +19,7 @@ public class Titular  implements java.io.Serializable {
      private Date fechaNacimiento;
      private String grupoSanguineo;
      private String factorRh;
-     private boolean Donante;
+     private boolean esDonante;
      private Set licencias = new HashSet(0);
 
     public Titular() {
@@ -34,7 +34,7 @@ public class Titular  implements java.io.Serializable {
         this.fechaNacimiento = fechaNacimiento;
         this.grupoSanguineo = grupoSanguineo;
         this.factorRh = factorRh;
-        this.Donante = esDonante;
+        this.esDonante = esDonante;
     }
     
     public Titular(String nombre, String apellido, Date fechaNacimiento, String grupoSanguineo, String factorRh, boolean esDonante) {
@@ -43,7 +43,7 @@ public class Titular  implements java.io.Serializable {
         this.fechaNacimiento = fechaNacimiento;
         this.grupoSanguineo = grupoSanguineo;
         this.factorRh = factorRh;
-        this.Donante = esDonante;
+        this.esDonante = esDonante;
     }
     
     public Titular(int dni, Domicilio domicilio, String nombre, String apellido, Date fechaNacimiento, String grupoSanguineo, String factorRh, boolean esDonante, Set licencias) {
@@ -54,7 +54,7 @@ public class Titular  implements java.io.Serializable {
        this.fechaNacimiento = fechaNacimiento;
        this.grupoSanguineo = grupoSanguineo;
        this.factorRh = factorRh;
-       this.Donante = esDonante;
+       this.esDonante = esDonante;
        this.licencias = licencias;
     }
    
@@ -108,11 +108,11 @@ public class Titular  implements java.io.Serializable {
         this.factorRh = factorRh;
     }
     public boolean isEsDonante() {
-        return this.Donante;
+        return this.esDonante;
     }
     
     public void setEsDonante(boolean esDonante) {
-        this.Donante = esDonante;
+        this.esDonante = esDonante;
     }
     public Set getLicencias() {
         return this.licencias;
@@ -124,7 +124,7 @@ public class Titular  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Titular{" + "dni=" + dni + ", domicilio=" + domicilio + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", grupoSanguineo=" + grupoSanguineo + ", factorRh=" + factorRh + ", esDonante=" + Donante + ", licencias=" + licencias + '}';
+        return "Titular{" + "dni=" + dni + ", domicilio=" + domicilio + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", grupoSanguineo=" + grupoSanguineo + ", factorRh=" + factorRh + ", esDonante=" + esDonante + ", licencias=" + licencias + '}';
     }
 
 

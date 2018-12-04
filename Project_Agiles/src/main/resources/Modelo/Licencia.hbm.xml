@@ -8,10 +8,10 @@
             <column name="uid" />
             <generator class="identity" />
         </id>
-        <many-to-one name="titular" class="Modelo.Titular" fetch="select">
+        <many-to-one name="titular" class="Modelo.Titular" fetch="select" cascade="all">
             <column name="dniTitular" not-null="true" />
         </many-to-one>
-        <many-to-one name="usuario" class="Modelo.Usuario" fetch="select">
+        <many-to-one name="usuario" class="Modelo.Usuario" fetch="select" cascade="all">
             <column name="dniOperario" not-null="true" />
         </many-to-one>
         <property name="clase" type="string">
