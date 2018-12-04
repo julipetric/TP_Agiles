@@ -356,6 +356,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
             String calle = calleET.getText();
             
             String numero = numeroET.getText();
+           
             String piso;
             if (!pisoET.getText().isEmpty()) {
                  piso = pisoET.getText();

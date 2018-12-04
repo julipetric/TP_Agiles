@@ -136,13 +136,16 @@ public class LicenciaDao {
                 query += "l.titular.esDonante = " + ((donante) ? "1" : "0") + " AND ";
             }
             
+            query+= "l.Activo='1' AND ";
+            
             if(!query.isEmpty()){
                 query = query.substring(0, query.length()-4);
             }
-            query = "FROM Licencia l" + ((query.isEmpty())?"":" WHERE ") + query + "AND l.Activo='1' ORDER BY l.dniTitular";
+            query = "FROM Licencia l WHERE " + query + "ORDER BY l.titular.dni";
 
             //query += "l.titular.dni = t.dni";
             
+            System.out.println(query);
             licencias = sesion.createQuery(query).list();
             tx.commit();
         } catch (HibernateException e) {

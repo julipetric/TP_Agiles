@@ -75,10 +75,7 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
 
         expiradasTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Fecha expiración", "DNI", "Nombre", "Apellido", "Clase"

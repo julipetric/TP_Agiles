@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18/10/2018 19:41:40 by Hibernate Tools 4.3.1 -->
+<!-- Generated 04/12/2018 19:16:57 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelo.Domicilio" table="domicilio" catalog="tpma2018" optimistic-lock="version">
-        <id name="uid" type="int">
+        <id name="uid" type="java.lang.Integer">
             <column name="uid" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="ciudad" type="string">
             <column name="ciudad" length="50" not-null="true" />
@@ -23,11 +23,17 @@
         <property name="piso" type="int">
             <column name="piso" not-null="true" />
         </property>
-      <!--  <set name="titulars" table="titular" inverse="true" lazy="true" fetch="select">
+        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="uidDomicilio" />
+            </key>
+            <one-to-many class="Modelo.Usuario" />
+        </set>
+        <set name="titulars" table="titular" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="uidDomicilio" not-null="true" />
             </key>
             <one-to-many class="Modelo.Titular" />
-        </set> -->
+        </set>
     </class>
 </hibernate-mapping>

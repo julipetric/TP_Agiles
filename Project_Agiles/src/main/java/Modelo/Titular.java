@@ -1,5 +1,5 @@
 package Modelo;
-// Generated 18/10/2018 19:41:40 by Hibernate Tools 4.3.1
+// Generated 04/12/2018 19:16:56 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -36,16 +36,6 @@ public class Titular  implements java.io.Serializable {
         this.factorRh = factorRh;
         this.esDonante = esDonante;
     }
-    
-    public Titular(String nombre, String apellido, Date fechaNacimiento, String grupoSanguineo, String factorRh, boolean esDonante) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.fechaNacimiento = fechaNacimiento;
-        this.grupoSanguineo = grupoSanguineo;
-        this.factorRh = factorRh;
-        this.esDonante = esDonante;
-    }
-    
     public Titular(int dni, Domicilio domicilio, String nombre, String apellido, Date fechaNacimiento, String grupoSanguineo, String factorRh, boolean esDonante, Set licencias) {
        this.dni = dni;
        this.domicilio = domicilio;
@@ -56,6 +46,10 @@ public class Titular  implements java.io.Serializable {
        this.factorRh = factorRh;
        this.esDonante = esDonante;
        this.licencias = licencias;
+    }
+
+    public Titular(String nombre, String apellido, Date fechaNacimiento, String grupoSanguineo, String factorRh, Boolean esDonante) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
     public int getDni() {
@@ -120,11 +114,6 @@ public class Titular  implements java.io.Serializable {
     
     public void setLicencias(Set licencias) {
         this.licencias = licencias;
-    }
-
-    @Override
-    public String toString() {
-        return "Titular{" + "dni=" + dni + ", domicilio=" + domicilio + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", grupoSanguineo=" + grupoSanguineo + ", factorRh=" + factorRh + ", esDonante=" + esDonante + ", licencias=" + licencias + '}';
     }
 
 

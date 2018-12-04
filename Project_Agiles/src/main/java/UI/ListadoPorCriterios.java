@@ -104,14 +104,9 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
 
         vigenteLabel.setText("Licencia vigente:");
 
-        tablaLicencias.setAutoCreateRowSorter(true);
         tablaLicencias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Apellido", "Nombre", "DNI", "Domicilio", "Tipo Licencia", "Fecha Vencimiento", "Grupo/Factor Sanguineo"
@@ -269,33 +264,37 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
 
         //Se crea un arreglo para pasarle al metodo de búsqueda del gestor
         //de licencias para la búsqueda
-        ArrayList<Object> criterios = new ArrayList<>(11);
-        criterios.set(0, this.nombreEditText.getText());
-        criterios.set(1, this.apellidoEditText.getText());
-        criterios.set(2, this.dniEditText.getText());
-        criterios.set(3, this.nroEditText.getText());
-        criterios.set(5, this.grupoCombo.getSelectedItem());
-        criterios.set(6, this.factorCombo.getSelectedItem());
-        criterios.set(7, this.claseCombo.getSelectedItem());
-        criterios.set(8, this.donanteSiButton.isSelected());
-        criterios.set(9, this.vigenteSiCheck.isSelected());
-        criterios.set(10, this.vigenteNoCheck.isSelected());
+        ArrayList<Object> criterios = new ArrayList<>(10);
+
+        criterios.add(0, this.nombreEditText.getText());
+        criterios.add(1, this.apellidoEditText.getText());
+        criterios.add(2, this.dniEditText.getText());
+        criterios.add(3, this.nroEditText.getText());
+        criterios.add(4, this.grupoCombo.getSelectedItem());
+        criterios.add(5, this.factorCombo.getSelectedItem());
+        criterios.add(6, this.claseCombo.getSelectedItem());
+        if (!donanteSiButton.isSelected() && !donanteNoButton.isSelected()) {
+            criterios.add(7, null);
+        } else {
+            criterios.add(7, this.donanteSiButton.isSelected());
+        }
+        criterios.add(8, this.vigenteSiCheck.isSelected());
+        criterios.add(9, this.vigenteNoCheck.isSelected());
 
         ArrayList<Licencia> lista = new ArrayList<>();
         lista = GestorLicencias.buscarPorCriterios(criterios);
 
         DefaultTableModel model = (DefaultTableModel) this.tablaLicencias.getModel();
+        model.setRowCount(0);
         for (int i = 0; i < lista.size(); i++) {
-            String grupoFactor = lista.get(i).getTitular().getGrupoSanguineo() + lista.get(i).getTitular().getFactorRh();
+            String grupoFactor = lista.get(i).getTitular().getGrupoSanguineo() + " " + lista.get(i).getTitular().getFactorRh();
             Object[] fila = new Object[]{
                 lista.get(i).getTitular().getApellido(),
                 lista.get(i).getTitular().getNombre(),
                 lista.get(i).getTitular().getDni(),
                 lista.get(i).getTitular().getDomicilio().asString(),
                 lista.get(i).getClase(),
-                lista.get(i).getFechaExpiracion(),
-                grupoFactor
-            };
+                lista.get(i).getFechaExpiracion(), grupoFactor};
             model.addRow(fila);
         }
     }//GEN-LAST:event_buscarButtonActionPerformed
