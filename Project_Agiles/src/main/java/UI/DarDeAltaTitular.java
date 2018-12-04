@@ -354,8 +354,20 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         String ciudad = ciudadET.getText();
         String calle = calleET.getText();
         String numero = numeroET.getText();
-        String piso = pisoET.getText();
-        String departamento = departamentoET.getText();
+        String piso;
+            if (!pisoET.getText().isEmpty()) {
+                piso = pisoET.getText();
+            } else {
+                piso = "0";
+            }
+        
+             String departamento;
+            if (!departamentoET.getText().isEmpty()) {
+                departamento = departamentoET.getText();
+            } else {
+                departamento = "-";
+            }
+
         //
         nombreET.setBorder(borde);
         apellidoET.setBorder(borde);

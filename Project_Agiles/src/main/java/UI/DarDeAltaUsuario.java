@@ -349,21 +349,19 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
             String pass = String.valueOf(passET.getPassword());
             String pass2 = String.valueOf(pass2ET.getPassword());
 
-            System.out.println(String.valueOf(passET.getPassword()) + "   " + String.valueOf(pass2ET.getPassword()));
-
             //Domicilio
             String ciudad = ciudadET.getText();
             String calle = calleET.getText();
-            
+
             String numero = numeroET.getText();
-           
+
             String piso;
             if (!pisoET.getText().isEmpty()) {
-                 piso = pisoET.getText();
-            }else {piso = "0";}
-            
-           
-            
+                piso = pisoET.getText();
+            } else {
+                piso = "0";
+            }
+
             String departamento = departamentoET.getText();
             //
 
@@ -379,7 +377,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
 
             if (GestorUsuario.darDeAltaUsuario(dni, nombre, apellido, user, pass, pass2, permiso, ciudad, calle, numero, piso, departamento)) {
                 JOptionPane.showMessageDialog(null, "Usuario creado correctamente", "", JOptionPane.PLAIN_MESSAGE);
-                initComponents();
+                borrarCampos();
             }
         } catch (DatosUsuarioException e) {
 
@@ -429,29 +427,6 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_volverBtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            System.out.println(ex);
-        }
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DarDeAltaUsuario().setVisible(true);
-            }
-        });
-
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aceptarBtn;
@@ -482,5 +457,20 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField usuarioET;
     private javax.swing.JButton volverBtn;
     // End of variables declaration//GEN-END:variables
+
+    private void borrarCampos() {
+        permisosCombo.setSelectedIndex(0);
+        nombreET.setText("");
+        apellidoET.setText("");
+        dniET.setText("");
+        usuarioET.setText("");
+        passET.setText("");
+        pass2ET.setText("");
+        ciudadET.setText("");
+        calleET.setText("");
+        numeroET.setText("");
+        pisoET.setText("");
+        departamentoET.setText("");
+    }
 
 }
