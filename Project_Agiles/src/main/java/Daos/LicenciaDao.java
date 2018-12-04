@@ -54,7 +54,7 @@ public class LicenciaDao {
         List licencias = new ArrayList<>();
         try {
             tx = sesion.beginTransaction();
-            licencias = sesion.createQuery("FROM Licencia").list();
+            licencias = sesion.createQuery("FROM Licencia l WHERE l.Activo='1' ORDER BY l.dniTitular").list();
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -139,7 +139,7 @@ public class LicenciaDao {
             if(!query.isEmpty()){
                 query = query.substring(0, query.length()-4);
             }
-            query = "FROM Licencia l" + ((query.isEmpty())?"":" WHERE ") + query;
+            query = "FROM Licencia l" + ((query.isEmpty())?"":" WHERE ") + query + "AND l.Activo='1' ORDER BY l.dniTitular";
 
             //query += "l.titular.dni = t.dni";
             
@@ -165,7 +165,7 @@ public class LicenciaDao {
         List licenciasexpiradas = new ArrayList<>();
         try {
             tx = sesion.beginTransaction();
-            licenciasexpiradas = sesion.createQuery("FROM Licencia l WHERE l.fechaExpiracion <= CURDATE()").list();
+            licenciasexpiradas = sesion.createQuery("FROM Licencia l WHERE l.fechaExpiracion <= CURDATE() ORDER BY l.dniTitular").list();
         } catch (HibernateException e) {
 
         }

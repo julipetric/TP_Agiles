@@ -26,5 +26,8 @@
         <property name="costo" type="float">
             <column name="costo" precision="12" scale="0" not-null="true" />
         </property>
+        <property name="Activo" type="boolean">
+            <column name="Activo" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>
