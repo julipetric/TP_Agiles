@@ -1,5 +1,5 @@
 package Modelo;
-// Generated 18/10/2018 19:41:40 by Hibernate Tools 4.3.1
+// Generated 04/12/2018 19:16:56 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,6 +12,7 @@ public class Usuario  implements java.io.Serializable {
 
 
      private int dni;
+     private Domicilio domicilio;
      private String nombre;
      private String apellido;
      private String usuarioNombre;
@@ -19,8 +20,6 @@ public class Usuario  implements java.io.Serializable {
      private boolean esAdministrador;
      private Set licencias = new HashSet(0);
 
-     
-     
     public Usuario() {
     }
 
@@ -33,8 +32,9 @@ public class Usuario  implements java.io.Serializable {
         this.usuarioContrasena = usuarioContrasena;
         this.esAdministrador = esAdministrador;
     }
-    public Usuario(int dni, String nombre, String apellido, String usuarioNombre, String usuarioContrasena, boolean esAdministrador, Set licencias) {
+    public Usuario(int dni, Domicilio domicilio, String nombre, String apellido, String usuarioNombre, String usuarioContrasena, boolean esAdministrador, Set licencias) {
        this.dni = dni;
+       this.domicilio = domicilio;
        this.nombre = nombre;
        this.apellido = apellido;
        this.usuarioNombre = usuarioNombre;
@@ -43,12 +43,30 @@ public class Usuario  implements java.io.Serializable {
        this.licencias = licencias;
     }
 
+    public Usuario(Integer valueOf, String nombre, String apellido, String user, String pass, boolean permisoAdmin, Domicilio domicilio) {
+        this.dni = dni;
+       this.domicilio = domicilio;
+       this.nombre = nombre;
+       this.apellido = apellido;
+       this.usuarioNombre = user;
+       this.usuarioContrasena = pass;
+       this.esAdministrador = permisoAdmin;
+       this.domicilio = domicilio;
+    }
+   
     public int getDni() {
         return this.dni;
     }
     
     public void setDni(int dni) {
         this.dni = dni;
+    }
+    public Domicilio getDomicilio() {
+        return this.domicilio;
+    }
+    
+    public void setDomicilio(Domicilio domicilio) {
+        this.domicilio = domicilio;
     }
     public String getNombre() {
         return this.nombre;
@@ -91,11 +109,6 @@ public class Usuario  implements java.io.Serializable {
     
     public void setLicencias(Set licencias) {
         this.licencias = licencias;
-    }
-
-    @Override
-    public String toString() {
-        return "Usuario{" + "dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", usuarioNombre=" + usuarioNombre + ", usuarioContrasena=" + usuarioContrasena + ", esAdministrador=" + esAdministrador + ", licencias=" + licencias + '}';
     }
 
 

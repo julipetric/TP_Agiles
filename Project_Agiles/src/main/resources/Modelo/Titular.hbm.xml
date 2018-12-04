@@ -1,38 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18/10/2018 19:41:40 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/12/2018 19:16:57 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="tpma2018" name="Modelo.Titular" optimistic-lock="version" table="titular">
-    <id name="dni" type="int">
-      <column name="dni"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="Modelo.Domicilio" fetch="select" name="domicilio">
-      <column name="uidDomicilio" not-null="true"/>
-    </many-to-one>
-    <property name="nombre" type="string">
-      <column length="25" name="nombre" not-null="true"/>
-    </property>
-    <property name="apellido" type="string">
-      <column length="25" name="apellido" not-null="true"/>
-    </property>
-    <property name="fechaNacimiento" type="date">
-      <column length="10" name="fechaNacimiento" not-null="true"/>
-    </property>
-    <property name="grupoSanguineo" type="string">
-      <column length="2" name="grupoSanguineo" not-null="true"/>
-    </property>
-    <property name="factorRh" type="string">
-      <column length="9" name="factorRh" not-null="true"/>
-    </property>
-    <property name="esDonante" type="boolean">
-      <column name="esDonante" not-null="true"/>
-    </property>
-    <!--<set name="licencias" table="licencia" inverse="true" lazy="true" fetch="select">
+    <class name="Modelo.Titular" table="titular" catalog="tpma2018" optimistic-lock="version">
+        <id name="dni" type="int">
+            <column name="dni" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="domicilio" class="Modelo.Domicilio" fetch="select">
+            <column name="uidDomicilio" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="25" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="25" not-null="true" />
+        </property>
+        <property name="fechaNacimiento" type="date">
+            <column name="fechaNacimiento" length="10" not-null="true" />
+        </property>
+        <property name="grupoSanguineo" type="string">
+            <column name="grupoSanguineo" length="2" not-null="true" />
+        </property>
+        <property name="factorRh" type="string">
+            <column name="factorRh" length="9" not-null="true" />
+        </property>
+        <property name="esDonante" type="boolean">
+            <column name="esDonante" not-null="true" />
+        </property>
+        <set name="licencias" table="licencia" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="dniTitular" not-null="true" />
             </key>
             <one-to-many class="Modelo.Licencia" />
-        </set> -->
-  </class>
+        </set>
+    </class>
 </hibernate-mapping>
