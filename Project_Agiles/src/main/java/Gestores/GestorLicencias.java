@@ -210,6 +210,16 @@ public class GestorLicencias {
        return LicenciaDao.find(uid);
     }
     
+    /**
+     * Este método se encarga de modificar la licencia, cambiar el valor del atributo de la licencia vieja y guardar la licencia nueva.
+     * 
+     * @author Matias Jacob - Tomás Fleitas
+     * @param titular 
+     * @param usuario 
+     * @param clase
+     * @param lic
+     * @return retorna una licencia nueva
+     */
     public static Licencia modificarLicencia(Titular titular, Usuario usuario, String clase, Licencia lic) throws DatosLicenciaException{
         
         lic.setActivo(Boolean.FALSE);

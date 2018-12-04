@@ -32,7 +32,7 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
 
     public ListadoLicenciasExpirado() {
         initComponents();
-
+        this.setLocationRelativeTo(null);
         this.setLicenciasExpiradas(GestorLicencias.getLicenciasExpiradas());
 
         cargarTabla();
@@ -44,7 +44,7 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
 
     private void cargarTabla() {
         DefaultTableModel modelo = (DefaultTableModel) expiradasTable.getModel();
-        modelo.setRowCount(5);
+        modelo.setRowCount(0);
         Iterator it = licenciasExpiradas.iterator();
         while (it.hasNext()) {
             Licencia licencia = (Licencia) it.next();
@@ -75,10 +75,7 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
 
         expiradasTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Fecha expiración", "DNI", "Nombre", "Apellido", "Clase"
@@ -138,13 +135,14 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
 
     private void expiradasTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_expiradasTableMouseClicked
         int r = this.getExpiradasTable().rowAtPoint(evt.getPoint());
-        //this.setElegida(this.getLicenciasExpiradas().get(r));
+        this.setElegida(this.getLicenciasExpiradas().get(r));
         if (r >= 0 && r < this.getExpiradasTable().getRowCount()) {
             this.getExpiradasTable().setRowSelectionInterval(r, r);
         } else {
             this.getExpiradasTable().clearSelection();
         }
         if (SwingUtilities.isRightMouseButton(evt)) {
+            //System.out.println(this.getElegida().getTitular().getNombre());
             MenuClickDerExpirada menu = new MenuClickDerExpirada(this.getElegida());
             menu.show(evt.getComponent(), evt.getX(), evt.getY());
         }

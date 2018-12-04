@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18/10/2018 19:41:40 by Hibernate Tools 4.3.1 -->
+<!-- Generated 04/12/2018 19:16:57 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelo.Usuario" table="usuario" catalog="tpma2018" optimistic-lock="version">
         <id name="dni" type="int">
             <column name="dni" />
             <generator class="assigned" />
         </id>
+        <many-to-one name="domicilio" class="Modelo.Domicilio" fetch="select">
+            <column name="uidDomicilio" />
+        </many-to-one>
         <property name="nombre" type="string">
             <column name="nombre" length="25" not-null="true" />
         </property>

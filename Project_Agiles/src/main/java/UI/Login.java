@@ -21,7 +21,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-
 /**
  *
  * @author luciano
@@ -60,13 +59,24 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setText("Usuario:");
 
+        txtContra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContraActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Contraseña:");
 
         iniciarSesionButton.setText("Iniciar sesión");
-        iniciarSesionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iniciarSesionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         iniciarSesionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 iniciarSesionButtonActionPerformed(evt);
+            }
+        });
+        iniciarSesionButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                iniciarSesionButtonKeyPressed(evt);
             }
         });
 
@@ -145,17 +155,25 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_iniciarSesionButtonActionPerformed
 
+    private void txtContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraActionPerformed
+        iniciarSesionButtonActionPerformed();
+    }//GEN-LAST:event_txtContraActionPerformed
+
+    private void iniciarSesionButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_iniciarSesionButtonKeyPressed
+        iniciarSesionButtonActionPerformed();
+    }//GEN-LAST:event_iniciarSesionButtonKeyPressed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
         Configuration configuracion = new Configuration();
         configuracion.configure("hibernate.cfg.xml");
         StandardServiceRegistryBuilder ssrb = new StandardServiceRegistryBuilder().applySettings(configuracion.getProperties());
         SessionFactory fabricaSesion = configuracion.buildSessionFactory(ssrb.build());
         Session sesion = fabricaSesion.openSession();
-               
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -166,18 +184,18 @@ public class Login extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             System.out.println(ex);
         }
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
             }
         });
-        
+
         DomicilioDao.setSession(sesion);
         LicenciaDao.setSesion(sesion);
         TitularDao.setSesion(sesion);
         UsuarioDao.setSesion(sesion);
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -188,4 +206,21 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtContra;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private void iniciarSesionButtonActionPerformed() {
+        try {
+            GestorSesion.iniciarSesion(txtUsuario.getText(), new String(txtContra.getPassword()));
+            if (GestorSesion.getUsuarioActual().isEsAdministrador()) {
+                MenuAdmin menu = new MenuAdmin();
+                menu.setVisible(true);
+                this.dispose();
+            } else {
+                MenuOperario menu = new MenuOperario();
+                menu.setVisible(true);
+                this.dispose();
+            }
+        } catch (DatosUsuarioException ex) {
+            //Usuario o contraseña invalidos...
+        }
+    }
 }

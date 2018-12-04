@@ -41,8 +41,8 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="tpma2018"/>
-  <table-filter match-name="licencia"/>
   <table-filter match-name="titular"/>
-  <table-filter match-name="domicilio"/>
   <table-filter match-name="usuario"/>
+  <table-filter match-name="licencia"/>
+  <table-filter match-name="domicilio"/>
 </hibernate-reverse-engineering>
