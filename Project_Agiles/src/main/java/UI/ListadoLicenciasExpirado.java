@@ -10,25 +10,41 @@ import Gestores.GestorSesion;
 import Modelo.Licencia;
 import java.util.ArrayList;
 import java.util.Iterator;
-import javax.swing.JFrame;
+import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author tomas
  */
 public class ListadoLicenciasExpirado extends javax.swing.JFrame {
+
     /**
      * Creates new form ListadoLicenciasExpirado
      */
+    ArrayList<Licencia> licenciasExpiradas;
+    Licencia elegida;
+
+    public Licencia getElegida() {
+        return elegida;
+    }
+
     public ListadoLicenciasExpirado() {
         initComponents();
+
+        this.setLicenciasExpiradas(GestorLicencias.getLicenciasExpiradas());
+
         cargarTabla();
     }
-    
-    private void cargarTabla(){
-        ArrayList<Licencia> licenciasExpiradas = GestorLicencias.getLicenciasExpiradas();
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        modelo.setRowCount(0);
+
+    public void setLicenciasExpiradas(ArrayList<Licencia> licenciasExpiradas) {
+        this.licenciasExpiradas = licenciasExpiradas;
+    }
+
+    private void cargarTabla() {
+        DefaultTableModel modelo = (DefaultTableModel) expiradasTable.getModel();
+        modelo.setRowCount(5);
         Iterator it = licenciasExpiradas.iterator();
         while (it.hasNext()) {
             Licencia licencia = (Licencia) it.next();
@@ -52,12 +68,12 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        expiradasTable = new javax.swing.JTable();
         volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        expiradasTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -68,7 +84,12 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
                 "Fecha expiración", "DNI", "Nombre", "Apellido", "Clase"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        expiradasTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                expiradasTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(expiradasTable);
 
         volver.setText("Volver");
         volver.addActionListener(new java.awt.event.ActionListener() {
@@ -108,16 +129,44 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
             MenuAdmin menu = new MenuAdmin();
             menu.setVisible(true);
             this.dispose();
-        }else{
+        } else {
             MenuOperario menu = new MenuOperario();
             menu.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_volverActionPerformed
 
+    private void expiradasTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_expiradasTableMouseClicked
+        int r = this.getExpiradasTable().rowAtPoint(evt.getPoint());
+        //this.setElegida(this.getLicenciasExpiradas().get(r));
+        if (r >= 0 && r < this.getExpiradasTable().getRowCount()) {
+            this.getExpiradasTable().setRowSelectionInterval(r, r);
+        } else {
+            this.getExpiradasTable().clearSelection();
+        }
+        if (SwingUtilities.isRightMouseButton(evt)) {
+            MenuClickDerExpirada menu = new MenuClickDerExpirada(this.getElegida());
+            menu.show(evt.getComponent(), evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_expiradasTableMouseClicked
+
+    public ArrayList<Licencia> getLicenciasExpiradas() {
+        return licenciasExpiradas;
+    }
+
+    public void setElegida(Licencia elegida) {
+        this.elegida = elegida;
+    }
+
+    public JTable getExpiradasTable() {
+        return expiradasTable;
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable expiradasTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }
