@@ -44,7 +44,7 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
 
     private void cargarTabla() {
         DefaultTableModel modelo = (DefaultTableModel) expiradasTable.getModel();
-        modelo.setRowCount(5);
+        modelo.setRowCount(0);
         Iterator it = licenciasExpiradas.iterator();
         while (it.hasNext()) {
             Licencia licencia = (Licencia) it.next();
@@ -138,7 +138,7 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
 
     private void expiradasTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_expiradasTableMouseClicked
         int r = this.getExpiradasTable().rowAtPoint(evt.getPoint());
-        //this.setElegida(this.getLicenciasExpiradas().get(r));
+        this.setElegida(this.getLicenciasExpiradas().get(r));
         if (r >= 0 && r < this.getExpiradasTable().getRowCount()) {
             this.getExpiradasTable().setRowSelectionInterval(r, r);
         } else {

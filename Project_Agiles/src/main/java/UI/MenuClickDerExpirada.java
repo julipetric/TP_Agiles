@@ -17,7 +17,20 @@ import javax.swing.JPopupMenu;
  */
 public class MenuClickDerExpirada extends JPopupMenu {
 
+    public Licencia lic;
+
+    public Licencia getLic() {
+        return lic;
+    }
+
+    public void setLic(Licencia lic) {
+        this.lic = lic;
+    }
+    
     public MenuClickDerExpirada(Licencia lic) {
+        
+        this.setLic(lic);
+        
         JMenuItem item = new JMenuItem("Ver detalle");
         item.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
@@ -35,7 +48,7 @@ public class MenuClickDerExpirada extends JPopupMenu {
         this.add(item);
 
         item = new JMenuItem("Renovar licencia");
-        item.addActionListener(new RenovarLicenciaActionListener(lic));
+        item.addActionListener(new RenovarLicenciaActionListener(this.getLic()));
         this.add(item);
 
         item = new JMenuItem("Modificar datos");
@@ -48,15 +61,19 @@ public class MenuClickDerExpirada extends JPopupMenu {
     }
 
     public class RenovarLicenciaActionListener implements ActionListener {
-
+        
         Licencia lic;
 
         public Licencia getLic() {
             return lic;
         }
 
-        public RenovarLicenciaActionListener(Licencia lic) {
+        public void setLic(Licencia lic) {
             this.lic = lic;
+        }
+        
+        private RenovarLicenciaActionListener(Licencia lic) {
+            this.setLic(lic);
         }
 
         @Override

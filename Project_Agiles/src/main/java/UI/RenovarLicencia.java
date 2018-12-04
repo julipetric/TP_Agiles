@@ -46,7 +46,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         initComponents();
     }
 
-    RenovarLicencia() {
+    private RenovarLicencia() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -565,6 +565,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
     private void llenarCampos(Licencia lic) {
         this.setLic(lic);
+        
         this.getNombreET().setText(lic.getTitular().getNombre());
         this.getApellidoET().setText(lic.getTitular().getApellido());
         this.getDniET().setText(((Integer) lic.getTitular().getDni()).toString());
