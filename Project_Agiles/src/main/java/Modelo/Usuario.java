@@ -42,7 +42,7 @@ public class Usuario  implements java.io.Serializable {
        this.esAdministrador = esAdministrador;
        this.licencias = licencias;
     }
-   
+
     public int getDni() {
         return this.dni;
     }

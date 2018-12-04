@@ -23,15 +23,15 @@ import javax.swing.border.Border;
 public class DarDeAltaUsuario extends javax.swing.JFrame {
 
     private Border borde;
-    
+
     /**
      * Creates new form DarDeAltaUsuario
      */
     public DarDeAltaUsuario() {
         initComponents();
-        borde=nombreET.getBorder();
+        borde = nombreET.getBorder();
         this.setLocationRelativeTo(null);
-        
+
         nombreET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
@@ -59,7 +59,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         usuarioET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (dniET.getText().length() >= 26) {
+                if (usuarioET.getText().length() >= 26) {
                     k.consume();
                 }
             }
@@ -67,7 +67,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         passET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (dniET.getText().length() >= 26) {
+                if (String.valueOf(passET.getPassword()).length() >= 26) {
                     k.consume();
                 }
             }
@@ -75,7 +75,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         pass2ET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (dniET.getText().length() >= 26) {
+                if (String.valueOf(pass2ET.getPassword()).length() >= 26) {
                     k.consume();
                 }
             }
@@ -120,8 +120,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
                 }
             }
         });
-        
-        
+
     }
 
     /**
@@ -341,20 +340,29 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
 
     private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed
 
-       try {
+        try {
             String permiso = (String) permisosCombo.getSelectedItem();
             String nombre = nombreET.getText();
             String apellido = apellidoET.getText();
             String dni = dniET.getText();
             String user = usuarioET.getText();
-            String pass = passET.getText();
-            String pass2 = pass2ET.getText();
-            
+            String pass = String.valueOf(passET.getPassword());
+            String pass2 = String.valueOf(pass2ET.getPassword());
+
+            System.out.println(String.valueOf(passET.getPassword()) + "   " + String.valueOf(pass2ET.getPassword()));
+
             //Domicilio
             String ciudad = ciudadET.getText();
             String calle = calleET.getText();
+            
             String numero = numeroET.getText();
-            String piso = pisoET.getText();
+            String piso;
+            if (!pisoET.getText().isEmpty()) {
+                 piso = pisoET.getText();
+            }else {piso = "0";}
+            
+           
+            
             String departamento = departamentoET.getText();
             //
 
@@ -367,50 +375,64 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
             ciudadET.setBorder(borde);
             calleET.setBorder(borde);
             numeroET.setBorder(borde);
-           
-            if(GestorUsuario.darDeAltaUsuario(dni, nombre, apellido, user, pass, pass2, permiso,ciudad,calle,numero,piso,departamento))
-            {
+
+            if (GestorUsuario.darDeAltaUsuario(dni, nombre, apellido, user, pass, pass2, permiso, ciudad, calle, numero, piso, departamento)) {
                 JOptionPane.showMessageDialog(null, "Usuario creado correctamente", "", JOptionPane.PLAIN_MESSAGE);
                 initComponents();
             }
-        }catch (DatosUsuarioException e) {
-            
-            if(!e.getApellido()) apellidoET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-            
-            if(!e.getNombre()) nombreET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-            
-            if(!e.getDni()) dniET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-            
-            if(!e.getUsuario()) usuarioET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-            
-            if(!e.getPass()) passET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-            else{
-                if(!e.getPass2()) pass2ET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
+        } catch (DatosUsuarioException e) {
+
+            if (!e.getApellido()) {
+                apellidoET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             }
-            
-            if(!e.getDomicilioException().getCiudad()) ciudadET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-            
-            if(!e.getDomicilioException().getCalle()) calleET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-            
-            if(!e.getDomicilioException().getNumero()) numeroET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
+
+            if (!e.getNombre()) {
+                nombreET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+
+            if (!e.getDni()) {
+                dniET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+
+            if (!e.getUsuario()) {
+                usuarioET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+
+            if (!e.getPass()) {
+                passET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+
+            if (!e.getPass2()) {
+                pass2ET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+
+            if (!e.getDomicilioException().getCiudad()) {
+                ciudadET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+
+            if (!e.getDomicilioException().getCalle()) {
+                calleET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+
+            if (!e.getDomicilioException().getNumero()) {
+                numeroET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
         }
 
 
     }//GEN-LAST:event_aceptarBtnActionPerformed
 
     private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
-       MenuAdmin menu = new MenuAdmin();
-       menu.setVisible(true);
-       this.dispose();
+        MenuAdmin menu = new MenuAdmin();
+        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_volverBtnActionPerformed
 
-    
-          /**
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
 
-               
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -421,13 +443,13 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             System.out.println(ex);
         }
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new DarDeAltaUsuario().setVisible(true);
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

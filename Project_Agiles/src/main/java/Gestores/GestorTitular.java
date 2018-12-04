@@ -126,5 +126,4 @@ public class GestorTitular {
      
      return titular;
      }
-    
 }
