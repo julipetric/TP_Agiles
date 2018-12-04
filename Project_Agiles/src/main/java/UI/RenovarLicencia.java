@@ -36,14 +36,14 @@ public class RenovarLicencia extends javax.swing.JFrame {
     Licencia lic;
     Titular tit;
 
-    
-
     /**
      * Creates new form RenovarLicencia
      */
     public RenovarLicencia(Licencia lic) {
-        llenarCampos(lic);
         initComponents();
+        this.setLic(lic);
+        llenarCampos();
+
     }
 
     private RenovarLicencia() {
@@ -361,7 +361,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
                     this.getCiudadET().getText(),
                     this.getCalleET().getText(),
                     this.getNumeroET().getText(),
-                    this.getPisoET().getText(), 
+                    this.getPisoET().getText(),
                     this.getDepartamentoET().getText()));
         } catch (DatosTitularException ex) {
             Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
@@ -554,7 +554,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
     public void setLic(Licencia lic) {
         this.lic = lic;
     }
-    
+
     public Titular getTit() {
         return tit;
     }
@@ -563,20 +563,18 @@ public class RenovarLicencia extends javax.swing.JFrame {
         this.tit = tit;
     }
 
-    private void llenarCampos(Licencia lic) {
-        this.setLic(lic);
-        
-        this.getNombreET().setText(lic.getTitular().getNombre());
-        this.getApellidoET().setText(lic.getTitular().getApellido());
-        this.getDniET().setText(((Integer) lic.getTitular().getDni()).toString());
-        this.getFecha().setDate(lic.getTitular().getFechaNacimiento());
-        this.getGrupoSang().setSelectedItem(lic.getTitular().getGrupoSanguineo());
-        this.getFactor().setSelectedItem(lic.getTitular().getFactorRh());
-        this.getDonante().setSelected(lic.getTitular().isEsDonante());
-        this.getCiudadET().setText(lic.getTitular().getDomicilio().getCiudad());
-        this.getCalleET().setText(lic.getTitular().getDomicilio().getCalle());
-        this.getNumeroET().setText(((Integer) lic.getTitular().getDomicilio().getNumero()).toString());
-        this.getPisoET().setText(((Integer) lic.getTitular().getDomicilio().getPiso()).toString());
-        this.getDepartamentoET().setText(lic.getTitular().getDomicilio().getDepartamento());
+    private void llenarCampos() {
+        nombreET.setText(lic.getTitular().getNombre());
+        apellidoET.setText(lic.getTitular().getApellido());
+        dniET.setText(((Integer) lic.getTitular().getDni()).toString());
+        fecha.setDate(lic.getTitular().getFechaNacimiento());
+        grupoSang.setSelectedItem(lic.getTitular().getGrupoSanguineo());
+        factor.setSelectedItem(lic.getTitular().getFactorRh());
+        donante.setSelected(lic.getTitular().isEsDonante());
+        ciudadET.setText(lic.getTitular().getDomicilio().getCiudad());
+        calleET.setText(lic.getTitular().getDomicilio().getCalle());
+        numeroET.setText(((Integer) lic.getTitular().getDomicilio().getNumero()).toString());
+        pisoET.setText(((Integer) lic.getTitular().getDomicilio().getPiso()).toString());
+        departamentoET.setText(lic.getTitular().getDomicilio().getDepartamento());
     }
 }

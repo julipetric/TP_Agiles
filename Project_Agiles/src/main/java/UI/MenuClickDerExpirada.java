@@ -28,9 +28,9 @@ public class MenuClickDerExpirada extends JPopupMenu {
     }
     
     public MenuClickDerExpirada(Licencia lic) {
-        
+       
         this.setLic(lic);
-        
+         
         JMenuItem item = new JMenuItem("Ver detalle");
         item.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
@@ -74,13 +74,13 @@ public class MenuClickDerExpirada extends JPopupMenu {
         
         private RenovarLicenciaActionListener(Licencia lic) {
             this.setLic(lic);
+           
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
-            RenovarLicencia ventana = new RenovarLicencia(this.getLic());
-            ventana.setVisible(true);
+           RenovarLicencia ventana = new RenovarLicencia(this.getLic());
+           ventana.setVisible(true);
 
         }
 

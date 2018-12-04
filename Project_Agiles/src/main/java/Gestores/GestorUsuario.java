@@ -51,7 +51,7 @@ public class GestorUsuario {
         
         if(!ok) throw exception;
        else{
-            Domicilio domicilio = new Domicilio(ciudad, calle, Integer.valueOf(numero), Integer.valueOf(piso), departamento);
+            //Domicilio domicilio = new Domicilio(ciudad, calle, Integer.valueOf(numero), Integer.valueOf(piso), departamento);
             Usuario usuario = new Usuario(Integer.valueOf(dni),nombre,apellido,nombre,pass,permisoAdmin);
             UsuarioDao.insert(usuario);
         }

@@ -32,7 +32,7 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
 
     public ListadoLicenciasExpirado() {
         initComponents();
-
+        this.setLocationRelativeTo(null);
         this.setLicenciasExpiradas(GestorLicencias.getLicenciasExpiradas());
 
         cargarTabla();
@@ -145,6 +145,7 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
             this.getExpiradasTable().clearSelection();
         }
         if (SwingUtilities.isRightMouseButton(evt)) {
+            //System.out.println(this.getElegida().getTitular().getNombre());
             MenuClickDerExpirada menu = new MenuClickDerExpirada(this.getElegida());
             menu.show(evt.getComponent(), evt.getX(), evt.getY());
         }
