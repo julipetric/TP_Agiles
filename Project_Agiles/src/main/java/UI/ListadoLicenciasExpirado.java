@@ -8,17 +8,10 @@ package UI;
 import Gestores.GestorLicencias;
 import Gestores.GestorSesion;
 import Modelo.Licencia;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import static java.util.Collections.list;
 import java.util.Iterator;
-import javax.swing.JFrame;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
-import javax.swing.event.PopupMenuListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -51,7 +44,7 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
 
     private void cargarTabla() {
         DefaultTableModel modelo = (DefaultTableModel) expiradasTable.getModel();
-        modelo.setRowCount(0);
+        modelo.setRowCount(5);
         Iterator it = licenciasExpiradas.iterator();
         while (it.hasNext()) {
             Licencia licencia = (Licencia) it.next();
@@ -145,7 +138,7 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
 
     private void expiradasTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_expiradasTableMouseClicked
         int r = this.getExpiradasTable().rowAtPoint(evt.getPoint());
-        this.setElegida(this.getLicenciasExpiradas().get(r));
+        //this.setElegida(this.getLicenciasExpiradas().get(r));
         if (r >= 0 && r < this.getExpiradasTable().getRowCount()) {
             this.getExpiradasTable().setRowSelectionInterval(r, r);
         } else {

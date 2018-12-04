@@ -9,11 +9,8 @@ import Gestores.GestorLicencias;
 import Gestores.GestorSesion;
 import Modelo.Licencia;
 import java.util.ArrayList;
-import javax.swing.ButtonGroup;
 import javax.swing.JPopupMenu;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 /**
  *
