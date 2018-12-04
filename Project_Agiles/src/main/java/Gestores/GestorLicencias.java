@@ -195,8 +195,7 @@ public class GestorLicencias {
      * @param licencia   es la instancia de la licencia que se desea guardar.
      */
     public static void guardarLicencia(Licencia licencia) {
-        LicenciaDao Dao = new LicenciaDao();
-        Dao.insert(licencia);
+        LicenciaDao.insert(licencia);
     }
 
     
@@ -207,7 +206,15 @@ public class GestorLicencias {
      * @param uid  ID de una licencia.
      */
     public static Licencia getLicencia(Integer uid){
-    LicenciaDao Dao = new LicenciaDao();
-       return Dao.find(uid);
+       return LicenciaDao.find(uid);
+    }
+    
+    public static Licencia modificarLicencia(Titular titular, Usuario usuario, String clase, Licencia lic) throws DatosLicenciaException{
+        
+        lic.setActivo(Boolean.FALSE);
+        LicenciaDao.modify(lic);
+        Licencia licnueva = crearLicencia(titular,usuario,clase);
+        LicenciaDao.insert(licnueva);
+        return licnueva;
     }
 }

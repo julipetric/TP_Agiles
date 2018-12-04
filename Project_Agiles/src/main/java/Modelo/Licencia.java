@@ -15,6 +15,9 @@ public class Licencia implements java.io.Serializable {
     private Date fechaTramite;
     private Date fechaExpiracion;
     private float costo;
+    private Boolean Activo = true;
+
+    
 
     public Licencia() {
     }
@@ -33,6 +36,14 @@ public class Licencia implements java.io.Serializable {
         this.usuario = usuario;
         this.clase = clase;
         this.fechaTramite = fechaTramite;
+    }
+    
+    public Boolean getActivo() {
+        return Activo;
+    }
+
+    public void setActivo(Boolean Activo) {
+        this.Activo = Activo;
     }
 
     public Integer getUid() {
