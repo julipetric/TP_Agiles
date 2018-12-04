@@ -7,7 +7,10 @@ package UI;
 
 import Exceptions.ComprobanteDirectorioException;
 import Exceptions.ComprobanteYaExisteException;
+<<<<<<< Updated upstream
 import Exceptions.DatosLicenciaException;
+=======
+>>>>>>> Stashed changes
 import Exceptions.DatosTitularException;
 import Gestores.GestorArchivos;
 import Gestores.GestorLicencias;
