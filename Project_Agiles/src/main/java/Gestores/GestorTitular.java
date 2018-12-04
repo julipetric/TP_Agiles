@@ -44,9 +44,9 @@ public class GestorTitular {
         
         if(!ok) throw exception;
         else{
-            /*Domicilio domicilio = new Domicilio(ciudad, calle, Integer.valueOf(numero), Integer.valueOf(piso), departamento);
+            Domicilio domicilio = new Domicilio(ciudad, calle, Integer.valueOf(numero), Integer.valueOf(piso), departamento);
             Titular titular = new Titular(Integer.valueOf(dni),domicilio,nombre,apellido,fechaNacimiento,grupoSanguineo,factorRh,esDonante);
-            TitularDao.insert(titular);*/
+            TitularDao.insert(titular);
         }
         return ok;
     }
@@ -72,4 +72,39 @@ public class GestorTitular {
         if(!ok) throw exception;
         return ok;
     }
+    
+     public static Titular modificarTitular(String nombre, String apellido, String dni, Date fechaNacimiento, String grupoSanguineo,
+            String factorRh, Boolean esDonante, String ciudad, String calle, String numero, String piso, String departamento) throws DatosTitularException {
+     
+        Titular titular = null;
+     
+       boolean ok=true;
+        DatosTitularException exception = new DatosTitularException();
+        
+        try{
+            validarDatosTitular(nombre, apellido, dni);
+        }
+        catch(DatosTitularException e)
+        {
+            ok=false;
+            exception = e;
+        }
+        try{
+            GestorDomicilio.validarDomicilio(ciudad, calle, numero, piso, departamento);
+        }
+        catch(DatosDomicilioException e)
+        {
+            ok=false;
+            exception.setDomicilioException(e);
+        }
+        
+        if(!ok) throw exception;
+        else{
+            Domicilio domicilio = new Domicilio(ciudad, calle, Integer.valueOf(numero), Integer.valueOf(piso), departamento);
+            titular = new Titular(Integer.valueOf(dni),domicilio,nombre,apellido,fechaNacimiento,grupoSanguineo,factorRh,esDonante);
+            TitularDao.modify(titular);
+        }
+     
+     return titular;
+     }
 }
