@@ -8,19 +8,16 @@ package Gestores;
 import Exceptions.ComprobanteDirectorioException;
 import Exceptions.ComprobanteYaExisteException;
 import Modelo.Licencia;
-import com.itextpdf.barcodes.Barcode128;
 import com.itextpdf.barcodes.Barcode39;
 
-import com.itextpdf.io.IOException;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import java.io.File;
 import java.io.FileNotFoundException;
 import javax.swing.filechooser.FileSystemView;
 import com.itextpdf.kernel.color.Color;
-import com.itextpdf.barcodes.BarcodeEAN;
+
+import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;

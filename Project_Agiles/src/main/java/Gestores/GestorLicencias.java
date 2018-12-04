@@ -217,24 +217,4 @@ public class GestorLicencias {
         LicenciaDao.insert(licnueva);
         return licnueva;
     }
-
-    public static Licencia crearLicencia(Titular tit, Usuario usuarioActual, Object selectedItem, Date date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public static void guardarLicencia(Titular tit, Usuario usuarioActual, Object selectedItem, Date date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public static void guardarLicencia(Licencia lic) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public static Licencia crearLicencia(Titular tit, Usuario usuarioActual, Object selectedItem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public static Licencia modificarLicencia(Titular tit, Usuario usuarioActual, String string, Licencia lic) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

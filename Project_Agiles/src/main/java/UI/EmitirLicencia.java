@@ -5,6 +5,9 @@
  */
 package UI;
 
+import Exceptions.ComprobanteDirectorioException;
+import Exceptions.ComprobanteYaExisteException;
+import Exceptions.DatosLicenciaException;
 import Exceptions.DatosTitularException;
 import Gestores.GestorArchivos;
 import Gestores.GestorLicencias;
@@ -179,12 +182,21 @@ public class EmitirLicencia extends javax.swing.JFrame {
         } catch (DatosTitularException ex) {
             Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Licencia lic = GestorLicencias.crearLicencia(this.getTit(), GestorSesion.getUsuarioActual(), this.getClaseCombo().getSelectedItem());
+        Licencia lic = null;
+        try {
+            lic = GestorLicencias.crearLicencia(this.getTit(), GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem());
+        } catch (DatosLicenciaException ex) {
+            Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
         GestorLicencias.guardarLicencia(lic);
 
         try {
             GestorArchivos.imprimir(lic);
         } catch (FileNotFoundException ex) {
+            Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ComprobanteYaExisteException ex) {
+            Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ComprobanteDirectorioException ex) {
             Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -207,7 +219,12 @@ public class EmitirLicencia extends javax.swing.JFrame {
     private void claseComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_claseComboItemStateChanged
         //TODO: Crear el objeto licencia para calcular el costo y setear según el cambio de clase
 
-        Licencia lic = GestorLicencias.crearLicencia(this.getTit(), GestorSesion.getUsuarioActual(), this.getClaseCombo().getSelectedItem());
+        Licencia lic = null;
+        try {
+            lic = GestorLicencias.crearLicencia(this.getTit(), GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem());
+        } catch (DatosLicenciaException ex) {
+            Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.getCostoText().setText(((Float) lic.getCosto()).toString());
         this.getExpiracionText().setText(lic.getFechaExpiracion().toString());
 

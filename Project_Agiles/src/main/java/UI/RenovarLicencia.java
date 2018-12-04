@@ -5,6 +5,10 @@
  */
 package UI;
 
+import Exceptions.ComprobanteDirectorioException;
+import Exceptions.ComprobanteYaExisteException;
+import Exceptions.DatosLicenciaException;
+import Exceptions.DatosTitularException;
 import Gestores.GestorArchivos;
 import Gestores.GestorLicencias;
 import Gestores.GestorSesion;
@@ -345,26 +349,39 @@ public class RenovarLicencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void imprimirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirButtonActionPerformed
-        this.setTit(GestorTitular.modificarTitular(
-                this.getNombreET().getText(),
-                this.getApellidoET().getText(),
-                this.getDniET().getText(),
-                this.getFecha().getDate(),
-                (String) this.getGrupoSang().getSelectedItem(),
-                (String) this.getFactor().getSelectedItem(),
-                this.getDonante().isSelected(),
-                this.getCiudadET().getText(),
-                this.getCalleET().getText(),
-                this.getNumeroET().getText(),
-                this.getPisoET().getText(),
-                this.getDepartamentoET().getText())); 
-        Licencia lic = GestorLicencias.modificarLicencia(this.getTit(), GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem(), this.getLic());
+        try {
+            this.setTit(GestorTitular.modificarTitular(
+                    this.getNombreET().getText(),
+                    this.getApellidoET().getText(),
+                    this.getDniET().getText(),
+                    this.getFecha().getDate(),
+                    (String) this.getGrupoSang().getSelectedItem(),
+                    (String) this.getFactor().getSelectedItem(),
+                    this.getDonante().isSelected(),
+                    this.getCiudadET().getText(),
+                    this.getCalleET().getText(),
+                    this.getNumeroET().getText(),
+                    this.getPisoET().getText(), 
+                    this.getDepartamentoET().getText()));
+        } catch (DatosTitularException ex) {
+            Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Licencia lic = null;
+        try {
+            lic = GestorLicencias.modificarLicencia(this.getTit(), GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem(), this.getLic());
+        } catch (DatosLicenciaException ex) {
+            Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
         GestorLicencias.guardarLicencia(lic);
 
         try {
             GestorArchivos.imprimir(lic);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ComprobanteYaExisteException ex) {
+            Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ComprobanteDirectorioException ex) {
+            Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         File escritorioDelUsuario = FileSystemView.getFileSystemView().getHomeDirectory();
@@ -377,7 +394,12 @@ public class RenovarLicencia extends javax.swing.JFrame {
     private void claseComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_claseComboItemStateChanged
         //TODO: Crear el objeto licencia para calcular el costo y setear según el cambio de clase
 
-        Licencia lic = GestorLicencias.crearLicencia(this.getTit(), GestorSesion.getUsuarioActual(), this.getClaseCombo().getSelectedItem());
+        Licencia lic = null;
+        try {
+            lic = GestorLicencias.crearLicencia(this.getTit(), GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem());
+        } catch (DatosLicenciaException ex) {
+            Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.getCostoText().setText(((Float) lic.getCosto()).toString());
         this.getExpiracionText().setText(lic.getFechaExpiracion().toString());
     }//GEN-LAST:event_claseComboItemStateChanged
