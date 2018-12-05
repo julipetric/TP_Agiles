@@ -9,7 +9,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="0"/>
-    <Property name="title" type="java.lang.String" value="Listado de Licencias"/>
+    <Property name="title" type="java.lang.String" value="Listado de Licencias por criterio"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -76,34 +76,29 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="donanteSiButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="donanteNoButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="vigenteLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="donanteNoButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="vigenteLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="vigenteSiCheck" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                       <Component id="vigenteNoCheck" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <Component id="titleLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="29" max="32767" attributes="0"/>
+                      <EmptySpace pref="33" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="volverButton" min="-2" pref="162" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="imprimirBusqueda" min="-2" pref="162" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="192" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buscarButton1" min="-2" pref="162" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
-              </Group>
-          </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="678" max="32767" attributes="0"/>
-                  <Component id="buscarButton1" min="-2" pref="162" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -142,20 +137,23 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="donanteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="donanteSiButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="donanteNoButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="vigenteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="vigenteSiCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="vigenteNoCheck" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="donanteNoButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="donanteSiButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="209" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="volverButton" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="imprimirBusqueda" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-              </Group>
+              <EmptySpace pref="88" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="imprimirBusqueda" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="volverButton" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
@@ -253,14 +251,13 @@
     <Component class="javax.swing.JComboBox" name="claseCombo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
+          <StringArray count="6">
             <StringItem index="0" value="-"/>
             <StringItem index="1" value="A"/>
             <StringItem index="2" value="B"/>
             <StringItem index="3" value="C"/>
-            <StringItem index="4" value="D"/>
-            <StringItem index="5" value="E"/>
-            <StringItem index="6" value="F"/>
+            <StringItem index="4" value="E"/>
+            <StringItem index="5" value="G"/>
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -274,28 +271,6 @@
     <Component class="javax.swing.JLabel" name="donanteLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Donante:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="donanteSiButton">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="donanteGroup"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="S&#xed;"/>
-        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="donanteNoButton">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="donanteGroup"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="No"/>
-        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
-        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="vigenteLabel">
@@ -362,8 +337,6 @@
                 </Column>
               </TableColumnModel>
             </Property>
-            <Property name="columnSelectionAllowed" type="boolean" value="true"/>
-            <Property name="enabled" type="boolean" value="false"/>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
@@ -378,7 +351,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Imprimir busqueda"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -389,7 +362,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Volver"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -418,12 +391,22 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarButton1ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="donanteNoButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="No"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="donanteSiButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Si"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

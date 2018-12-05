@@ -16,11 +16,15 @@ import Gestores.GestorSesion;
 import Gestores.GestorTitular;
 import Modelo.Licencia;
 import Modelo.Titular;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileSystemView;
@@ -30,7 +34,7 @@ import javax.swing.filechooser.FileSystemView;
  * @author Julian
  */
 public class EmitirLicencia extends javax.swing.JFrame {
-
+    private JFrame ventana;
     Titular tit;
 
     public Titular getTit() {
@@ -40,9 +44,14 @@ public class EmitirLicencia extends javax.swing.JFrame {
     /**
      * Creates new form EmitirLicencia
      */
-    public EmitirLicencia(Titular tit) {
+    public EmitirLicencia(Titular tit,JFrame ventana) {
         this.tit = tit;
+        this.ventana = ventana;
         initComponents();
+        
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
+        ImageIcon icon = new ImageIcon(image);
+        setIconImage(icon.getImage());
         
         /*Generamos en primera instancia una nueva licencia (sin guardar)
         para que se calcule su fecha de caducidad y el costo, usando los datos
@@ -79,6 +88,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         expiracionText = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Emitir Licencia");
         setResizable(false);
 
         emitirLicenciaLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -93,7 +103,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         costoText.setEditable(false);
 
         imprimirButton.setText("Imprimir Comprobante");
-        imprimirButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imprimirButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         imprimirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imprimirButtonActionPerformed(evt);
@@ -101,7 +111,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         });
 
         jButton4.setText("Volver");
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -209,6 +219,9 @@ public class EmitirLicencia extends javax.swing.JFrame {
 
         showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath().toString() + "\\Comprobantes");
 
+        
+        DarDeAltaTitular titular = new DarDeAltaTitular();
+        titular.setVisible(true);
         this.dispose();
 
 
@@ -237,15 +250,8 @@ public class EmitirLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_claseComboItemStateChanged
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (GestorSesion.getUsuarioActual().isEsAdministrador()) {
-            MenuAdmin menu = new MenuAdmin();
-            menu.setVisible(true);
-            this.dispose();
-        } else {
-            MenuOperario menu = new MenuOperario();
-            menu.setVisible(true);
-            this.dispose();
-        }
+        ventana.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     public JTextField getExpiracionText() {

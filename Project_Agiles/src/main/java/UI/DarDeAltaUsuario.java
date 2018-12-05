@@ -8,11 +8,14 @@ package UI;
 import Exceptions.DatosUsuarioException;
 import Gestores.GestorUsuario;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 
@@ -31,6 +34,9 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         initComponents();
         borde = nombreET.getBorder();
         this.setLocationRelativeTo(null);
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
+        ImageIcon icon = new ImageIcon(image);
+        setIconImage(icon.getImage());
 
         nombreET.addKeyListener(new KeyAdapter() {
             @Override
@@ -161,7 +167,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         pass2ET = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Dar de alta usuario");
+        setTitle("Alta Usuario");
         setResizable(false);
 
         permisosLabel.setText("Permisos:");
@@ -180,7 +186,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         pass2Label.setText("Repetir contraseña:");
 
         volverBtn.setText("Volver");
-        volverBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        volverBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         volverBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverBtnActionPerformed(evt);
@@ -188,7 +194,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         });
 
         aceptarBtn.setText("Aceptar");
-        aceptarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        aceptarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         aceptarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aceptarBtnActionPerformed(evt);

@@ -6,6 +6,9 @@
 package UI;
 
 import Gestores.GestorSesion;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -18,6 +21,9 @@ public class MenuOperario extends javax.swing.JFrame {
      */
     public MenuOperario() {
         initComponents();
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
+        ImageIcon icon = new ImageIcon(image);
+        setIconImage(icon.getImage());
         this.setLocationRelativeTo(null);
     }
 
@@ -34,12 +40,14 @@ public class MenuOperario extends javax.swing.JFrame {
         cerrarSesionButton = new javax.swing.JButton();
         AltaTitularButton = new javax.swing.JButton();
         listarPorCriterioButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Operario");
         setResizable(false);
 
         listarExpiradasButton.setText("Listar Licencias Expiradas");
-        listarExpiradasButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        listarExpiradasButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         listarExpiradasButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listarExpiradasButtonActionPerformed(evt);
@@ -47,7 +55,7 @@ public class MenuOperario extends javax.swing.JFrame {
         });
 
         cerrarSesionButton.setText("Cerrar Sesion");
-        cerrarSesionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cerrarSesionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cerrarSesionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cerrarSesionButtonActionPerformed(evt);
@@ -55,7 +63,7 @@ public class MenuOperario extends javax.swing.JFrame {
         });
 
         AltaTitularButton.setText("Dar de alta titular");
-        AltaTitularButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AltaTitularButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         AltaTitularButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AltaTitularButtonActionPerformed(evt);
@@ -63,48 +71,51 @@ public class MenuOperario extends javax.swing.JFrame {
         });
 
         listarPorCriterioButton.setText("Listar licencias por criterio");
-        listarPorCriterioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        listarPorCriterioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         listarPorCriterioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listarPorCriterioButtonActionPerformed(evt);
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/engineer (3).png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(cerrarSesionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(listarExpiradasButton, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                    .addComponent(AltaTitularButton, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(listarExpiradasButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(AltaTitularButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(listarPorCriterioButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(cerrarSesionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(listarPorCriterioButton, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(listarExpiradasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(listarPorCriterioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(AltaTitularButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addGap(18, 18, 18)
                 .addComponent(cerrarSesionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(67, 67, 67)
-                    .addComponent(listarPorCriterioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(173, Short.MAX_VALUE)))
         );
 
         pack();
@@ -140,6 +151,7 @@ public class MenuOperario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AltaTitularButton;
     private javax.swing.JButton cerrarSesionButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton listarExpiradasButton;
     private javax.swing.JButton listarPorCriterioButton;
     // End of variables declaration//GEN-END:variables

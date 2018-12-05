@@ -51,7 +51,7 @@ public class GestorUsuario {
         
         if(!ok) throw exception;
        else{
-            Domicilio domicilio = new Domicilio(ciudad, calle, Integer.valueOf(numero),departamento, Integer.valueOf(piso));
+            Domicilio domicilio = new Domicilio(ciudad, calle, Integer.valueOf(numero),departamento, piso.isEmpty()?0:Integer.valueOf(piso));
             GestorDomicilio.guardarDomicilio(domicilio);
             Usuario usuario = new Usuario(Integer.valueOf(dni),nombre,apellido,user,pass,permisoAdmin,domicilio);
             UsuarioDao.insert(usuario);
@@ -65,7 +65,12 @@ public class GestorUsuario {
         DatosUsuarioException exception = new DatosUsuarioException();
         
         try{
-            Integer.parseInt(dni);
+            if(dni.length()<7)
+            {
+                valido = false;
+                exception.setDni(false);
+            }
+            else Integer.parseInt(dni);
         }
         catch(NumberFormatException e){
             valido = false;
@@ -79,15 +84,15 @@ public class GestorUsuario {
             valido = false;
             exception.setApellido(false);
         }
-        if(user.isEmpty() || user.length() > 32){
+        if(user.isEmpty()){
             valido = false;
             exception.setUsuario(false);
         }
-        if(pass.isEmpty() || pass.length() < 8){
+        if(pass.length() < 8){
             valido = false;
             exception.setPass(false);
         }
-        if(!pass.equals(pass2) || pass2.length() < 8 || pass2.isEmpty()){
+        if(!pass.equals(pass2) || pass2.length() < 8){
             valido = false;
             exception.setPass2(false);
         }

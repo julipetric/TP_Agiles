@@ -239,7 +239,7 @@ public class GestorLicencias {
     }
 
     public static boolean esVigente(Licencia lic) {
-        return lic.getFechaExpiracion().before(new Date());
+        return lic.getFechaExpiracion().after(new Date());
     }
     
     private static void modifiarLicencia(Licencia lic){

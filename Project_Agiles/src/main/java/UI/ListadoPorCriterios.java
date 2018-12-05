@@ -13,15 +13,14 @@ import Gestores.GestorArchivos;
 import Gestores.GestorLicencias;
 import Gestores.GestorSesion;
 import Modelo.Licencia;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import static javax.swing.JOptionPane.showMessageDialog;
-import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileSystemView;
@@ -62,7 +61,10 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     public ListadoPorCriterios() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
+        ImageIcon icon = new ImageIcon(image);
+        setIconImage(icon.getImage());
+
         nombreET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
@@ -123,8 +125,6 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         claseLabel = new javax.swing.JLabel();
         claseCombo = new javax.swing.JComboBox<>();
         donanteLabel = new javax.swing.JLabel();
-        donanteSiButton = new javax.swing.JRadioButton();
-        donanteNoButton = new javax.swing.JRadioButton();
         vigenteLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaLicencias = new javax.swing.JTable();
@@ -133,9 +133,11 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         vigenteSiCheck = new javax.swing.JCheckBox();
         vigenteNoCheck = new javax.swing.JCheckBox();
         buscarButton1 = new javax.swing.JButton();
+        donanteNoButton = new javax.swing.JCheckBox();
+        donanteSiButton = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Listado de Licencias");
+        setTitle("Listado de Licencias por criterio");
         setResizable(false);
 
         titleLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -159,18 +161,10 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
 
         claseLabel.setText("Clase:");
 
-        claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "A", "B", "C", "D", "E", "F" }));
+        claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "A", "B", "C", "E", "G" }));
         claseCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         donanteLabel.setText("Donante:");
-
-        donanteGroup.add(donanteSiButton);
-        donanteSiButton.setText("Sí");
-        donanteSiButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        donanteGroup.add(donanteNoButton);
-        donanteNoButton.setText("No");
-        donanteNoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         vigenteLabel.setText("Licencia vigente:");
 
@@ -197,8 +191,6 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tablaLicencias.setColumnSelectionAllowed(true);
-        tablaLicencias.setEnabled(false);
         tablaLicencias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaLicenciasMouseClicked(evt);
@@ -208,7 +200,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         tablaLicencias.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         imprimirBusqueda.setText("Imprimir busqueda");
-        imprimirBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imprimirBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         imprimirBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imprimirBusquedaActionPerformed(evt);
@@ -216,7 +208,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         });
 
         volverButton.setText("Volver");
-        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         volverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverButtonActionPerformed(evt);
@@ -232,12 +224,16 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         vigenteNoCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         buscarButton1.setText("Buscar");
-        buscarButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscarButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         buscarButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarButton1ActionPerformed(evt);
             }
         });
+
+        donanteNoButton.setText("No");
+
+        donanteSiButton.setText("Si");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -280,26 +276,23 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                                         .addComponent(nroLicenciaET, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(donanteSiButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(donanteNoButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(vigenteLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(donanteNoButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(vigenteLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(vigenteSiCheck)
-                                        .addGap(18, 18, 18)
+                                        .addGap(11, 11, 11)
                                         .addComponent(vigenteNoCheck))))
                             .addComponent(titleLabel, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap(29, Short.MAX_VALUE))
+                        .addContainerGap(33, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(imprimirBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(192, 192, 192))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(678, Short.MAX_VALUE)
-                    .addComponent(buscarButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(19, 19, 19)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscarButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,18 +323,20 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(donanteLabel)
-                    .addComponent(donanteSiButton)
-                    .addComponent(donanteNoButton)
                     .addComponent(vigenteLabel)
                     .addComponent(vigenteSiCheck)
-                    .addComponent(vigenteNoCheck))
+                    .addComponent(vigenteNoCheck)
+                    .addComponent(donanteNoButton)
+                    .addComponent(donanteSiButton))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap(88, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(imprimirBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(imprimirBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(445, Short.MAX_VALUE)
@@ -400,16 +395,22 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         la licencia elegida actual para futuro uso*/
         if (SwingUtilities.isRightMouseButton(evt)) {
             if (GestorLicencias.esVigente(this.getElegida())) {
-                MenuClickDerVigente menu = new MenuClickDerVigente(this.getElegida());
+                MenuClickDerVigente menu = new MenuClickDerVigente(this.getElegida(), null, this);
                 menu.show(evt.getComponent(), evt.getX(), evt.getY());
             } else {
-                MenuClickDerExpirada menu = new MenuClickDerExpirada(this.getElegida(),this);
+                MenuClickDerExpirada menu = new MenuClickDerExpirada(this.getElegida(), null, this);
                 menu.show(evt.getComponent(), evt.getX(), evt.getY());
             }
         }
     }//GEN-LAST:event_tablaLicenciasMouseClicked
 
     private void buscarButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButton1ActionPerformed
+        //Se crea un arreglo para pasarle al metodo de búsqueda del gestor
+        //de licencias para la búsqueda
+        cargarTabla();
+    }//GEN-LAST:event_buscarButton1ActionPerformed
+
+    public void cargarTabla() {
         //Se crea un arreglo para pasarle al metodo de búsqueda del gestor
         //de licencias para la búsqueda
         ArrayList<Object> criterios = new ArrayList<>(10);
@@ -421,7 +422,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         criterios.add(4, this.grupoCombo.getSelectedItem());
         criterios.add(5, this.factorCombo.getSelectedItem());
         criterios.add(6, this.claseCombo.getSelectedItem());
-        if (!donanteSiButton.isSelected() && !donanteNoButton.isSelected()) {
+        if (donanteSiButton.isSelected() == donanteNoButton.isSelected()) {
             criterios.add(7, null);
         } else {
             criterios.add(7, this.donanteSiButton.isSelected());
@@ -445,8 +446,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                 this.getLicencias().get(i).getFechaExpiracion(), grupoFactor};
             model.addRow(fila);
         }
-    }//GEN-LAST:event_buscarButton1ActionPerformed
-
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoET;
     private javax.swing.JLabel apellidoLabel;
@@ -457,8 +457,8 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     private javax.swing.JLabel dniLabel;
     private javax.swing.ButtonGroup donanteGroup;
     private javax.swing.JLabel donanteLabel;
-    private javax.swing.JRadioButton donanteNoButton;
-    private javax.swing.JRadioButton donanteSiButton;
+    private javax.swing.JCheckBox donanteNoButton;
+    private javax.swing.JCheckBox donanteSiButton;
     private javax.swing.JComboBox<String> factorCombo;
     private javax.swing.JComboBox<String> grupoCombo;
     private javax.swing.JLabel grupoLabel;

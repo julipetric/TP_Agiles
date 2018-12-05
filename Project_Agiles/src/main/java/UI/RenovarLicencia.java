@@ -17,6 +17,9 @@ import Modelo.Licencia;
 import Modelo.Titular;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.Frame;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -27,8 +30,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTextField;
@@ -44,12 +49,19 @@ public class RenovarLicencia extends javax.swing.JFrame {
     Licencia lic;
     Titular tit;
     private Border borde;
+    private ListadoLicenciasExpirado ventanaExpirado;
+    private ListadoPorCriterios ventanaCriterio;
 
     /**
      * Creates new form RenovarLicencia
      */
-    public RenovarLicencia(Licencia lic) {
+    public RenovarLicencia(Licencia lic, ListadoLicenciasExpirado ventanaExpirado, ListadoPorCriterios ventanaCriterio) {
         initComponents();
+        this.ventanaExpirado = ventanaExpirado;
+        this.ventanaCriterio = ventanaCriterio;
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
+        ImageIcon icon = new ImageIcon(image);
+        setIconImage(icon.getImage());
         this.setLic(lic);
         this.setTit(this.getLic().getTitular());
         borde = nombreET.getBorder();
@@ -126,11 +138,9 @@ public class RenovarLicencia extends javax.swing.JFrame {
             }
         });
 
-        
-
         //Se llenan los campos con los datos actuales del titular
         llenarCampos();
-        
+
         /*Generamos en primera instancia una nueva licencia (sin guardar)
         para que se calcule su fecha de caducidad y el costo, usando los datos
         ya existentes de titular y clase. Se setean donde corresponda.
@@ -194,6 +204,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Renovar");
         setResizable(false);
 
         jLabel1.setText("Nombre:");
@@ -288,7 +299,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         costoText.setEditable(false);
 
         imprimirButton.setText("Imprimir Comprobante");
-        imprimirButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imprimirButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         imprimirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imprimirButtonActionPerformed(evt);
@@ -296,7 +307,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         });
 
         jButton4.setText("Volver");
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -483,14 +494,20 @@ public class RenovarLicencia extends javax.swing.JFrame {
         de que se hayan cambiado los datos) al metodo de modificar licencia.
          */
         try {
-            
+
             lic = GestorLicencias.modificarLicencia(this.getTit(), GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem(), this.getLic());
             this.setTit(GestorTitular.modificarTitular(nombre, apellido, dni, fechaNacimiento, grupoSanguineo, factorRh, esDonante, ciudad, calle, numero, piso, departamento));
             GestorArchivos.imprimir(lic);
             File escritorioDelUsuario = FileSystemView.getFileSystemView().getHomeDirectory();
 
             showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath() + "/Comprobantes");
-
+            if (ventanaCriterio != null) {
+                ventanaCriterio.setVisible(true);
+                ventanaCriterio.cargarTabla();
+            } else {
+                ventanaExpirado.setVisible(true);
+                ventanaExpirado.cargarTabla();
+            }
             this.dispose();
         } catch (DatosTitularException e) {
             if (!e.getApellido()) {
@@ -554,8 +571,13 @@ public class RenovarLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_expiracionTextActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        ListadoLicenciasExpirado listado = new ListadoLicenciasExpirado();
-        listado.setVisible(true);
+        if (ventanaCriterio != null) {
+            ventanaCriterio.setVisible(true);
+            ventanaCriterio.cargarTabla();
+        } else {
+            ventanaExpirado.setVisible(true);
+            ventanaExpirado.cargarTabla();
+        }
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
