@@ -5,7 +5,6 @@
  */
 package UI;
 
-
 import Gestores.GestorArchivos;
 import Gestores.GestorLicencias;
 import Gestores.GestorSesion;
@@ -61,7 +60,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
         ImageIcon icon = new ImageIcon(image);
         setIconImage(icon.getImage());
-        
+
         nombreET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
@@ -122,8 +121,6 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         claseLabel = new javax.swing.JLabel();
         claseCombo = new javax.swing.JComboBox<>();
         donanteLabel = new javax.swing.JLabel();
-        donanteSiButton = new javax.swing.JRadioButton();
-        donanteNoButton = new javax.swing.JRadioButton();
         vigenteLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaLicencias = new javax.swing.JTable();
@@ -132,6 +129,8 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         vigenteSiCheck = new javax.swing.JCheckBox();
         vigenteNoCheck = new javax.swing.JCheckBox();
         buscarButton1 = new javax.swing.JButton();
+        donanteNoButton = new javax.swing.JCheckBox();
+        donanteSiButton = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Listado de Licencias por criterio");
@@ -162,14 +161,6 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         claseCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         donanteLabel.setText("Donante:");
-
-        donanteGroup.add(donanteSiButton);
-        donanteSiButton.setText("Sí");
-        donanteSiButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        donanteGroup.add(donanteNoButton);
-        donanteNoButton.setText("No");
-        donanteNoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         vigenteLabel.setText("Licencia vigente:");
 
@@ -238,6 +229,10 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
             }
         });
 
+        donanteNoButton.setText("No");
+
+        donanteSiButton.setText("Si");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -279,13 +274,13 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                                         .addComponent(nroLicenciaET, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(donanteSiButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(donanteNoButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(vigenteLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(donanteNoButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(vigenteLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(vigenteSiCheck)
-                                        .addGap(18, 18, 18)
+                                        .addGap(11, 11, 11)
                                         .addComponent(vigenteNoCheck))))
                             .addComponent(titleLabel, javax.swing.GroupLayout.Alignment.LEADING))
                         .addContainerGap(29, Short.MAX_VALUE))
@@ -296,7 +291,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                         .addGap(190, 190, 190))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(678, Short.MAX_VALUE)
+                    .addContainerGap(682, Short.MAX_VALUE)
                     .addComponent(buscarButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(19, 19, 19)))
         );
@@ -329,11 +324,11 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(donanteLabel)
-                    .addComponent(donanteSiButton)
-                    .addComponent(donanteNoButton)
                     .addComponent(vigenteLabel)
                     .addComponent(vigenteSiCheck)
-                    .addComponent(vigenteNoCheck))
+                    .addComponent(vigenteNoCheck)
+                    .addComponent(donanteNoButton)
+                    .addComponent(donanteSiButton))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -393,16 +388,22 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         la licencia elegida actual para futuro uso*/
         if (SwingUtilities.isRightMouseButton(evt)) {
             if (GestorLicencias.esVigente(this.getElegida())) {
-                MenuClickDerVigente menu = new MenuClickDerVigente(this.getElegida(),this);
+                MenuClickDerVigente menu = new MenuClickDerVigente(this.getElegida(), null, this);
                 menu.show(evt.getComponent(), evt.getX(), evt.getY());
             } else {
-                MenuClickDerExpirada menu = new MenuClickDerExpirada(this.getElegida(),this);
+                MenuClickDerExpirada menu = new MenuClickDerExpirada(this.getElegida(), null, this);
                 menu.show(evt.getComponent(), evt.getX(), evt.getY());
             }
         }
     }//GEN-LAST:event_tablaLicenciasMouseClicked
 
     private void buscarButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButton1ActionPerformed
+        //Se crea un arreglo para pasarle al metodo de búsqueda del gestor
+        //de licencias para la búsqueda
+        cargarTabla();
+    }//GEN-LAST:event_buscarButton1ActionPerformed
+
+    public void cargarTabla() {
         //Se crea un arreglo para pasarle al metodo de búsqueda del gestor
         //de licencias para la búsqueda
         ArrayList<Object> criterios = new ArrayList<>(10);
@@ -414,7 +415,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         criterios.add(4, this.grupoCombo.getSelectedItem());
         criterios.add(5, this.factorCombo.getSelectedItem());
         criterios.add(6, this.claseCombo.getSelectedItem());
-        if (!donanteSiButton.isSelected() && !donanteNoButton.isSelected()) {
+        if (donanteSiButton.isSelected() == donanteNoButton.isSelected()) {
             criterios.add(7, null);
         } else {
             criterios.add(7, this.donanteSiButton.isSelected());
@@ -438,8 +439,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                 this.getLicencias().get(i).getFechaExpiracion(), grupoFactor};
             model.addRow(fila);
         }
-    }//GEN-LAST:event_buscarButton1ActionPerformed
-
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoET;
     private javax.swing.JLabel apellidoLabel;
@@ -450,8 +450,8 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     private javax.swing.JLabel dniLabel;
     private javax.swing.ButtonGroup donanteGroup;
     private javax.swing.JLabel donanteLabel;
-    private javax.swing.JRadioButton donanteNoButton;
-    private javax.swing.JRadioButton donanteSiButton;
+    private javax.swing.JCheckBox donanteNoButton;
+    private javax.swing.JCheckBox donanteSiButton;
     private javax.swing.JComboBox<String> factorCombo;
     private javax.swing.JComboBox<String> grupoCombo;
     private javax.swing.JLabel grupoLabel;

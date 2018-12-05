@@ -42,8 +42,6 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
 
         /*Pedimos del GestorLicencias el listado de todas las expiradas
         comparando con la fecha actual*/
-        this.setLicenciasExpiradas(GestorLicencias.getLicenciasExpiradas());
-
         cargarTabla();
     }
 
@@ -51,7 +49,8 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
         this.licenciasExpiradas = licenciasExpiradas;
     }
 
-    private void cargarTabla() {
+    public void cargarTabla() {
+        this.setLicenciasExpiradas(GestorLicencias.getLicenciasExpiradas());
         DefaultTableModel modelo = (DefaultTableModel) expiradasTable.getModel();
         modelo.setRowCount(0);
         Iterator it = licenciasExpiradas.iterator();
@@ -149,22 +148,22 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
     private void expiradasTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_expiradasTableMouseClicked
         //Comparamos la posición del cursor con la fila correspondiente y guardamos el valor        
         int r = this.getExpiradasTable().rowAtPoint(evt.getPoint());
-        
+
         //Cada vez que clickeamos, actualizamos en una variable la licencia elegida
         this.setElegida(this.getLicenciasExpiradas().get(r));
-        
+
         //Si clickeamos fuera de la tabla, desceleccionamos
         if (r >= 0 && r < this.getExpiradasTable().getRowCount()) {
             this.getExpiradasTable().setRowSelectionInterval(r, r);
         } else {
             this.getExpiradasTable().clearSelection();
         }
-        
+
         /*Si es click derecho, generamos el menú desplegable. Se le pasa 
         la licencia elegida actual para futuro uso*/
         if (SwingUtilities.isRightMouseButton(evt)) {
             //System.out.println(this.getElegida().getTitular().getNombre());
-            MenuClickDerExpirada menu = new MenuClickDerExpirada(this.getElegida(),this);
+            MenuClickDerExpirada menu = new MenuClickDerExpirada(this.getElegida(), this, null);
             menu.show(evt.getComponent(), evt.getX(), evt.getY());
         }
     }//GEN-LAST:event_expiradasTableMouseClicked

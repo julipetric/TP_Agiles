@@ -21,7 +21,8 @@ import javax.swing.UIManager;
 class MenuClickDerVigente extends JPopupMenu {
 
     Licencia lic;
-    private JFrame ventana;
+    private ListadoLicenciasExpirado ventanaExpirado;
+    private ListadoPorCriterios ventanaCriterio;
 
     public Licencia getLic() {
         return lic;
@@ -31,16 +32,12 @@ class MenuClickDerVigente extends JPopupMenu {
         this.lic = lic;
     }
 
-    private void setVentana(JFrame ventana) {
-        this.ventana = ventana;
-    }
-
-    public MenuClickDerVigente(Licencia lic, JFrame ventana) {
+    public MenuClickDerVigente(Licencia lic, ListadoLicenciasExpirado ventanaExpirado, ListadoPorCriterios ventanaCriterio) {
 
         this.setLic(lic);
-
+        this.ventanaCriterio = ventanaCriterio;
+        this.ventanaExpirado = ventanaExpirado;
         Font f = new Font("sans-serif", Font.BOLD, 12);
-        this.setVentana(ventana);
         f = new Font("sans-serif", Font.BOLD + Font.ITALIC, 12);
 
         JMenuItem item = new JMenuItem("LICENCIA VIGENTE");
@@ -67,7 +64,7 @@ class MenuClickDerVigente extends JPopupMenu {
         this.add(item);
 
         item = new JMenuItem("Renovar licencia");
-        item.addActionListener(new RenovarLicenciaActionListener(this.getLic(), ventana));
+        item.addActionListener(new RenovarLicenciaActionListener(this.getLic(), ventanaExpirado, ventanaCriterio));
         this.add(item);
 
         item = new JMenuItem("Modificar datos");
@@ -83,7 +80,8 @@ class MenuClickDerVigente extends JPopupMenu {
     public class RenovarLicenciaActionListener implements ActionListener {
 
         Licencia lic;
-        private JFrame ventana;
+        private ListadoLicenciasExpirado ventanaExpirado;
+        private ListadoPorCriterios ventanaCriterio;
 
         public Licencia getLic() {
             return lic;
@@ -93,20 +91,21 @@ class MenuClickDerVigente extends JPopupMenu {
             this.lic = lic;
         }
 
-        private void setVentana(JFrame ventana) {
-            this.ventana = ventana;
-        }
-
-        private RenovarLicenciaActionListener(Licencia lic, JFrame ventana) {
+        private RenovarLicenciaActionListener(Licencia lic, ListadoLicenciasExpirado ventanaExpirado, ListadoPorCriterios ventanaCriterio) {
             this.setLic(lic);
-
+            this.ventanaCriterio = ventanaCriterio;
+            this.ventanaExpirado = ventanaExpirado;
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            RenovarLicencia ventanas = new RenovarLicencia(this.getLic(), ventana);
+            RenovarLicencia ventanas = new RenovarLicencia(this.getLic(), ventanaExpirado, ventanaCriterio);
             ventanas.setVisible(true);
-            this.ventana.setVisible(false);
+            if (ventanaCriterio != null) {
+                ventanaCriterio.setVisible(false);
+            } else {
+                ventanaExpirado.setVisible(false);
+            }
         }
 
     }
