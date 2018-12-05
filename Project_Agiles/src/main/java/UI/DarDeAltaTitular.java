@@ -152,6 +152,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         jButton2.setText("Guardar");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Alta Titular");
         setResizable(false);
 
         jLabel1.setText("Nombre:");
@@ -254,7 +255,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         donante.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         guardarButton.setText("Siguiente");
-        guardarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        guardarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         guardarButton.setNextFocusableComponent(nombreET);
         guardarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,7 +264,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         });
 
         volverButton.setText("Volver");
-        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         volverButton.setNextFocusableComponent(guardarButton);
         volverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -401,10 +402,10 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
 
         try {
             tit = GestorTitular.guardarTitular(nombre, apellido, dni, fechaNacimiento, grupoSanguineo, factorRh, esDonante, ciudad, calle, numero, piso, departamento);
-            EmitirLicencia emitirVentana = new EmitirLicencia(tit);
+            EmitirLicencia emitirVentana = new EmitirLicencia(tit,this);
             emitirVentana.setVisible(true);
             //TODO: Hacer que se cierre solo despues de haber impreso la licencia
-            this.dispose();
+            this.setVisible(false);
         } catch (DatosTitularException e) {
             if (!e.getApellido()) {
                 apellidoET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
