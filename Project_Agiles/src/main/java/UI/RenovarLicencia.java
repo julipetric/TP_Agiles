@@ -269,16 +269,13 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
         grupoSang.setEditable(true);
         grupoSang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "A", "B", "AB" }));
-        grupoSang.setEnabled(false);
 
         jLabel10.setText("Facor Rh:");
 
         factor.setEditable(true);
         factor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-" }));
-        factor.setEnabled(false);
 
         donante.setText("Donante");
-        donante.setEnabled(false);
 
         jLabel11.setText("DNI:");
 
@@ -310,7 +307,6 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
         claseCombo.setEditable(true);
         claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "E", "G" }));
-        claseCombo.setEnabled(false);
         claseCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 claseComboItemStateChanged(evt);
