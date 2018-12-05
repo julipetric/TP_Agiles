@@ -5,10 +5,17 @@
  */
 package UI;
 
+import Exceptions.LicenciaDirectorioException;
+import Exceptions.LicenciaYaExisteException;
+import Gestores.GestorArchivos;
 import Modelo.Licencia;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -57,10 +64,20 @@ class MenuClickDerVigente extends JPopupMenu {
         item = new JMenuItem("Emitir copia");
         item.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                //comportamiento botón
+                try {
+                    GestorArchivos.imprimirLicencia(lic);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(MenuClickDerVigente.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (LicenciaYaExisteException ex) {
+                    Logger.getLogger(MenuClickDerVigente.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (LicenciaDirectorioException ex) {
+                    Logger.getLogger(MenuClickDerVigente.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(MenuClickDerVigente.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
-        item.setEnabled(false);
+        item.setEnabled(true);
         this.add(item);
 
         item = new JMenuItem("Renovar licencia");

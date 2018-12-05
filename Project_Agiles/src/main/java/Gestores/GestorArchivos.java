@@ -226,22 +226,9 @@ public class GestorArchivos {
             
             if (!file.exists()) { //Si no hubo errores al crear el archivo...
                 
-                //Agregamos los datos y el formato al pdf
-//                PdfWriter writer = new PdfWriter(dest); //Explota con FileNotFoundException si "dest" es invalido
-//                PdfDocument pdf = new PdfDocument(writer);
-//                Document document = new Document(pdf);
-//                document.getPdfDocument().setDefaultPageSize(PageSize.A7.rotate());
-
-                
-                
                 String carita = "./src/main/resources/icon/avatar.png";
                 
                 Image caritax = new Image(ImageDataFactory.create(carita));
-                
-//                Paragraph text1 = new Paragraph("Registro de busqueda de licencias");
-//                text1.setFontSize(24);
-//                text1.setTextAlignment(TextAlignment.CENTER);
-//                document.add(text1);
                 
                 Table thebig = new Table(1);
                 thebig.setWidth(UnitValue.createPercentValue(100));
