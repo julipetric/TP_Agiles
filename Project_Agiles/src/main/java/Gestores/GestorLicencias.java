@@ -231,4 +231,9 @@ public class GestorLicencias {
         LicenciaDao.insert(licnueva);
         return licnueva;
     }
+
+    public static boolean esVigente(Licencia elegida) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
