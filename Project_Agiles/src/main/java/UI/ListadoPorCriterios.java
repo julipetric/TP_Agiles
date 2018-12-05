@@ -400,7 +400,41 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaLicenciasMouseClicked
 
     private void buscarButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButton1ActionPerformed
-        // TODO add your handling code here:
+        //Se crea un arreglo para pasarle al metodo de búsqueda del gestor
+        //de licencias para la búsqueda
+        ArrayList<Object> criterios = new ArrayList<>(10);
+
+        criterios.add(0, this.nombreET.getText());
+        criterios.add(1, this.apellidoET.getText());
+        criterios.add(2, this.dniET.getText());
+        criterios.add(3, this.nroLicenciaET.getText());
+        criterios.add(4, this.grupoCombo.getSelectedItem());
+        criterios.add(5, this.factorCombo.getSelectedItem());
+        criterios.add(6, this.claseCombo.getSelectedItem());
+        if (!donanteSiButton.isSelected() && !donanteNoButton.isSelected()) {
+            criterios.add(7, null);
+        } else {
+            criterios.add(7, this.donanteSiButton.isSelected());
+        }
+        criterios.add(8, this.vigenteSiCheck.isSelected());
+        criterios.add(9, this.vigenteNoCheck.isSelected());
+
+        ArrayList<Licencia> lista = new ArrayList<>();
+        this.setLicencias(GestorLicencias.buscarPorCriterios(criterios));
+
+        DefaultTableModel model = (DefaultTableModel) this.getTablaLicencias().getModel();
+        model.setRowCount(0);
+        for (int i = 0; i < this.getLicencias().size(); i++) {
+            String grupoFactor = this.getLicencias().get(i).getTitular().getGrupoSanguineo() + " " + this.getLicencias().get(i).getTitular().getFactorRh();
+            Object[] fila = new Object[]{
+                this.getLicencias().get(i).getTitular().getApellido(),
+                this.getLicencias().get(i).getTitular().getNombre(),
+                this.getLicencias().get(i).getTitular().getDni(),
+                this.getLicencias().get(i).getTitular().getDomicilio().asString(),
+                this.getLicencias().get(i).getClase(),
+                this.getLicencias().get(i).getFechaExpiracion(), grupoFactor};
+            model.addRow(fila);
+        }
     }//GEN-LAST:event_buscarButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
