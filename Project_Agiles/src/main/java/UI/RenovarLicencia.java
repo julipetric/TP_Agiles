@@ -267,18 +267,13 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
         jLabel9.setText("Grupo sanguineo:");
 
-        grupoSang.setEditable(true);
         grupoSang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "A", "B", "AB" }));
-        grupoSang.setEnabled(false);
 
         jLabel10.setText("Facor Rh:");
 
-        factor.setEditable(true);
         factor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-" }));
-        factor.setEnabled(false);
 
         donante.setText("Donante");
-        donante.setEnabled(false);
 
         jLabel11.setText("DNI:");
 
@@ -308,9 +303,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
             }
         });
 
-        claseCombo.setEditable(true);
         claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "E", "G" }));
-        claseCombo.setEnabled(false);
         claseCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 claseComboItemStateChanged(evt);
@@ -489,10 +482,10 @@ public class RenovarLicencia extends javax.swing.JFrame {
         datos provenientes de la interfaz. Pasamos el nuevo titular (en caso
         de que se hayan cambiado los datos) al metodo de modificar licencia.
          */
-        
         try {
-            this.setTit(GestorTitular.modificarTitular(nombre, apellido, dni, fechaNacimiento, grupoSanguineo, factorRh, esDonante, ciudad, calle, numero, piso, departamento));
+            
             lic = GestorLicencias.modificarLicencia(this.getTit(), GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem(), this.getLic());
+            this.setTit(GestorTitular.modificarTitular(nombre, apellido, dni, fechaNacimiento, grupoSanguineo, factorRh, esDonante, ciudad, calle, numero, piso, departamento));
             GestorArchivos.imprimir(lic);
             File escritorioDelUsuario = FileSystemView.getFileSystemView().getHomeDirectory();
 
@@ -561,15 +554,9 @@ public class RenovarLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_expiracionTextActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (GestorSesion.getUsuarioActual().isEsAdministrador()) {
-            MenuAdmin menu = new MenuAdmin();
-            menu.setVisible(true);
-            this.dispose();
-        } else {
-            MenuOperario menu = new MenuOperario();
-            menu.setVisible(true);
-            this.dispose();
-        }
+        ListadoLicenciasExpirado listado = new ListadoLicenciasExpirado();
+        listado.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

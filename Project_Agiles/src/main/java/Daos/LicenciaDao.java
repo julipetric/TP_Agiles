@@ -55,7 +55,7 @@ public class LicenciaDao {
         List licencias = new ArrayList<>();
         try {
             tx = sesion.beginTransaction();
-            licencias = sesion.createQuery("FROM Licencia l WHERE l.Activo='1' ORDER BY l.dniTitular").list();
+            licencias = sesion.createQuery("FROM Licencia l WHERE l.Activo= true ORDER BY l.dniTitular").list();
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -86,7 +86,8 @@ public class LicenciaDao {
 
     public static void insert(Licencia nL) {
         Transaction tx = null;
-        try {
+        try {  
+          //  sesion.clear();
             tx = sesion.beginTransaction();
             sesion.save(nL);
             tx.commit();
@@ -169,7 +170,7 @@ public class LicenciaDao {
         List licenciasexpiradas = new ArrayList<>();
         try {
             tx = sesion.beginTransaction();
-            licenciasexpiradas = sesion.createQuery("FROM Licencia l WHERE l.fechaExpiracion < CURDATE() ORDER BY l.titular.dni").list();
+            licenciasexpiradas = sesion.createQuery("FROM Licencia l WHERE l.activo = true AND l.fechaExpiracion < CURDATE() ORDER BY l.titular.dni").list();
             tx.commit();
         } catch (HibernateException e) {
 

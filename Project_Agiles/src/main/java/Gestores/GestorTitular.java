@@ -126,6 +126,7 @@ public class GestorTitular {
         if(!ok) throw exception;
         else{
             Domicilio domicilio = new Domicilio(ciudad, calle, Integer.valueOf(numero),departamento ,Integer.valueOf(piso));
+            GestorDomicilio.guardarDomicilio(domicilio);
             titular = new Titular(Integer.valueOf(dni),domicilio,nombre,apellido,fechaNacimiento,grupoSanguineo,factorRh,esDonante);
             TitularDao.modify(titular);
         }

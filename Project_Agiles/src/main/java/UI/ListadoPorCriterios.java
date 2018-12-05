@@ -391,7 +391,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                 MenuClickDerVigente menu = new MenuClickDerVigente(this.getElegida());
                 menu.show(evt.getComponent(), evt.getX(), evt.getY());
             } else {
-                MenuClickDerExpirada menu = new MenuClickDerExpirada(this.getElegida());
+                MenuClickDerExpirada menu = new MenuClickDerExpirada(this.getElegida(),this);
                 menu.show(evt.getComponent(), evt.getX(), evt.getY());
             }
         }

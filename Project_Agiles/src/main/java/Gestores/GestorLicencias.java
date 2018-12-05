@@ -232,14 +232,17 @@ public class GestorLicencias {
     public static Licencia modificarLicencia(Titular titular, Usuario usuario, String clase, Licencia lic) throws DatosLicenciaException {
 
         lic.setActivo(Boolean.FALSE);
-        LicenciaDao.modify(lic);
+        modifiarLicencia(lic);
         Licencia licnueva = crearLicencia(titular, usuario, clase);
-        LicenciaDao.insert(licnueva);
+        guardarLicencia(licnueva);
         return licnueva;
     }
 
     public static boolean esVigente(Licencia lic) {
         return lic.getFechaExpiracion().before(new Date());
     }
-
+    
+    private static void modifiarLicencia(Licencia lic){
+     LicenciaDao.modify(lic);
+    }
 }

@@ -156,7 +156,7 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
         la licencia elegida actual para futuro uso*/
         if (SwingUtilities.isRightMouseButton(evt)) {
             //System.out.println(this.getElegida().getTitular().getNombre());
-            MenuClickDerExpirada menu = new MenuClickDerExpirada(this.getElegida());
+            MenuClickDerExpirada menu = new MenuClickDerExpirada(this.getElegida(),this);
             menu.show(evt.getComponent(), evt.getX(), evt.getY());
         }
     }//GEN-LAST:event_expiradasTableMouseClicked

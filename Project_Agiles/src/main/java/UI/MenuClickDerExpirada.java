@@ -6,6 +6,7 @@
 package UI;
 
 import Modelo.Licencia;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
@@ -17,8 +18,8 @@ import javax.swing.JPopupMenu;
  */
 public class MenuClickDerExpirada extends JPopupMenu {
 
-    Licencia lic;
-    
+    private Licencia lic;
+    private Frame ventana;
 
     public Licencia getLic() {
         return lic;
@@ -28,10 +29,14 @@ public class MenuClickDerExpirada extends JPopupMenu {
         this.lic = lic;
     }
     
-    public MenuClickDerExpirada(Licencia lic) {
+    public void setVentana(Frame ventana){
+    this.ventana = ventana;
+    }
+    public MenuClickDerExpirada(Licencia lic,Frame ventana) {
        
         this.setLic(lic);
-         
+        this.setVentana(ventana);
+        
         JMenuItem item = new JMenuItem("Ver detalle");
         item.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
@@ -51,7 +56,7 @@ public class MenuClickDerExpirada extends JPopupMenu {
         this.add(item);
 
         item = new JMenuItem("Renovar licencia");
-        item.addActionListener(new RenovarLicenciaActionListener(this.getLic()));
+        item.addActionListener(new RenovarLicenciaActionListener(this.getLic(), ventana ));
         this.add(item);
 
         item = new JMenuItem("Modificar datos");
@@ -66,7 +71,8 @@ public class MenuClickDerExpirada extends JPopupMenu {
 
     public class RenovarLicenciaActionListener implements ActionListener {
         
-        Licencia lic;
+        private Licencia lic;
+        private Frame ventana;
 
         public Licencia getLic() {
             return lic;
@@ -76,16 +82,20 @@ public class MenuClickDerExpirada extends JPopupMenu {
             this.lic = lic;
         }
         
-        private RenovarLicenciaActionListener(Licencia lic) {
+        public void setVentana(Frame ventana){
+        this.ventana = ventana;
+        }
+        
+        private RenovarLicenciaActionListener(Licencia lic, Frame ventana) {
             this.setLic(lic);
-           
+            this.setVentana(ventana);
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-           RenovarLicencia ventana = new RenovarLicencia(this.getLic());
-           ventana.setVisible(true);
-
+           RenovarLicencia ventanaRenovar = new RenovarLicencia(this.getLic());
+           ventanaRenovar.setVisible(true);
+           this.ventana.dispose();
         }
 
     }

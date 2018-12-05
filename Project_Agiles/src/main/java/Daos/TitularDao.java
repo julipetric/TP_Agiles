@@ -87,6 +87,7 @@ public class TitularDao {
     public static void modify(Titular mT) {
         Transaction tx = null;
         try {
+            sesion.clear();
             tx = sesion.beginTransaction();
             sesion.update(mT);
             tx.commit();

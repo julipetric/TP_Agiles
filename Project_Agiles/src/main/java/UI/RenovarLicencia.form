@@ -299,7 +299,6 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="grupoSang">
       <Properties>
-        <Property name="editable" type="boolean" value="true"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
             <StringItem index="0" value="0"/>
@@ -308,7 +307,6 @@
             <StringItem index="3" value="AB"/>
           </StringArray>
         </Property>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -321,14 +319,12 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="factor">
       <Properties>
-        <Property name="editable" type="boolean" value="true"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
             <StringItem index="0" value="+"/>
             <StringItem index="1" value="-"/>
           </StringArray>
         </Property>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -337,7 +333,6 @@
     <Component class="javax.swing.JCheckBox" name="donante">
       <Properties>
         <Property name="text" type="java.lang.String" value="Donante"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
@@ -374,7 +369,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Imprimir Comprobante"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Cursor Por defecto"/>
         </Property>
       </Properties>
       <Events>
@@ -385,7 +380,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Volver"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Cursor Por defecto"/>
         </Property>
       </Properties>
       <Events>
@@ -394,7 +389,6 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="claseCombo">
       <Properties>
-        <Property name="editable" type="boolean" value="true"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="5">
             <StringItem index="0" value="A"/>
@@ -404,7 +398,6 @@
             <StringItem index="4" value="G"/>
           </StringArray>
         </Property>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="claseComboItemStateChanged"/>
