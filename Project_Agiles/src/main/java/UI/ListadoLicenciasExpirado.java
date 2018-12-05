@@ -81,6 +81,7 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
         volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Listado de Licencias Expiradas");
         setResizable(false);
 
         expiradasTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -100,7 +101,7 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
         jScrollPane1.setViewportView(expiradasTable);
 
         volver.setText("Volver");
-        volver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        volver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverActionPerformed(evt);
