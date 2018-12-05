@@ -136,7 +136,7 @@ public class LicenciaDao {
                 query += "l.titular.esDonante = " + ((donante) ? "1" : "0") + " AND ";
             }
             
-            query+= "l.Activo=1 AND ";
+            query+= "l.activo = true AND ";
             
             if(!query.isEmpty()){
                 query = query.substring(0, query.length()-4);
