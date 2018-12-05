@@ -112,34 +112,21 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre:");
 
-        nombreET.setEditable(false);
         nombreET.setFocusCycleRoot(true);
 
         jLabel2.setText("Apellido");
-
-        apellidoET.setEditable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Domicilio"));
 
         jLabel3.setText("Calle");
 
-        calleET.setEnabled(false);
-
         jLabel4.setText("N°");
-
-        numeroET.setEnabled(false);
 
         jLabel5.setText("Piso:");
 
-        departamentoET.setEnabled(false);
-
         jLabel6.setText("Departamento:");
 
-        pisoET.setEnabled(false);
-
         jLabel7.setText("Ciudad:");
-
-        ciudadET.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -192,15 +179,15 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
         jLabel8.setText("Fecha nacimiento:");
 
-        fecha.setEnabled(false);
-
         jLabel9.setText("Grupo sanguineo:");
 
+        grupoSang.setEditable(true);
         grupoSang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "A", "B", "AB" }));
         grupoSang.setEnabled(false);
 
         jLabel10.setText("Facor Rh:");
 
+        factor.setEditable(true);
         factor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-" }));
         factor.setEnabled(false);
 
@@ -209,15 +196,11 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
         jLabel11.setText("DNI:");
 
-        dniET.setEditable(false);
-
         nombreLabel.setText("Clase:");
 
         jLabel12.setText("Fecha de expiración:");
 
         dniLabel.setText("Costo:");
-
-        costoText.setEditable(false);
 
         imprimirButton.setText("Imprimir Comprobante");
         imprimirButton.addActionListener(new java.awt.event.ActionListener() {
@@ -228,6 +211,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
         jButton4.setText("Volver");
 
+        claseCombo.setEditable(true);
         claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "E", "G" }));
         claseCombo.setEnabled(false);
         claseCombo.addItemListener(new java.awt.event.ItemListener() {
@@ -241,7 +225,6 @@ public class RenovarLicencia extends javax.swing.JFrame {
             }
         });
 
-        expiracionText.setEditable(false);
         expiracionText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 expiracionTextActionPerformed(evt);
