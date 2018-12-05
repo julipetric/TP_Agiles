@@ -231,4 +231,7 @@ public class GestorLicencias {
         LicenciaDao.insert(licnueva);
         return licnueva;
     }
+    
+    public static boolean esVigente(Licencia lic){
+    return lic.getFechaExpiracion().before(new Date());}
 }

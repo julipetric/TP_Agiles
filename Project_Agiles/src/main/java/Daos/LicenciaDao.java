@@ -169,7 +169,7 @@ public class LicenciaDao {
         List licenciasexpiradas = new ArrayList<>();
         try {
             tx = sesion.beginTransaction();
-            licenciasexpiradas = sesion.createQuery("FROM Licencia l WHERE l.fechaExpiracion <= CURDATE() ORDER BY l.titular.dni").list();
+            licenciasexpiradas = sesion.createQuery("FROM Licencia l WHERE l.fechaExpiracion < CURDATE() ORDER BY l.titular.dni").list();
             tx.commit();
         } catch (HibernateException e) {
 
