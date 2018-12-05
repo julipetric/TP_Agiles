@@ -157,7 +157,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
 
         claseLabel.setText("Clase:");
 
-        claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "A", "B", "C", "D", "E", "F" }));
+        claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "A", "B", "C", "E", "G" }));
         claseCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         donanteLabel.setText("Donante:");
