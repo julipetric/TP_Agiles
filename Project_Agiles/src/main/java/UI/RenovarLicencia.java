@@ -284,6 +284,8 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
         dniLabel.setText("Costo:");
 
+        costoText.setEditable(false);
+
         imprimirButton.setText("Imprimir Comprobante");
         imprimirButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imprimirButton.addActionListener(new java.awt.event.ActionListener() {
@@ -314,6 +316,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
             }
         });
 
+        expiracionText.setEditable(false);
         expiracionText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 expiracionTextActionPerformed(evt);
@@ -346,7 +349,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
                                     .addComponent(dniET)
                                     .addComponent(apellidoET))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addGap(18, 18, 18)
@@ -359,8 +362,9 @@ public class RenovarLicencia extends javax.swing.JFrame {
                                 .addComponent(grupoSang, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8)
-                                .addGap(10, 10, 10)
-                                .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(55, 55, 55))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(dniLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)

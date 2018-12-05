@@ -231,7 +231,15 @@ public class GestorLicencias {
         LicenciaDao.insert(licnueva);
         return licnueva;
     }
+<<<<<<< HEAD
     
     public static boolean esVigente(Licencia lic){
     return lic.getFechaExpiracion().before(new Date());}
+=======
+
+    public static boolean esVigente(Licencia elegida) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+>>>>>>> master
 }

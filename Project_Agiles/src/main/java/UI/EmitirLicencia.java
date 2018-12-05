@@ -43,6 +43,19 @@ public class EmitirLicencia extends javax.swing.JFrame {
     public EmitirLicencia(Titular tit) {
         this.tit = tit;
         initComponents();
+        
+        /*Generamos en primera instancia una nueva licencia (sin guardar)
+        para que se calcule su fecha de caducidad y el costo, usando los datos
+        ya existentes de titular y clase. Se setean donde corresponda.
+        */
+        Licencia lic = null;
+        try {
+            lic = GestorLicencias.crearLicencia(this.getTit(), GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem());
+        } catch (DatosLicenciaException ex) {
+            Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.getCostoText().setText(((Float) lic.getCosto()).toString());
+        this.getExpiracionText().setText(lic.getFechaExpiracion().toString());
         this.setLocationRelativeTo(null);
     }
 
@@ -196,7 +209,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
 
         File escritorioDelUsuario = FileSystemView.getFileSystemView().getHomeDirectory();
 
-        showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath().toString() + "/Comprobantes");
+        showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath().toString() + "\\Comprobantes");
 
         this.dispose();
 

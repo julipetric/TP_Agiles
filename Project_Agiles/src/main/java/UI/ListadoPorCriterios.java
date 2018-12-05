@@ -12,6 +12,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JPopupMenu;
+import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,8 +22,28 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ListadoPorCriterios extends javax.swing.JFrame {
 
-    JPopupMenu menuClickDerechoExpirada = new JPopupMenu();
-    JPopupMenu menuClickDerechoNoExpirada = new JPopupMenu();
+    Licencia elegida;
+    ArrayList<Licencia> licencias;
+
+    public ArrayList<Licencia> getLicencias() {
+        return licencias;
+    }
+
+    public void setLicencias(ArrayList<Licencia> licencias) {
+        this.licencias = licencias;
+    }
+
+    public Licencia getElegida() {
+        return elegida;
+    }
+
+    public void setElegida(Licencia elegida) {
+        this.elegida = elegida;
+    }
+
+    public JTable getTablaLicencias() {
+        return tablaLicencias;
+    }
 
     /**
      * Creates new form ListadoPorCriterios
@@ -319,19 +341,19 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         criterios.add(9, this.vigenteNoCheck.isSelected());
 
         ArrayList<Licencia> lista = new ArrayList<>();
-        lista = GestorLicencias.buscarPorCriterios(criterios);
+        this.setLicencias(GestorLicencias.buscarPorCriterios(criterios));
 
-        DefaultTableModel model = (DefaultTableModel) this.tablaLicencias.getModel();
+        DefaultTableModel model = (DefaultTableModel) this.getTablaLicencias().getModel();
         model.setRowCount(0);
-        for (int i = 0; i < lista.size(); i++) {
-            String grupoFactor = lista.get(i).getTitular().getGrupoSanguineo() + " " + lista.get(i).getTitular().getFactorRh();
+        for (int i = 0; i < this.getLicencias().size(); i++) {
+            String grupoFactor = this.getLicencias().get(i).getTitular().getGrupoSanguineo() + " " + this.getLicencias().get(i).getTitular().getFactorRh();
             Object[] fila = new Object[]{
-                lista.get(i).getTitular().getApellido(),
-                lista.get(i).getTitular().getNombre(),
-                lista.get(i).getTitular().getDni(),
-                lista.get(i).getTitular().getDomicilio().asString(),
-                lista.get(i).getClase(),
-                lista.get(i).getFechaExpiracion(), grupoFactor};
+                this.getLicencias().get(i).getTitular().getApellido(),
+                this.getLicencias().get(i).getTitular().getNombre(),
+                this.getLicencias().get(i).getTitular().getDni(),
+                this.getLicencias().get(i).getTitular().getDomicilio().asString(),
+                this.getLicencias().get(i).getClase(),
+                this.getLicencias().get(i).getFechaExpiracion(), grupoFactor};
             model.addRow(fila);
         }
     }//GEN-LAST:event_buscarButtonActionPerformed
@@ -349,7 +371,30 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     }//GEN-LAST:event_volverButtonActionPerformed
 
     private void tablaLicenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaLicenciasMouseClicked
-        // TODO add your handling code here:
+        //Comparamos la posición del cursor con la fila correspondiente y guardamos el valor        
+        int r = this.getTablaLicencias().rowAtPoint(evt.getPoint());
+
+        //Cada vez que clickeamos, actualizamos en una variable la licencia elegida
+        this.setElegida(this.getLicencias().get(r));
+
+        //Si clickeamos fuera de la tabla, desceleccionamos
+        if (r >= 0 && r < this.getTablaLicencias().getRowCount()) {
+            this.getTablaLicencias().setRowSelectionInterval(r, r);
+        } else {
+            this.getTablaLicencias().clearSelection();
+        }
+
+        /*Si es click derecho, generamos el menú desplegable. Se le pasa 
+        la licencia elegida actual para futuro uso*/
+        if (SwingUtilities.isRightMouseButton(evt)) {
+            if (GestorLicencias.esVigente(this.getElegida())) {
+                MenuClickDerVigente menu = new MenuClickDerVigente(this.getElegida());
+                menu.show(evt.getComponent(), evt.getX(), evt.getY());
+            } else {
+                MenuClickDerExpirada menu = new MenuClickDerExpirada(this.getElegida());
+                menu.show(evt.getComponent(), evt.getX(), evt.getY());
+            }
+        }
     }//GEN-LAST:event_tablaLicenciasMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
