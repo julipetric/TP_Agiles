@@ -8,6 +8,8 @@ package UI;
 import Gestores.GestorLicencias;
 import Gestores.GestorSesion;
 import Modelo.Licencia;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
@@ -27,6 +29,39 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     public ListadoPorCriterios() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        nombreET.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent k) {
+                if (nombreET.getText().length() >= 26) {
+                    k.consume();
+                }
+            }
+        });
+        apellidoET.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent k) {
+                if (apellidoET.getText().length() >= 26) {
+                    k.consume();
+                }
+            }
+        });
+        dniET.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent k) {
+                if (dniET.getText().length() >= 8 || k.getKeyChar() < '0' || k.getKeyChar() > '9') {
+                    k.consume();
+                }
+            }
+        });
+        nroLicenciaET.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent k) {
+                if (nroLicenciaET.getText().length() >= 8 || k.getKeyChar() < '0' || k.getKeyChar() > '9') {
+                    k.consume();
+                }
+            }
+        });
     }
 
     /**
@@ -42,13 +77,13 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         vigenteGroup = new javax.swing.ButtonGroup();
         titleLabel = new javax.swing.JLabel();
         nombreLabel = new javax.swing.JLabel();
-        nombreEditText = new javax.swing.JTextField();
+        nombreET = new javax.swing.JTextField();
         apellidoLabel = new javax.swing.JLabel();
-        apellidoEditText = new javax.swing.JTextField();
+        apellidoET = new javax.swing.JTextField();
         dniLabel = new javax.swing.JLabel();
-        dniEditText = new javax.swing.JTextField();
+        dniET = new javax.swing.JTextField();
         nroLabel = new javax.swing.JLabel();
-        nroEditText = new javax.swing.JTextField();
+        nroLicenciaET = new javax.swing.JTextField();
         grupoCombo = new javax.swing.JComboBox<>();
         grupoLabel = new javax.swing.JLabel();
         factorCombo = new javax.swing.JComboBox<>();
@@ -184,8 +219,8 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                                 .addGap(31, 31, 31)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(claseCombo, 0, 319, Short.MAX_VALUE)
-                            .addComponent(nombreEditText, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dniEditText, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(nombreET, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dniET, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nroLabel)
@@ -194,13 +229,13 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                             .addComponent(donanteLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(apellidoEditText, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(apellidoET, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(grupoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(factorCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(nroEditText, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(nroLicenciaET, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(donanteSiButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -222,15 +257,15 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreLabel)
-                    .addComponent(nombreEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(apellidoLabel)
-                    .addComponent(apellidoEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(apellidoET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dniLabel)
-                    .addComponent(dniEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dniET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nroLabel)
-                    .addComponent(nroEditText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nroLicenciaET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -266,10 +301,10 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         //de licencias para la búsqueda
         ArrayList<Object> criterios = new ArrayList<>(10);
 
-        criterios.add(0, this.nombreEditText.getText());
-        criterios.add(1, this.apellidoEditText.getText());
-        criterios.add(2, this.dniEditText.getText());
-        criterios.add(3, this.nroEditText.getText());
+        criterios.add(0, this.nombreET.getText());
+        criterios.add(1, this.apellidoET.getText());
+        criterios.add(2, this.dniET.getText());
+        criterios.add(3, this.nroLicenciaET.getText());
         criterios.add(4, this.grupoCombo.getSelectedItem());
         criterios.add(5, this.factorCombo.getSelectedItem());
         criterios.add(6, this.claseCombo.getSelectedItem());
@@ -316,12 +351,12 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaLicenciasMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField apellidoEditText;
+    private javax.swing.JTextField apellidoET;
     private javax.swing.JLabel apellidoLabel;
     private javax.swing.JButton buscarButton;
     private javax.swing.JComboBox<String> claseCombo;
     private javax.swing.JLabel claseLabel;
-    private javax.swing.JTextField dniEditText;
+    private javax.swing.JTextField dniET;
     private javax.swing.JLabel dniLabel;
     private javax.swing.ButtonGroup donanteGroup;
     private javax.swing.JLabel donanteLabel;
@@ -331,10 +366,10 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> grupoCombo;
     private javax.swing.JLabel grupoLabel;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField nombreEditText;
+    private javax.swing.JTextField nombreET;
     private javax.swing.JLabel nombreLabel;
-    private javax.swing.JTextField nroEditText;
     private javax.swing.JLabel nroLabel;
+    private javax.swing.JTextField nroLicenciaET;
     private javax.swing.JTable tablaLicencias;
     private javax.swing.JLabel titleLabel;
     private javax.swing.ButtonGroup vigenteGroup;

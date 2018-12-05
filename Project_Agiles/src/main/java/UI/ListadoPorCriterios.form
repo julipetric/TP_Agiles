@@ -55,8 +55,8 @@
                       </Group>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="claseCombo" pref="319" max="32767" attributes="0"/>
-                          <Component id="nombreEditText" alignment="0" max="32767" attributes="0"/>
-                          <Component id="dniEditText" alignment="0" max="32767" attributes="0"/>
+                          <Component id="nombreET" alignment="0" max="32767" attributes="0"/>
+                          <Component id="dniET" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -67,14 +67,14 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="apellidoEditText" min="-2" pref="319" max="-2" attributes="0"/>
+                          <Component id="apellidoET" min="-2" pref="319" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="grupoCombo" min="-2" pref="152" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="factorCombo" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="nroEditText" min="-2" pref="319" max="-2" attributes="0"/>
+                              <Component id="nroLicenciaET" min="-2" pref="319" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="donanteSiButton" min="-2" max="-2" attributes="0"/>
@@ -103,16 +103,16 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="nombreLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="nombreEditText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nombreET" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="apellidoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="apellidoEditText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="apellidoET" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="dniLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="dniEditText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="dniET" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nroLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="nroEditText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nroLicenciaET" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -161,28 +161,28 @@
         <Property name="text" type="java.lang.String" value="Nombre:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="nombreEditText">
+    <Component class="javax.swing.JTextField" name="nombreET">
     </Component>
     <Component class="javax.swing.JLabel" name="apellidoLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Apellido:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="apellidoEditText">
+    <Component class="javax.swing.JTextField" name="apellidoET">
     </Component>
     <Component class="javax.swing.JLabel" name="dniLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="DNI:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="dniEditText">
+    <Component class="javax.swing.JTextField" name="dniET">
     </Component>
     <Component class="javax.swing.JLabel" name="nroLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nro. Licencia:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="nroEditText">
+    <Component class="javax.swing.JTextField" name="nroLicenciaET">
     </Component>
     <Component class="javax.swing.JComboBox" name="grupoCombo">
       <Properties>
