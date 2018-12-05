@@ -150,6 +150,11 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
 
         grupoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "A", "B", "AB", "0" }));
         grupoCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        grupoCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                grupoComboActionPerformed(evt);
+            }
+        });
 
         grupoLabel.setText("Grupo/Factor:");
 
@@ -439,6 +444,10 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
             model.addRow(fila);
         }
     }//GEN-LAST:event_buscarButton1ActionPerformed
+
+    private void grupoComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grupoComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_grupoComboActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoET;

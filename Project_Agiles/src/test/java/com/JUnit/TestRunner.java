@@ -17,7 +17,7 @@ public class TestRunner {
     public static void main(String[] args) {
         
       
-        Result result = JUnitCore.runClasses(UsuarioJUnitTest.class,VigenciaLicenciaJUnitTest.class);
+        Result result = JUnitCore.runClasses(UsuarioJUnitTest.class,VigenciaLicenciaJUnitTest.class,TestBusquedaPorCriterios.class);
 
         for (Failure failure : result.getFailures()) {
            System.out.println(failure.toString());

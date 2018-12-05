@@ -11,6 +11,7 @@ import Daos.TitularDao;
 import Daos.UsuarioDao;
 import Exceptions.DatosUsuarioException;
 import Gestores.GestorUsuario;
+import java.util.Random;
 import org.hibernate.cfg.Configuration;
 import javafx.util.Pair;
 import org.hibernate.Session;
@@ -24,7 +25,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * 
  * @author lsant
  */
 public class UsuarioJUnitTest {
@@ -52,13 +53,18 @@ public class UsuarioJUnitTest {
     public static void tearDownClass() {
     }
 
-    //Antes de cada test ponemos informacion valida en todos los campos
+    /*Antes de cada test ponemos informacion valida en todos los campos.
+    /*Los Valores random generados tienen como objetivo que se pueda crear el usuario
+    /*siempre que se pruebe el test (hay una probabilidad de falla menor a 
+    /* 0.0000001% por motivo de Claves unicas repetidas en la BD, cosa que 
+    /* no se esta evaluando).
+    */
     @Before
     public void setUp() {
-        dni = new Pair("39717462", true);
+        dni = new Pair(String.valueOf((new Random()).nextInt(100000000-1000000)+1000000), true);
         nombre = new Pair("Luis Santiago", true);
         apellido = new Pair("Re", true);
-        user = new Pair("lsantire", true);
+        user = new Pair("lsantire"+(new Random()).nextInt(), true);
         pass = new Pair("123456789", true);
         pass2 = new Pair("123456789", true);
         ciudad = new Pair("Parana", true);
@@ -133,13 +139,13 @@ public class UsuarioJUnitTest {
     }
     
     @Test
-    public void pisoVacio(){
+    public void OkPisoVacio(){
         piso = new Pair("",true);
         chequear();
     }
     
     @Test
-    public void departamentoVacio(){
+    public void OkDepartamentoVacio(){
         departamento = new Pair("",true);
         chequear();
     }
