@@ -49,14 +49,16 @@ public class RenovarLicencia extends javax.swing.JFrame {
     Licencia lic;
     Titular tit;
     private Border borde;
-    private JFrame ventana;
+    private ListadoLicenciasExpirado ventanaExpirado;
+    private ListadoPorCriterios ventanaCriterio;
 
     /**
      * Creates new form RenovarLicencia
      */
-    public RenovarLicencia(Licencia lic, JFrame ventana) {
+    public RenovarLicencia(Licencia lic, ListadoLicenciasExpirado ventanaExpirado, ListadoPorCriterios ventanaCriterio) {
         initComponents();
-        this.ventana = ventana;
+        this.ventanaExpirado = ventanaExpirado;
+        this.ventanaCriterio = ventanaCriterio;
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
         ImageIcon icon = new ImageIcon(image);
         setIconImage(icon.getImage());
@@ -499,7 +501,13 @@ public class RenovarLicencia extends javax.swing.JFrame {
             File escritorioDelUsuario = FileSystemView.getFileSystemView().getHomeDirectory();
 
             showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath() + "/Comprobantes");
-            ventana.setVisible(true);
+            if (ventanaCriterio != null) {
+                ventanaCriterio.setVisible(true);
+                ventanaCriterio.cargarTabla();
+            } else {
+                ventanaExpirado.setVisible(true);
+                ventanaExpirado.cargarTabla();
+            }
             this.dispose();
         } catch (DatosTitularException e) {
             if (!e.getApellido()) {
@@ -563,7 +571,13 @@ public class RenovarLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_expiracionTextActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        ventana.setVisible(true);
+        if (ventanaCriterio != null) {
+            ventanaCriterio.setVisible(true);
+            ventanaCriterio.cargarTabla();
+        } else {
+            ventanaExpirado.setVisible(true);
+            ventanaExpirado.cargarTabla();
+        }
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
