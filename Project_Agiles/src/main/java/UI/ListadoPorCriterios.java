@@ -187,8 +187,6 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tablaLicencias.setColumnSelectionAllowed(true);
-        tablaLicencias.setEnabled(false);
         tablaLicencias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaLicenciasMouseClicked(evt);
@@ -283,7 +281,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                                         .addGap(11, 11, 11)
                                         .addComponent(vigenteNoCheck))))
                             .addComponent(titleLabel, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap(29, Short.MAX_VALUE))
+                        .addContainerGap(33, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -331,12 +329,12 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                     .addComponent(donanteSiButton))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(imprimirBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(imprimirBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
