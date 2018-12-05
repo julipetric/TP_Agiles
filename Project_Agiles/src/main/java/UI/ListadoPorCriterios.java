@@ -11,6 +11,8 @@ import Gestores.GestorArchivos;
 import Gestores.GestorLicencias;
 import Gestores.GestorSesion;
 import Modelo.Licencia;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -18,6 +20,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
@@ -60,6 +63,9 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     public ListadoPorCriterios() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
+        ImageIcon icon = new ImageIcon(image);
+        setIconImage(icon.getImage());
         
         nombreET.addKeyListener(new KeyAdapter() {
             @Override
@@ -355,7 +361,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
 
         File escritorioDelUsuario = FileSystemView.getFileSystemView().getHomeDirectory();
 
-        showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath().toString() + "\\Comprobantes");
+        showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath().toString() + "\\Busquedas");
 
         this.dispose();
     }//GEN-LAST:event_imprimirBusquedaActionPerformed

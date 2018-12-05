@@ -33,7 +33,7 @@ class MenuClickDerVigente extends JPopupMenu {
 
         this.setLic(lic);
 
-        Font f = new Font("sans-serif", Font.BOLD + Font.ITALIC, 12);
+        Font f = new Font("sans-serif", Font.BOLD, 12);
 
         JMenuItem item = new JMenuItem("LICENCIA VIGENTE");
         item.setFont(f);

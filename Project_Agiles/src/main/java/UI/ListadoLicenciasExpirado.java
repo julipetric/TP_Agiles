@@ -8,8 +8,11 @@ package UI;
 import Gestores.GestorLicencias;
 import Gestores.GestorSesion;
 import Modelo.Licencia;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
@@ -33,6 +36,9 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
     public ListadoLicenciasExpirado() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
+        ImageIcon icon = new ImageIcon(image);
+        setIconImage(icon.getImage());
 
         /*Pedimos del GestorLicencias el listado de todas las expiradas
         comparando con la fecha actual*/

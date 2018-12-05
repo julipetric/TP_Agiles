@@ -8,11 +8,14 @@ package UI;
 import Exceptions.DatosUsuarioException;
 import Gestores.GestorUsuario;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 
@@ -31,6 +34,9 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         initComponents();
         borde = nombreET.getBorder();
         this.setLocationRelativeTo(null);
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
+        ImageIcon icon = new ImageIcon(image);
+        setIconImage(icon.getImage());
 
         nombreET.addKeyListener(new KeyAdapter() {
             @Override

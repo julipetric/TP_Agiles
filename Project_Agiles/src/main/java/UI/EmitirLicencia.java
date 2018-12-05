@@ -16,10 +16,13 @@ import Gestores.GestorSesion;
 import Gestores.GestorTitular;
 import Modelo.Licencia;
 import Modelo.Titular;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTextField;
@@ -43,6 +46,10 @@ public class EmitirLicencia extends javax.swing.JFrame {
     public EmitirLicencia(Titular tit) {
         this.tit = tit;
         initComponents();
+        
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
+        ImageIcon icon = new ImageIcon(image);
+        setIconImage(icon.getImage());
         
         /*Generamos en primera instancia una nueva licencia (sin guardar)
         para que se calcule su fecha de caducidad y el costo, usando los datos

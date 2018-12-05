@@ -17,6 +17,8 @@ import Modelo.Licencia;
 import Modelo.Titular;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -27,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -50,6 +53,9 @@ public class RenovarLicencia extends javax.swing.JFrame {
      */
     public RenovarLicencia(Licencia lic) {
         initComponents();
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
+        ImageIcon icon = new ImageIcon(image);
+        setIconImage(icon.getImage());
         this.setLic(lic);
         this.setTit(this.getLic().getTitular());
         borde = nombreET.getBorder();

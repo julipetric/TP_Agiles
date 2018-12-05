@@ -6,6 +6,9 @@
 package UI;
 
 import Gestores.GestorSesion;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -18,6 +21,9 @@ public class MenuOperario extends javax.swing.JFrame {
      */
     public MenuOperario() {
         initComponents();
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
+        ImageIcon icon = new ImageIcon(image);
+        setIconImage(icon.getImage());
         this.setLocationRelativeTo(null);
     }
 

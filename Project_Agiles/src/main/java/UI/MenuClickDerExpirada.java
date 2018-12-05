@@ -6,6 +6,7 @@
 package UI;
 
 import Modelo.Licencia;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,7 +38,14 @@ public class MenuClickDerExpirada extends JPopupMenu {
         this.setLic(lic);
         this.setVentana(ventana);
         
-        JMenuItem item = new JMenuItem("Ver detalle");
+        Font f = new Font("sans-serif", Font.BOLD, 12);
+
+        JMenuItem item = new JMenuItem("LICENCIA EXPIRADA");
+        item.setFont(f);
+        item.setEnabled(false);
+        this.add(item);
+        
+        item = new JMenuItem("Ver detalle");
         item.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 //comportamiento botón
