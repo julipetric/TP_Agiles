@@ -39,7 +39,7 @@ public class MenuOperario extends javax.swing.JFrame {
         setResizable(false);
 
         listarExpiradasButton.setText("Listar Licencias Expiradas");
-        listarExpiradasButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        listarExpiradasButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         listarExpiradasButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listarExpiradasButtonActionPerformed(evt);
@@ -47,7 +47,7 @@ public class MenuOperario extends javax.swing.JFrame {
         });
 
         cerrarSesionButton.setText("Cerrar Sesion");
-        cerrarSesionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cerrarSesionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cerrarSesionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cerrarSesionButtonActionPerformed(evt);
@@ -55,7 +55,7 @@ public class MenuOperario extends javax.swing.JFrame {
         });
 
         AltaTitularButton.setText("Dar de alta titular");
-        AltaTitularButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        AltaTitularButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         AltaTitularButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AltaTitularButtonActionPerformed(evt);
@@ -63,7 +63,7 @@ public class MenuOperario extends javax.swing.JFrame {
         });
 
         listarPorCriterioButton.setText("Listar licencias por criterio");
-        listarPorCriterioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        listarPorCriterioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         listarPorCriterioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listarPorCriterioButtonActionPerformed(evt);

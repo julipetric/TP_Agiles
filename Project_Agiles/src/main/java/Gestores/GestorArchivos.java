@@ -24,6 +24,7 @@ import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
+import java.util.ArrayList;
 
 /**
  *
@@ -99,6 +100,10 @@ public class GestorArchivos {
         barcode.setCodeType(Barcode39.ALIGN_CENTER);
         barcode.setCode(code);
         return new Image(barcode.createFormXObject(pdfDoc.getPdfDocument()));
+    }
+
+    public static void imprimirBusqueda(ArrayList<Licencia> licencias) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

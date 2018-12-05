@@ -235,17 +235,17 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         jLabel9.setText("Grupo sanguineo:");
 
         grupoSang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "A", "B", "AB" }));
-        grupoSang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        grupoSang.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         grupoSang.setNextFocusableComponent(factor);
 
         jLabel10.setText("Facor Rh:");
 
         factor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-" }));
-        factor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        factor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         factor.setNextFocusableComponent(ciudadET);
 
         donante.setText("Donante");
-        donante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        donante.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         guardarButton.setText("Siguiente");
         guardarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

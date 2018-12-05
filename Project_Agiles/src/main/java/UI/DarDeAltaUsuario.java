@@ -167,7 +167,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         permisosLabel.setText("Permisos:");
 
         permisosCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Operario", "Administrador" }));
-        permisosCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        permisosCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         nombreLabel.setText("Nombre:");
 

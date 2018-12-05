@@ -94,6 +94,7 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
         jScrollPane1.setViewportView(expiradasTable);
 
         volver.setText("Volver");
+        volver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverActionPerformed(evt);

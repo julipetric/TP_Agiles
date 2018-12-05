@@ -5,15 +5,24 @@
  */
 package UI;
 
+import Exceptions.ComprobanteDirectorioException;
+import Exceptions.ComprobanteYaExisteException;
+import Gestores.GestorArchivos;
 import Gestores.GestorLicencias;
 import Gestores.GestorSesion;
 import Modelo.Licencia;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -117,10 +126,11 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         vigenteLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaLicencias = new javax.swing.JTable();
-        buscarButton = new javax.swing.JButton();
+        imprimirBusqueda = new javax.swing.JButton();
         volverButton = new javax.swing.JButton();
         vigenteSiCheck = new javax.swing.JCheckBox();
         vigenteNoCheck = new javax.swing.JCheckBox();
+        buscarButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Listado de Licencias");
@@ -195,16 +205,16 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tablaLicencias);
         tablaLicencias.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        buscarButton.setText("Buscar");
-        buscarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        buscarButton.addActionListener(new java.awt.event.ActionListener() {
+        imprimirBusqueda.setText("Imprimir busqueda");
+        imprimirBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imprimirBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarButtonActionPerformed(evt);
+                imprimirBusquedaActionPerformed(evt);
             }
         });
 
         volverButton.setText("Volver");
-        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         volverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverButtonActionPerformed(evt);
@@ -219,59 +229,75 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         vigenteNoCheck.setText("No");
         vigenteNoCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        buscarButton1.setText("Buscar");
+        buscarButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscarButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(nombreLabel)
+                                            .addComponent(dniLabel))
+                                        .addGap(18, 18, 18))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(claseLabel)
+                                        .addGap(31, 31, 31)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(claseCombo, 0, 319, Short.MAX_VALUE)
+                                    .addComponent(nombreET, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dniET, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nroLabel)
+                                    .addComponent(apellidoLabel)
+                                    .addComponent(grupoLabel)
+                                    .addComponent(donanteLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(apellidoET, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(grupoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(factorCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(nroLicenciaET, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(donanteSiButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(donanteNoButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(vigenteLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(vigenteSiCheck)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(vigenteNoCheck))))
+                            .addComponent(titleLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addContainerGap(29, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buscarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nombreLabel)
-                                    .addComponent(dniLabel))
-                                .addGap(18, 18, 18))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(claseLabel)
-                                .addGap(31, 31, 31)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(claseCombo, 0, 319, Short.MAX_VALUE)
-                            .addComponent(nombreET, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dniET, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nroLabel)
-                            .addComponent(apellidoLabel)
-                            .addComponent(grupoLabel)
-                            .addComponent(donanteLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(apellidoET, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(grupoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(factorCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(nroLicenciaET, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(donanteSiButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(donanteNoButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(vigenteLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(vigenteSiCheck)
-                                .addGap(18, 18, 18)
-                                .addComponent(vigenteNoCheck))))
-                    .addComponent(titleLabel, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(29, Short.MAX_VALUE))
+                        .addComponent(imprimirBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(192, 192, 192))))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(678, Short.MAX_VALUE)
+                    .addComponent(buscarButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(19, 19, 19)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,53 +336,29 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buscarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(imprimirBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(445, Short.MAX_VALUE)
+                    .addComponent(buscarButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
+    private void imprimirBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirBusquedaActionPerformed
+        GestorArchivos.imprimirBusqueda(this.getLicencias());
 
-        //Se crea un arreglo para pasarle al metodo de búsqueda del gestor
-        //de licencias para la búsqueda
-        ArrayList<Object> criterios = new ArrayList<>(10);
+        File escritorioDelUsuario = FileSystemView.getFileSystemView().getHomeDirectory();
 
-        criterios.add(0, this.nombreET.getText());
-        criterios.add(1, this.apellidoET.getText());
-        criterios.add(2, this.dniET.getText());
-        criterios.add(3, this.nroLicenciaET.getText());
-        criterios.add(4, this.grupoCombo.getSelectedItem());
-        criterios.add(5, this.factorCombo.getSelectedItem());
-        criterios.add(6, this.claseCombo.getSelectedItem());
-        if (!donanteSiButton.isSelected() && !donanteNoButton.isSelected()) {
-            criterios.add(7, null);
-        } else {
-            criterios.add(7, this.donanteSiButton.isSelected());
-        }
-        criterios.add(8, this.vigenteSiCheck.isSelected());
-        criterios.add(9, this.vigenteNoCheck.isSelected());
+        showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath().toString() + "\\Comprobantes");
 
-        ArrayList<Licencia> lista = new ArrayList<>();
-        this.setLicencias(GestorLicencias.buscarPorCriterios(criterios));
-
-        DefaultTableModel model = (DefaultTableModel) this.getTablaLicencias().getModel();
-        model.setRowCount(0);
-        for (int i = 0; i < this.getLicencias().size(); i++) {
-            String grupoFactor = this.getLicencias().get(i).getTitular().getGrupoSanguineo() + " " + this.getLicencias().get(i).getTitular().getFactorRh();
-            Object[] fila = new Object[]{
-                this.getLicencias().get(i).getTitular().getApellido(),
-                this.getLicencias().get(i).getTitular().getNombre(),
-                this.getLicencias().get(i).getTitular().getDni(),
-                this.getLicencias().get(i).getTitular().getDomicilio().asString(),
-                this.getLicencias().get(i).getClase(),
-                this.getLicencias().get(i).getFechaExpiracion(), grupoFactor};
-            model.addRow(fila);
-        }
-    }//GEN-LAST:event_buscarButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_imprimirBusquedaActionPerformed
 
     private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
         if (GestorSesion.getUsuarioActual().isEsAdministrador()) {
@@ -397,10 +399,14 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tablaLicenciasMouseClicked
 
+    private void buscarButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscarButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoET;
     private javax.swing.JLabel apellidoLabel;
-    private javax.swing.JButton buscarButton;
+    private javax.swing.JButton buscarButton1;
     private javax.swing.JComboBox<String> claseCombo;
     private javax.swing.JLabel claseLabel;
     private javax.swing.JTextField dniET;
@@ -412,6 +418,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> factorCombo;
     private javax.swing.JComboBox<String> grupoCombo;
     private javax.swing.JLabel grupoLabel;
+    private javax.swing.JButton imprimirBusqueda;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nombreET;
     private javax.swing.JLabel nombreLabel;
