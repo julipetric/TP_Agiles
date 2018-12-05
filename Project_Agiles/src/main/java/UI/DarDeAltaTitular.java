@@ -6,6 +6,7 @@
 package UI;
 
 import Exceptions.DatosTitularException;
+import Gestores.GestorSesion;
 import Gestores.GestorTitular;
 import Modelo.Titular;
 import java.awt.Color;
@@ -144,7 +145,8 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
 
         jButton2.setText("Guardar");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Nombre:");
 
@@ -233,16 +235,20 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         jLabel9.setText("Grupo sanguineo:");
 
         grupoSang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "A", "B", "AB" }));
+        grupoSang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         grupoSang.setNextFocusableComponent(factor);
 
         jLabel10.setText("Facor Rh:");
 
         factor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-" }));
+        factor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         factor.setNextFocusableComponent(ciudadET);
 
         donante.setText("Donante");
+        donante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        guardarButton.setText("Guardar");
+        guardarButton.setText("Siguiente");
+        guardarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         guardarButton.setNextFocusableComponent(nombreET);
         guardarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,7 +257,13 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         });
 
         volverButton.setText("Volver");
+        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         volverButton.setNextFocusableComponent(guardarButton);
+        volverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverButtonActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("DNI:");
 
@@ -347,26 +359,29 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         Date fechaNacimiento = fecha.getDate();
         String grupoSanguineo = (String) grupoSang.getSelectedItem();
         String factorRh = (String) factor.getSelectedItem();
-        if ("+".equals(factorRh)) factorRh = "Positivo";
-        else factorRh = "Negativo";
+        if ("+".equals(factorRh)) {
+            factorRh = "Positivo";
+        } else {
+            factorRh = "Negativo";
+        }
         Boolean esDonante = donante.isSelected();
         //Domicilio
         String ciudad = ciudadET.getText();
         String calle = calleET.getText();
         String numero = numeroET.getText();
         String piso;
-            if (!pisoET.getText().isEmpty()) {
-                piso = pisoET.getText();
-            } else {
-                piso = "0";
-            }
-        
-             String departamento;
-            if (!departamentoET.getText().isEmpty()) {
-                departamento = departamentoET.getText();
-            } else {
-                departamento = "-";
-            }
+        if (!pisoET.getText().isEmpty()) {
+            piso = pisoET.getText();
+        } else {
+            piso = "0";
+        }
+
+        String departamento;
+        if (!departamentoET.getText().isEmpty()) {
+            departamento = departamentoET.getText();
+        } else {
+            departamento = "-";
+        }
 
         //
         nombreET.setBorder(borde);
@@ -375,54 +390,56 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         ciudadET.setBorder(borde);
         calleET.setBorder(borde);
         numeroET.setBorder(borde);
-        
+
         Titular tit = new Titular();
-        
+
         try {
             tit = GestorTitular.guardarTitular(nombre, apellido, dni, fechaNacimiento, grupoSanguineo, factorRh, esDonante, ciudad, calle, numero, piso, departamento);
+            EmitirLicencia emitirVentana = new EmitirLicencia(tit);
+            emitirVentana.setVisible(true);
+            //TODO: Hacer que se cierre solo despues de haber impreso la licencia
+            this.dispose();
         } catch (DatosTitularException e) {
-            if(!e.getApellido()) apellidoET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-            
-            if(!e.getNombre()) nombreET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-            
-            if(!e.getDni()) dniET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-            
-            if(!e.getDomicilioException().getCiudad()) ciudadET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-            
-            if(!e.getDomicilioException().getCalle()) calleET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
-            
-            if(!e.getDomicilioException().getNumero()) numeroET.setBorder(BorderFactory.createLineBorder(Color.RED,1));
+            if (!e.getApellido()) {
+                apellidoET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+
+            if (!e.getNombre()) {
+                nombreET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+
+            if (!e.getDni()) {
+                dniET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+
+            if (!e.getDomicilioException().getCiudad()) {
+                ciudadET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+
+            if (!e.getDomicilioException().getCalle()) {
+                calleET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+
+            if (!e.getDomicilioException().getNumero()) {
+                numeroET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
         }
 
-        EmitirLicencia emitirVentana = new EmitirLicencia(tit);
-        emitirVentana.setVisible(true);
-        //TODO: Hacer que se cierre solo despues de haber impreso la licencia
-        this.dispose();
+
     }//GEN-LAST:event_guardarButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            System.out.println(ex);
+    private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
+        if (GestorSesion.getUsuarioActual().isEsAdministrador()) {
+            MenuAdmin menu = new MenuAdmin();
+            menu.setVisible(true);
+            this.dispose();
+        } else {
+            MenuOperario menu = new MenuOperario();
+            menu.setVisible(true);
+            this.dispose();
         }
+    }//GEN-LAST:event_volverButtonActionPerformed
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DarDeAltaTitular().setVisible(true);
-            }
-        });
-
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoET;

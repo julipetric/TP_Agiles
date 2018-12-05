@@ -35,6 +35,7 @@ public class LicenciaDao {
             tx = sesion.beginTransaction();
             licencias = sesion.createQuery("FROM Licencia l WHERE l.uid ='" + uid).list();
             tx.commit();
+
         } catch (HibernateException e) {
             if (tx != null) {
                 tx.rollback();
@@ -169,6 +170,7 @@ public class LicenciaDao {
         try {
             tx = sesion.beginTransaction();
             licenciasexpiradas = sesion.createQuery("FROM Licencia l WHERE l.fechaExpiracion <= CURDATE() ORDER BY l.titular.dni").list();
+            tx.commit();
         } catch (HibernateException e) {
 
         }

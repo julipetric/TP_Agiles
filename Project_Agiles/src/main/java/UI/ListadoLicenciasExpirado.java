@@ -74,7 +74,8 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
         expiradasTable = new javax.swing.JTable();
         volver = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         expiradasTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -84,6 +85,7 @@ public class ListadoLicenciasExpirado extends javax.swing.JFrame {
                 "Fecha expiración", "DNI", "Nombre", "Apellido", "Clase"
             }
         ));
+        expiradasTable.setEnabled(false);
         expiradasTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 expiradasTableMouseClicked(evt);

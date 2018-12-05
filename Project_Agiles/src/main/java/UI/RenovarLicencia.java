@@ -189,7 +189,8 @@ public class RenovarLicencia extends javax.swing.JFrame {
         expiracionText = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Nombre:");
 
@@ -284,6 +285,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         dniLabel.setText("Costo:");
 
         imprimirButton.setText("Imprimir Comprobante");
+        imprimirButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imprimirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imprimirButtonActionPerformed(evt);
@@ -291,6 +293,12 @@ public class RenovarLicencia extends javax.swing.JFrame {
         });
 
         jButton4.setText("Volver");
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         claseCombo.setEditable(true);
         claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "E", "G" }));
@@ -542,40 +550,17 @@ public class RenovarLicencia extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_expiracionTextActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RenovarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RenovarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RenovarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RenovarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (GestorSesion.getUsuarioActual().isEsAdministrador()) {
+            MenuAdmin menu = new MenuAdmin();
+            menu.setVisible(true);
+            this.dispose();
+        } else {
+            MenuOperario menu = new MenuOperario();
+            menu.setVisible(true);
+            this.dispose();
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RenovarLicencia().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoET;

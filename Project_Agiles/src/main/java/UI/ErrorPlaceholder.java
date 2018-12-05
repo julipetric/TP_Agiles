@@ -16,6 +16,7 @@ public class ErrorPlaceholder extends javax.swing.JFrame {
      */
     public ErrorPlaceholder() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -30,6 +31,7 @@ public class ErrorPlaceholder extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("ERROR EN DATOS");

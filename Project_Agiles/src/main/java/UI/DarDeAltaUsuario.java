@@ -160,12 +160,14 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         passET = new javax.swing.JPasswordField();
         pass2ET = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Dar de alta usuario");
+        setResizable(false);
 
         permisosLabel.setText("Permisos:");
 
         permisosCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Operario", "Administrador" }));
+        permisosCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         nombreLabel.setText("Nombre:");
 
@@ -178,6 +180,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         pass2Label.setText("Repetir contraseña:");
 
         volverBtn.setText("Volver");
+        volverBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         volverBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverBtnActionPerformed(evt);
@@ -185,6 +188,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         });
 
         aceptarBtn.setText("Aceptar");
+        aceptarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         aceptarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aceptarBtnActionPerformed(evt);

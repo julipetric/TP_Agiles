@@ -100,8 +100,9 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         vigenteSiCheck = new javax.swing.JCheckBox();
         vigenteNoCheck = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Listado de Licencias");
+        setResizable(false);
 
         titleLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         titleLabel.setText("BUSCAR LICENCIAS");
@@ -163,6 +164,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
             }
         });
         tablaLicencias.setColumnSelectionAllowed(true);
+        tablaLicencias.setEnabled(false);
         tablaLicencias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaLicenciasMouseClicked(evt);
