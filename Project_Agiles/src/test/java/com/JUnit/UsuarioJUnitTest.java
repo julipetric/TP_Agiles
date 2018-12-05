@@ -5,11 +5,17 @@
  */
 package com.JUnit;
 
+import Daos.DomicilioDao;
+import Daos.LicenciaDao;
+import Daos.TitularDao;
+import Daos.UsuarioDao;
 import Exceptions.DatosUsuarioException;
 import Gestores.GestorUsuario;
-import java.util.ArrayList;
-import java.util.Random;
+import org.hibernate.cfg.Configuration;
 import javafx.util.Pair;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -26,6 +32,16 @@ public class UsuarioJUnitTest {
     Pair<String, Boolean> dni, nombre, apellido, user, pass, pass2, ciudad, calle, numero, piso, departamento;
 
     public UsuarioJUnitTest() {
+        Configuration configuracion = new Configuration();
+        configuracion.configure("hibernate.cfg.xml");
+        StandardServiceRegistryBuilder ssrb = new StandardServiceRegistryBuilder().applySettings(configuracion.getProperties());
+        SessionFactory fabricaSesion = configuracion.buildSessionFactory(ssrb.build());
+        Session sesion = fabricaSesion.openSession();
+
+        DomicilioDao.setSession(sesion);
+        LicenciaDao.setSesion(sesion);
+        TitularDao.setSesion(sesion);
+        UsuarioDao.setSesion(sesion);
     }
 
     @BeforeClass
@@ -113,6 +129,18 @@ public class UsuarioJUnitTest {
     @Test
     public void badNumeroTest(){
         numero = new Pair("",false);
+        chequear();
+    }
+    
+    @Test
+    public void pisoVacio(){
+        piso = new Pair("",true);
+        chequear();
+    }
+    
+    @Test
+    public void departamentoVacio(){
+        departamento = new Pair("",true);
         chequear();
     }
 
