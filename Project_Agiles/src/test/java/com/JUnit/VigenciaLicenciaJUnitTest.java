@@ -59,10 +59,8 @@ public class VigenciaLicenciaJUnitTest {
     public void test20Anios1(){
         fechaNac = LocalDate.of(1998, 8, 2);
         cargarDatos(false);
-        assertTrue("Diferencia: "+timeDif+","+timeDif/unAnio+" y debe ser: "+unAnio+","+unAnio/unAnio+
-                " Fecha de nacimiento titular: "+ titular.getFechaNacimiento()+
-                " Fecha de tramite: "+ licencia.getFechaTramite()+
-                " Fecha de vencimiento: "+ licencia.getFechaExpiracion(), timeDif<=unAnio);
+        String mensaje = buildMensaje(1);
+        assertTrue(mensaje,timeDif<=unAnio);
         
     }
     
@@ -70,51 +68,47 @@ public class VigenciaLicenciaJUnitTest {
     public void test20Anios2(){
         fechaNac = LocalDate.of(1998,8,2);
         cargarDatos(true);
-        titular.getLicencias().add(new Licencia());
-        assertTrue("Diferencia: "+timeDif+","+timeDif/unAnio+" y debe ser: "+3*unAnio+","+3*unAnio/unAnio+
-                " Fecha de nacimiento titular: "+ titular.getFechaNacimiento()+
-                " Fecha de tramite: "+ licencia.getFechaTramite()+
-                " Fecha de vencimiento: "+ licencia.getFechaExpiracion(),timeDif>2*unAnio && timeDif<=3*unAnio);
+        String mensaje = buildMensaje(3);
+        assertTrue(mensaje,timeDif>2*unAnio && timeDif<=3*unAnio);
     }
     
     @Test
     public void test25Anios(){
         fechaNac = LocalDate.of(1993, 8, 2);
         cargarDatos(false);
-        assertTrue("Diferencia: "+timeDif+","+timeDif/unAnio+" y debe ser: "+5*unAnio+","+5*unAnio/unAnio+
-                " Fecha de nacimiento titular: "+ titular.getFechaNacimiento()+
-                " Fecha de tramite: "+ licencia.getFechaTramite()+
-                " Fecha de vencimiento: "+ licencia.getFechaExpiracion(),timeDif>4*unAnio && timeDif<=5*unAnio);
+        String mensaje = buildMensaje(5);
+        assertTrue(mensaje,timeDif>4*unAnio && timeDif<=5*unAnio);
     }
     
     @Test
     public void test50Anios(){
         fechaNac = LocalDate.of(1968, 8, 2);
         cargarDatos(false);
-        assertTrue("Diferencia: "+timeDif+","+timeDif/unAnio+" y debe ser: "+4*unAnio+","+4*unAnio/unAnio+
-                " Fecha de nacimiento titular: "+ titular.getFechaNacimiento()+
-                " Fecha de tramite: "+ licencia.getFechaTramite()+
-                " Fecha de vencimiento: "+ licencia.getFechaExpiracion(),timeDif>3*unAnio && timeDif<=4*unAnio);
+        String mensaje = buildMensaje(4);
+        assertTrue(mensaje,timeDif>3*unAnio && timeDif<=4*unAnio);
     }
     
     @Test
     public void test65Anios(){
         fechaNac = LocalDate.of(1953, 8, 2);
         cargarDatos(false);
-        assertTrue("Diferencia: "+timeDif+","+timeDif/unAnio+" y debe ser: "+3*unAnio+","+3*unAnio/unAnio+
-                " Fecha de nacimiento titular: "+ titular.getFechaNacimiento()+
-                " Fecha de tramite: "+ licencia.getFechaTramite()+
-                " Fecha de vencimiento: "+ licencia.getFechaExpiracion(),timeDif>2*unAnio && timeDif<=3*unAnio);
+        String mensaje = buildMensaje(3);
+        assertTrue(mensaje,timeDif>2*unAnio && timeDif<=3*unAnio);
     }
     
     @Test
     public void test75Anios(){
         fechaNac = LocalDate.of(1943, 8, 2);
         cargarDatos(false);
-        assertTrue("Diferencia: "+timeDif+","+timeDif/unAnio+" y debe ser: "+unAnio+","+unAnio/unAnio+
+        String mensaje = buildMensaje(1);
+        assertTrue(mensaje,timeDif<=unAnio);
+    }
+    
+    public String buildMensaje(int vigenciaEsperada){
+        return "Diferencia: "+timeDif+","+(timeDif/unAnio+1)+" y debe ser: "+vigenciaEsperada*unAnio+","+vigenciaEsperada*unAnio/unAnio+
                 " Fecha de nacimiento titular: "+ titular.getFechaNacimiento()+
                 " Fecha de tramite: "+ licencia.getFechaTramite()+
-                " Fecha de vencimiento: "+ licencia.getFechaExpiracion(),timeDif<=unAnio);
+                " Fecha de vencimiento: "+ licencia.getFechaExpiracion();
     }
     
     public void cargarDatos(boolean tieneLicenciaPrevia){
