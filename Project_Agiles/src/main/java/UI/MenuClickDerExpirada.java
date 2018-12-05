@@ -7,7 +7,6 @@ package UI;
 
 import Modelo.Licencia;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -30,16 +29,14 @@ public class MenuClickDerExpirada extends JPopupMenu {
     public void setLic(Licencia lic) {
         this.lic = lic;
     }
-
-    public void setVentana(JFrame ventana) {
-        this.ventana = ventana;
+    
+    public void setVentana(JFrame ventana){
+    this.ventana = ventana;
     }
-
-    public MenuClickDerExpirada(Licencia lic, JFrame ventana) {
-
+    public MenuClickDerExpirada(Licencia lic,JFrame ventana) {
+       
         this.setLic(lic);
         this.setVentana(ventana);
-<<<<<<< Updated upstream
         
         Font f = new Font("sans-serif", Font.BOLD, 12);
 
@@ -49,10 +46,6 @@ public class MenuClickDerExpirada extends JPopupMenu {
         this.add(item);
         
         item = new JMenuItem("Ver detalle");
-=======
-
-        JMenuItem item = new JMenuItem("Ver detalle");
->>>>>>> Stashed changes
         item.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 //comportamiento botón
@@ -71,7 +64,7 @@ public class MenuClickDerExpirada extends JPopupMenu {
         this.add(item);
 
         item = new JMenuItem("Renovar licencia");
-        item.addActionListener(new RenovarLicenciaActionListener(this.getLic(), ventana));
+        item.addActionListener(new RenovarLicenciaActionListener(this.getLic(), ventana ));
         this.add(item);
 
         item = new JMenuItem("Modificar datos");
@@ -85,7 +78,7 @@ public class MenuClickDerExpirada extends JPopupMenu {
     }
 
     public class RenovarLicenciaActionListener implements ActionListener {
-
+        
         private Licencia lic;
         private JFrame ventana;
 
@@ -96,11 +89,11 @@ public class MenuClickDerExpirada extends JPopupMenu {
         public void setLic(Licencia lic) {
             this.lic = lic;
         }
-
-        public void setVentana(JFrame ventana) {
-            this.ventana = ventana;
+        
+        public void setVentana(JFrame ventana){
+        this.ventana = ventana;
         }
-
+        
         private RenovarLicenciaActionListener(Licencia lic, JFrame ventana) {
             this.setLic(lic);
             this.setVentana(ventana);
@@ -108,9 +101,9 @@ public class MenuClickDerExpirada extends JPopupMenu {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            RenovarLicencia ventanaRenovar = new RenovarLicencia(this.getLic(),ventana);
-            ventanaRenovar.setVisible(true);
-            this.ventana.setVisible(false);
+           RenovarLicencia ventanaRenovar = new RenovarLicencia(this.getLic(), ventana);
+           ventanaRenovar.setVisible(true);
+           this.ventana.setVisible(false);
         }
 
     }
