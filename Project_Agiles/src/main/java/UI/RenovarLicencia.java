@@ -16,15 +16,22 @@ import Gestores.GestorTitular;
 import Modelo.Licencia;
 import Modelo.Titular;
 import com.toedter.calendar.JDateChooser;
+import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.filechooser.FileSystemView;
 
 /**
@@ -35,6 +42,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
     Licencia lic;
     Titular tit;
+    private Border borde;
 
     /**
      * Creates new form RenovarLicencia
@@ -42,20 +50,93 @@ public class RenovarLicencia extends javax.swing.JFrame {
     public RenovarLicencia(Licencia lic) {
         initComponents();
         this.setLic(lic);
-        
+        borde = nombreET.getBorder();
+        this.setLocationRelativeTo(null);
+        fecha.setMaxSelectableDate(new Date());
+        Date minDate = new Date();
+        minDate.setTime(minDate.getTime() - TimeUnit.DAYS.toMillis(365 * 100));
+        fecha.setMinSelectableDate(minDate);
+
+        /*Key listeners para validar y restringir los Edit text de la interfaz
+         */
+        nombreET.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent k) {
+                if (nombreET.getText().length() >= 26) {
+                    k.consume();
+                }
+            }
+        });
+        apellidoET.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent k) {
+                if (apellidoET.getText().length() >= 26) {
+                    k.consume();
+                }
+            }
+        });
+        dniET.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent k) {
+                if (dniET.getText().length() >= 8 || k.getKeyChar() < '0' || k.getKeyChar() > '9') {
+                    k.consume();
+                }
+            }
+        });
+        ciudadET.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent k) {
+                if (ciudadET.getText().length() >= 50) {
+                    k.consume();
+                }
+            }
+        });
+        calleET.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent k) {
+                if (calleET.getText().length() >= 50) {
+                    k.consume();
+                }
+            }
+        });
+        pisoET.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent k) {
+                if (pisoET.getText().length() >= 3 || k.getKeyChar() < '0' || k.getKeyChar() > '9') {
+                    k.consume();
+                }
+            }
+        });
+        numeroET.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent k) {
+                if (numeroET.getText().length() >= 6 || k.getKeyChar() < '0' || k.getKeyChar() > '9') {
+                    k.consume();
+                }
+            }
+        });
+        departamentoET.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent k) {
+                if (departamentoET.getText().length() >= 2) {
+                    k.consume();
+                }
+            }
+        });
+
         /*Generamos en primera instancia una nueva licencia (sin guardar)
         para que se calcule su fecha de caducidad y el costo, usando los datos
         ya existentes de titular y clase. Se setean donde corresponda.
-        */
+         */
         try {
             lic = GestorLicencias.crearLicencia(this.getLic().getTitular(), GestorSesion.getUsuarioActual(), (String) this.getLic().getClase());
         } catch (DatosLicenciaException ex) {
             Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         this.getCostoText().setText(((Float) lic.getCosto()).toString());
         this.getExpiracionText().setText(lic.getFechaExpiracion().toString());
-        
+
         //Se llenan los campos con los datos actuales del titular
         llenarCampos();
 
@@ -108,7 +189,8 @@ public class RenovarLicencia extends javax.swing.JFrame {
         expiracionText = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Nombre:");
 
@@ -205,6 +287,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         costoText.setEditable(false);
 
         imprimirButton.setText("Imprimir Comprobante");
+        imprimirButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imprimirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imprimirButtonActionPerformed(evt);
@@ -212,6 +295,12 @@ public class RenovarLicencia extends javax.swing.JFrame {
         });
 
         jButton4.setText("Volver");
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         claseCombo.setEditable(true);
         claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "E", "G" }));
@@ -351,41 +440,85 @@ public class RenovarLicencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void imprimirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirButtonActionPerformed
-        
+
+        String nombre = nombreET.getText();
+        String apellido = apellidoET.getText();
+        String dni = dniET.getText();
+        Date fechaNacimiento = fecha.getDate();
+        String grupoSanguineo = (String) grupoSang.getSelectedItem();
+        String factorRh = (String) factor.getSelectedItem();
+        if ("+".equals(factorRh)) {
+            factorRh = "Positivo";
+        } else {
+            factorRh = "Negativo";
+        }
+        Boolean esDonante = donante.isSelected();
+        //Domicilio
+        String ciudad = ciudadET.getText();
+        String calle = calleET.getText();
+        String numero = numeroET.getText();
+        String piso;
+        if (!pisoET.getText().isEmpty()) {
+            piso = pisoET.getText();
+        } else {
+            piso = "0";
+        }
+
+        String departamento;
+        if (!departamentoET.getText().isEmpty()) {
+            departamento = departamentoET.getText();
+        } else {
+            departamento = "-";
+        }
+
+        //
+        nombreET.setBorder(borde);
+        apellidoET.setBorder(borde);
+        dniET.setBorder(borde);
+        ciudadET.setBorder(borde);
+        calleET.setBorder(borde);
+        numeroET.setBorder(borde);
+
         /*Guardamos el nuevo objeto licencia en la base de datos, con los
         datos provenientes de la interfaz. Pasamos el nuevo titular (en caso
         de que se hayan cambiado los datos) al metodo de modificar licencia.
-        */
+         */
         
         try {
-            this.setTit(GestorTitular.modificarTitular(
-                    this.getNombreET().getText(),
-                    this.getApellidoET().getText(),
-                    this.getDniET().getText(),
-                    this.getFecha().getDate(),
-                    (String) this.getGrupoSang().getSelectedItem(),
-                    (String) this.getFactor().getSelectedItem(),
-                    this.getDonante().isSelected(),
-                    this.getCiudadET().getText(),
-                    this.getCalleET().getText(),
-                    this.getNumeroET().getText(),
-                    this.getPisoET().getText(),
-                    this.getDepartamentoET().getText()));
-        } catch (DatosTitularException ex) {
-            Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Licencia lic = null;
-        try {
+            this.setTit(GestorTitular.modificarTitular(nombre, apellido, dni, fechaNacimiento, grupoSanguineo, factorRh, esDonante, ciudad, calle, numero, piso, departamento));
             lic = GestorLicencias.modificarLicencia(this.getTit(), GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem(), this.getLic());
-        } catch (DatosLicenciaException ex) {
-            Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        /*Una vez guardada la licencia, imprimo el archivo para el comprobante
-        de pago.
-        */
-        try {
             GestorArchivos.imprimir(lic);
+            File escritorioDelUsuario = FileSystemView.getFileSystemView().getHomeDirectory();
+
+            showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath() + "/Comprobantes");
+
+            this.dispose();
+        } catch (DatosTitularException e) {
+            if (!e.getApellido()) {
+                apellidoET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+
+            if (!e.getNombre()) {
+                nombreET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+
+            if (!e.getDni()) {
+                dniET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+
+            if (!e.getDomicilioException().getCiudad()) {
+                ciudadET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+
+            if (!e.getDomicilioException().getCalle()) {
+                calleET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+
+            if (!e.getDomicilioException().getNumero()) {
+                numeroET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+        } catch (DatosLicenciaException e) {
+            Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, e);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ComprobanteYaExisteException ex) {
@@ -394,11 +527,6 @@ public class RenovarLicencia extends javax.swing.JFrame {
             Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        File escritorioDelUsuario = FileSystemView.getFileSystemView().getHomeDirectory();
-
-        showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath() + "/Comprobantes");
-
-        this.dispose();
     }//GEN-LAST:event_imprimirButtonActionPerformed
 
     private void claseComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_claseComboItemStateChanged
@@ -407,7 +535,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         nuevo objeto licencia (el cual no se guarda hasta que se confima
         la operación. Solo se hace esto porque cuando se construye hacemos
         automaticamente estos calculos.
-        */
+         */
         Licencia lic = null;
         try {
             lic = GestorLicencias.crearLicencia(this.getTit(), GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem());
@@ -426,40 +554,17 @@ public class RenovarLicencia extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_expiracionTextActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RenovarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RenovarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RenovarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RenovarLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (GestorSesion.getUsuarioActual().isEsAdministrador()) {
+            MenuAdmin menu = new MenuAdmin();
+            menu.setVisible(true);
+            this.dispose();
+        } else {
+            MenuOperario menu = new MenuOperario();
+            menu.setVisible(true);
+            this.dispose();
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RenovarLicencia().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoET;
@@ -591,6 +696,6 @@ public class RenovarLicencia extends javax.swing.JFrame {
         this.getPisoET().setText(((Integer) this.getLic().getTitular().getDomicilio().getPiso()).toString());
         this.getDepartamentoET().setText(this.getLic().getTitular().getDomicilio().getDepartamento());
         this.getClaseCombo().setSelectedItem(this.getLic().getClase());
-        
+
     }
 }

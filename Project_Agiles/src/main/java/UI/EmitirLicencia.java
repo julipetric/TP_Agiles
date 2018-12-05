@@ -36,6 +36,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
     public Titular getTit() {
         return tit;
     }
+
     /**
      * Creates new form EmitirLicencia
      */
@@ -55,6 +56,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         }
         this.getCostoText().setText(((Float) lic.getCosto()).toString());
         this.getExpiracionText().setText(lic.getFechaExpiracion().toString());
+        this.setLocationRelativeTo(null);
     }
 
     private EmitirLicencia() {
@@ -80,7 +82,8 @@ public class EmitirLicencia extends javax.swing.JFrame {
         claseCombo = new javax.swing.JComboBox<>();
         expiracionText = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         emitirLicenciaLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         emitirLicenciaLabel.setText("EMITIR LICENCIA");
@@ -101,6 +104,11 @@ public class EmitirLicencia extends javax.swing.JFrame {
         });
 
         jButton4.setText("Volver");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "E", "G" }));
         claseCombo.addItemListener(new java.awt.event.ItemListener() {
@@ -204,7 +212,7 @@ public class EmitirLicencia extends javax.swing.JFrame {
         showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath().toString() + "\\Comprobantes");
 
         this.dispose();
-        
+
 
     }//GEN-LAST:event_imprimirButtonActionPerformed
 
@@ -230,6 +238,18 @@ public class EmitirLicencia extends javax.swing.JFrame {
 
     }//GEN-LAST:event_claseComboItemStateChanged
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (GestorSesion.getUsuarioActual().isEsAdministrador()) {
+            MenuAdmin menu = new MenuAdmin();
+            menu.setVisible(true);
+            this.dispose();
+        } else {
+            MenuOperario menu = new MenuOperario();
+            menu.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     public JTextField getExpiracionText() {
         return expiracionText;
     }
@@ -242,40 +262,6 @@ public class EmitirLicencia extends javax.swing.JFrame {
         return claseCombo;
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EmitirLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EmitirLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EmitirLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EmitirLicencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EmitirLicencia().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> claseCombo;
