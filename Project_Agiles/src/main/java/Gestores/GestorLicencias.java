@@ -23,22 +23,24 @@ import java.util.Date;
  * @author tomas
  */
 public class GestorLicencias {
-    
+
     /**
-     * Este método se encarga de realizar la busqueda de licencias mediante diferentes criterios.
+     * Este método se encarga de realizar la busqueda de licencias mediante
+     * diferentes criterios.
      *
-     * @author Luciano Marthinez Almudevar 
+     * @author Luciano Marthinez Almudevar
      * @return retorna las licencias expiradas
      */
     public static ArrayList<Licencia> getLicenciasExpiradas() {
         return LicenciaDao.getExpiradas();
     }
-    
-   /**
-     * Este método se encarga de realizar la busqueda de licencias mediante diferentes criterios.
+
+    /**
+     * Este método se encarga de realizar la busqueda de licencias mediante
+     * diferentes criterios.
      *
-     * @author Luciano Marthinez Almudevar 
-     * @param criterios  arreglo que contiene los criterios de busqueda.
+     * @author Luciano Marthinez Almudevar
+     * @param criterios arreglo que contiene los criterios de busqueda.
      * @return retorna las licencias que cumplan con los criterios
      */
     public static ArrayList<Licencia> buscarPorCriterios(ArrayList<Object> criterios) {
@@ -87,7 +89,7 @@ public class GestorLicencias {
 
     /**
      * Este método se encarga de calcular la fecha de expiracion de la licencia.
-     * 
+     *
      * Durante la emisión de la licencia, se establece la vigencia de la misma,
      * de acuerdo a la siguiente tabla: Menores de 21 años: 1 año la primera vez
      * y 3 años las siguientes Hasta 46 años: 5 años Hasta 60 años: 4 años Hasta
@@ -96,14 +98,15 @@ public class GestorLicencias {
      * del titular, respectivamente. La fecha de inicio de vigencia debe ser la
      * fecha del sistema, y no puede cambiarse.
      *
-     * @author Luciano Marthinez Almudevar 
-     * @param licencia instancia de una licencia a la que se le desea calcular la fecha de expiracion.s
-
+     * @author Luciano Marthinez Almudevar
+     * @param licencia instancia de una licencia a la que se le desea calcular
+     * la fecha de expiracion.s
+     *
      */
     private static void calcularVigencia(Licencia licencia) {
 
         Date nacimiento = licencia.getTitular().getFechaNacimiento();
-        
+
         LocalDate inicioPeriodo = Instant.ofEpochMilli(nacimiento.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
 
         //LocalDate inicioPeriodo = nacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -171,12 +174,13 @@ public class GestorLicencias {
     }
 
     /**
-     * Este método se encarga de crear una licencia y ademas le completa los datos de fecha de expiracion y el costo de la misma.
-     * 
+     * Este método se encarga de crear una licencia y ademas le completa los
+     * datos de fecha de expiracion y el costo de la misma.
+     *
      * @author Tomás Fleitas - Jean Pierre Saint Martin
-     * @param titular  es la instancia del titular de la licencia.
-     * @param usuario  es el operario actual de la sesion.
-     * @param clase  es el tipo de licencia.
+     * @param titular es la instancia del titular de la licencia.
+     * @param usuario es el operario actual de la sesion.
+     * @param clase es el tipo de licencia.
      * @return Instancia de una Licencia con todos los atributos seteados.
      */
     public static Licencia crearLicencia(Titular titular, Usuario usuario, String clase) throws DatosLicenciaException {
@@ -192,54 +196,50 @@ public class GestorLicencias {
     }
 
     /**
-     * Este método se encarga de comunicarse con el LicenciaDao para que el mismo lo persiste.
-     * 
+     * Este método se encarga de comunicarse con el LicenciaDao para que el
+     * mismo lo persiste.
+     *
      * @author Tomás Fleitas - Jean Pierre Saint Martin
-     * @param licencia   es la instancia de la licencia que se desea guardar.
+     * @param licencia es la instancia de la licencia que se desea guardar.
      */
     public static boolean guardarLicencia(Licencia licencia) { // manejar excepciones de hibernate
         LicenciaDao.insert(licencia);
         return true;
     }
 
-    
     /**
-     * Este método se encarga de buscar y retornar una licencia de la base de datos pasandole como parametro su uid.
-     * 
+     * Este método se encarga de buscar y retornar una licencia de la base de
+     * datos pasandole como parametro su uid.
+     *
      * @author Tomás Fleitas - Jean Pierre Saint Martin
-     * @param uid  ID de una licencia.
+     * @param uid ID de una licencia.
      */
-    public static Licencia getLicencia(Integer uid){
-       return LicenciaDao.find(uid);
+    public static Licencia getLicencia(Integer uid) {
+        return LicenciaDao.find(uid);
     }
-    
+
     /**
-     * Este método se encarga de modificar la licencia, cambiar el valor del atributo de la licencia vieja y guardar la licencia nueva.
-     * 
+     * Este método se encarga de modificar la licencia, cambiar el valor del
+     * atributo de la licencia vieja y guardar la licencia nueva.
+     *
      * @author Matias Jacob - Tomás Fleitas
-     * @param titular 
-     * @param usuario 
+     * @param titular
+     * @param usuario
      * @param clase
      * @param lic
      * @return retorna una licencia nueva
      */
-    public static Licencia modificarLicencia(Titular titular, Usuario usuario, String clase, Licencia lic) throws DatosLicenciaException{
-        
+    public static Licencia modificarLicencia(Titular titular, Usuario usuario, String clase, Licencia lic) throws DatosLicenciaException {
+
         lic.setActivo(Boolean.FALSE);
         LicenciaDao.modify(lic);
-        Licencia licnueva = crearLicencia(titular,usuario,clase);
+        Licencia licnueva = crearLicencia(titular, usuario, clase);
         LicenciaDao.insert(licnueva);
         return licnueva;
     }
-<<<<<<< HEAD
-    
-    public static boolean esVigente(Licencia lic){
-    return lic.getFechaExpiracion().before(new Date());}
-=======
 
-    public static boolean esVigente(Licencia elegida) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static boolean esVigente(Licencia lic) {
+        return lic.getFechaExpiracion().before(new Date());
     }
 
->>>>>>> master
 }

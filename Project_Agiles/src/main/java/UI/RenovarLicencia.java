@@ -21,6 +21,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import static java.lang.System.exit;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -50,6 +51,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
     public RenovarLicencia(Licencia lic) {
         initComponents();
         this.setLic(lic);
+        this.setTit(this.getLic().getTitular());
         borde = nombreET.getBorder();
         this.setLocationRelativeTo(null);
         fecha.setMaxSelectableDate(new Date());
@@ -124,6 +126,11 @@ public class RenovarLicencia extends javax.swing.JFrame {
             }
         });
 
+        
+
+        //Se llenan los campos con los datos actuales del titular
+        llenarCampos();
+        
         /*Generamos en primera instancia una nueva licencia (sin guardar)
         para que se calcule su fecha de caducidad y el costo, usando los datos
         ya existentes de titular y clase. Se setean donde corresponda.
@@ -136,9 +143,6 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
         this.getCostoText().setText(((Float) lic.getCosto()).toString());
         this.getExpiracionText().setText(lic.getFechaExpiracion().toString());
-
-        //Se llenan los campos con los datos actuales del titular
-        llenarCampos();
 
     }
 
@@ -278,6 +282,8 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
         jLabel11.setText("DNI:");
 
+        dniET.setEditable(false);
+
         nombreLabel.setText("Clase:");
 
         jLabel12.setText("Fecha de expiración:");
@@ -287,7 +293,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         costoText.setEditable(false);
 
         imprimirButton.setText("Imprimir Comprobante");
-        imprimirButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imprimirButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         imprimirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imprimirButtonActionPerformed(evt);
@@ -295,7 +301,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         });
 
         jButton4.setText("Volver");
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -696,6 +702,5 @@ public class RenovarLicencia extends javax.swing.JFrame {
         this.getPisoET().setText(((Integer) this.getLic().getTitular().getDomicilio().getPiso()).toString());
         this.getDepartamentoET().setText(this.getLic().getTitular().getDomicilio().getDepartamento());
         this.getClaseCombo().setSelectedItem(this.getLic().getClase());
-
     }
 }
