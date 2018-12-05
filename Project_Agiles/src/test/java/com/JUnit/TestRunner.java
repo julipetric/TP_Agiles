@@ -16,8 +16,7 @@ import org.junit.runner.notification.Failure;
 public class TestRunner {
     public static void main(String[] args) {
         
-      for(int i=0;i<50;i++)
-      {
+      
         Result result = JUnitCore.runClasses(UsuarioJUnitTest.class);
 
         for (Failure failure : result.getFailures()) {
@@ -25,6 +24,6 @@ public class TestRunner {
         }
 
         System.out.println(result.wasSuccessful());
-      }
+      
    }
 }
