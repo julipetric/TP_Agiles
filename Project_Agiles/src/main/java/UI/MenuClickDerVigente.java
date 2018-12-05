@@ -9,6 +9,7 @@ import Modelo.Licencia;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.UIManager;
@@ -82,6 +83,7 @@ class MenuClickDerVigente extends JPopupMenu {
     public class RenovarLicenciaActionListener implements ActionListener {
 
         Licencia lic;
+        private JFrame ventana;
 
         public Licencia getLic() {
             return lic;

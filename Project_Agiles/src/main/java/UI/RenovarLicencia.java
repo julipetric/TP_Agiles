@@ -33,6 +33,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTextField;
@@ -48,12 +49,13 @@ public class RenovarLicencia extends javax.swing.JFrame {
     Licencia lic;
     Titular tit;
     private Border borde;
-
+    private JFrame ventana;
     /**
      * Creates new form RenovarLicencia
      */
-    public RenovarLicencia(Licencia lic) {
+    public RenovarLicencia(Licencia lic,JFrame ventana) {
         initComponents();
+        this.ventana = ventana;
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
         ImageIcon icon = new ImageIcon(image);
         setIconImage(icon.getImage());
@@ -561,8 +563,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_expiracionTextActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        ListadoLicenciasExpirado listado = new ListadoLicenciasExpirado();
-        listado.setVisible(true);
+        ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
