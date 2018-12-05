@@ -127,6 +127,8 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         claseLabel = new javax.swing.JLabel();
         claseCombo = new javax.swing.JComboBox<>();
         donanteLabel = new javax.swing.JLabel();
+        donanteSiButton = new javax.swing.JRadioButton();
+        donanteNoButton = new javax.swing.JRadioButton();
         vigenteLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaLicencias = new javax.swing.JTable();
@@ -135,8 +137,6 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         vigenteSiCheck = new javax.swing.JCheckBox();
         vigenteNoCheck = new javax.swing.JCheckBox();
         buscarButton1 = new javax.swing.JButton();
-        donanteNoButton = new javax.swing.JCheckBox();
-        donanteSiButton = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Listado de Licencias");
@@ -168,7 +168,15 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
 
         donanteLabel.setText("Donante:");
 
-        vigenteLabel.setText("Vigentes:");
+        donanteGroup.add(donanteSiButton);
+        donanteSiButton.setText("Sí");
+        donanteSiButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        donanteGroup.add(donanteNoButton);
+        donanteNoButton.setText("No");
+        donanteNoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        vigenteLabel.setText("Licencia vigente:");
 
         tablaLicencias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -204,7 +212,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         tablaLicencias.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         imprimirBusqueda.setText("Imprimir busqueda");
-        imprimirBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        imprimirBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imprimirBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imprimirBusquedaActionPerformed(evt);
@@ -212,7 +220,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         });
 
         volverButton.setText("Volver");
-        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         volverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverButtonActionPerformed(evt);
@@ -228,16 +236,12 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         vigenteNoCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         buscarButton1.setText("Buscar");
-        buscarButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        buscarButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buscarButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarButton1ActionPerformed(evt);
             }
         });
-
-        donanteNoButton.setText("No");
-
-        donanteSiButton.setText("Si");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -269,26 +273,24 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                                     .addComponent(apellidoLabel)
                                     .addComponent(grupoLabel)
                                     .addComponent(donanteLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(apellidoET, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(grupoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(factorCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(nroLicenciaET, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(apellidoET, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(grupoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(factorCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addComponent(nroLicenciaET, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
                                         .addComponent(donanteSiButton)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(donanteNoButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(vigenteLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(vigenteSiCheck)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGap(18, 18, 18)
                                         .addComponent(vigenteNoCheck))))
                             .addComponent(titleLabel, javax.swing.GroupLayout.Alignment.LEADING))
                         .addContainerGap(29, Short.MAX_VALUE))
@@ -299,7 +301,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                         .addGap(192, 192, 192))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(682, Short.MAX_VALUE)
+                    .addContainerGap(678, Short.MAX_VALUE)
                     .addComponent(buscarButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(19, 19, 19)))
         );
@@ -330,21 +332,20 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                         .addComponent(grupoLabel)
                         .addComponent(factorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(vigenteNoCheck)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(donanteLabel)
-                        .addComponent(vigenteLabel)
-                        .addComponent(donanteNoButton)
-                        .addComponent(donanteSiButton)
-                        .addComponent(vigenteSiCheck)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(donanteLabel)
+                    .addComponent(donanteSiButton)
+                    .addComponent(donanteNoButton)
+                    .addComponent(vigenteLabel)
+                    .addComponent(vigenteSiCheck)
+                    .addComponent(vigenteNoCheck))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(imprimirBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(445, Short.MAX_VALUE)
@@ -395,7 +396,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         la licencia elegida actual para futuro uso*/
         if (SwingUtilities.isRightMouseButton(evt)) {
             if (GestorLicencias.esVigente(this.getElegida())) {
-                MenuClickDerVigente menu = new MenuClickDerVigente(this.getElegida(),this);
+                MenuClickDerVigente menu = new MenuClickDerVigente(this.getElegida());
                 menu.show(evt.getComponent(), evt.getX(), evt.getY());
             } else {
                 MenuClickDerExpirada menu = new MenuClickDerExpirada(this.getElegida(),this);
@@ -416,7 +417,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         criterios.add(4, this.grupoCombo.getSelectedItem());
         criterios.add(5, this.factorCombo.getSelectedItem());
         criterios.add(6, this.claseCombo.getSelectedItem());
-        if (donanteSiButton.isSelected() == donanteNoButton.isSelected()) {
+        if (!donanteSiButton.isSelected() && !donanteNoButton.isSelected()) {
             criterios.add(7, null);
         } else {
             criterios.add(7, this.donanteSiButton.isSelected());
@@ -452,8 +453,8 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     private javax.swing.JLabel dniLabel;
     private javax.swing.ButtonGroup donanteGroup;
     private javax.swing.JLabel donanteLabel;
-    private javax.swing.JCheckBox donanteNoButton;
-    private javax.swing.JCheckBox donanteSiButton;
+    private javax.swing.JRadioButton donanteNoButton;
+    private javax.swing.JRadioButton donanteSiButton;
     private javax.swing.JComboBox<String> factorCombo;
     private javax.swing.JComboBox<String> grupoCombo;
     private javax.swing.JLabel grupoLabel;

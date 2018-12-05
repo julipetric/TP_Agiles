@@ -122,10 +122,10 @@ public class LicenciaDao {
             if (clase != "-") {
                 query += "l.clase = '" + clase + "' AND ";
             }
-            if (!vencidas && noVencidas) {
+            if (vencidas && !noVencidas) {
                 query += "l.fechaExpiracion <= CURDATE()" + " AND ";
             }
-            if (vencidas && !noVencidas) {
+            if (!vencidas && noVencidas) {
                 query += "l.fechaExpiracion > CURDATE()" + " AND ";
             }
             if (grupo != "-") {
