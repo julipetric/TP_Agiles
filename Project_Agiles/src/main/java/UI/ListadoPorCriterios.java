@@ -5,8 +5,7 @@
  */
 package UI;
 
-import Exceptions.ComprobanteDirectorioException;
-import Exceptions.ComprobanteYaExisteException;
+
 import Gestores.GestorArchivos;
 import Gestores.GestorLicencias;
 import Gestores.GestorSesion;
@@ -16,13 +15,9 @@ import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import static javax.swing.JOptionPane.showMessageDialog;
-import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileSystemView;
@@ -396,7 +391,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         la licencia elegida actual para futuro uso*/
         if (SwingUtilities.isRightMouseButton(evt)) {
             if (GestorLicencias.esVigente(this.getElegida())) {
-                MenuClickDerVigente menu = new MenuClickDerVigente(this.getElegida());
+                MenuClickDerVigente menu = new MenuClickDerVigente(this.getElegida(),this);
                 menu.show(evt.getComponent(), evt.getX(), evt.getY());
             } else {
                 MenuClickDerExpirada menu = new MenuClickDerExpirada(this.getElegida(),this);

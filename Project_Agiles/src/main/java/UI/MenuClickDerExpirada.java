@@ -7,9 +7,9 @@ package UI;
 
 import Modelo.Licencia;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
@@ -20,7 +20,7 @@ import javax.swing.JPopupMenu;
 public class MenuClickDerExpirada extends JPopupMenu {
 
     private Licencia lic;
-    private Frame ventana;
+    private JFrame ventana;
 
     public Licencia getLic() {
         return lic;
@@ -30,10 +30,10 @@ public class MenuClickDerExpirada extends JPopupMenu {
         this.lic = lic;
     }
     
-    public void setVentana(Frame ventana){
+    public void setVentana(JFrame ventana){
     this.ventana = ventana;
     }
-    public MenuClickDerExpirada(Licencia lic,Frame ventana) {
+    public MenuClickDerExpirada(Licencia lic,JFrame ventana) {
        
         this.setLic(lic);
         this.setVentana(ventana);
@@ -80,7 +80,7 @@ public class MenuClickDerExpirada extends JPopupMenu {
     public class RenovarLicenciaActionListener implements ActionListener {
         
         private Licencia lic;
-        private Frame ventana;
+        private JFrame ventana;
 
         public Licencia getLic() {
             return lic;
@@ -90,20 +90,20 @@ public class MenuClickDerExpirada extends JPopupMenu {
             this.lic = lic;
         }
         
-        public void setVentana(Frame ventana){
+        public void setVentana(JFrame ventana){
         this.ventana = ventana;
         }
         
-        private RenovarLicenciaActionListener(Licencia lic, Frame ventana) {
+        private RenovarLicenciaActionListener(Licencia lic, JFrame ventana) {
             this.setLic(lic);
             this.setVentana(ventana);
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-           RenovarLicencia ventanaRenovar = new RenovarLicencia(this.getLic());
+           RenovarLicencia ventanaRenovar = new RenovarLicencia(this.getLic(), ventana);
            ventanaRenovar.setVisible(true);
-           this.ventana.dispose();
+           this.ventana.setVisible(false);
         }
 
     }
