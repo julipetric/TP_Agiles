@@ -5,6 +5,8 @@
  */
 package UI;
 
+import Exceptions.BusquedaDirectorioException;
+import Exceptions.BusquedaYaExisteException;
 import Exceptions.ComprobanteDirectorioException;
 import Exceptions.ComprobanteYaExisteException;
 import Gestores.GestorArchivos;
@@ -351,11 +353,19 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void imprimirBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirBusquedaActionPerformed
-        GestorArchivos.imprimirBusqueda(this.getLicencias());
+        try {
+            GestorArchivos.imprimirBusqueda(this.getLicencias());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ListadoPorCriterios.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BusquedaYaExisteException ex) {
+            Logger.getLogger(ListadoPorCriterios.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BusquedaDirectorioException ex) {
+            Logger.getLogger(ListadoPorCriterios.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         File escritorioDelUsuario = FileSystemView.getFileSystemView().getHomeDirectory();
 
-        showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath().toString() + "\\Comprobantes");
+        showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath().toString() + "\\Busquedas");
 
         this.dispose();
     }//GEN-LAST:event_imprimirBusquedaActionPerformed
