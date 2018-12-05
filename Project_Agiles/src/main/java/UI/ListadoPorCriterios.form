@@ -63,26 +63,29 @@
                                   <Component id="grupoLabel" min="-2" max="-2" attributes="0"/>
                                   <Component id="donanteLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="apellidoET" min="-2" pref="319" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="grupoCombo" min="-2" pref="152" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="factorCombo" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="apellidoET" min="-2" pref="319" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="grupoCombo" min="-2" pref="152" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="factorCombo" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Component id="nroLicenciaET" alignment="1" min="-2" pref="319" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="nroLicenciaET" min="-2" pref="319" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                                       <Component id="donanteSiButton" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="donanteNoButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Component id="vigenteLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="vigenteSiCheck" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="vigenteNoCheck" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -101,7 +104,7 @@
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="678" max="32767" attributes="0"/>
+                  <EmptySpace pref="682" max="32767" attributes="0"/>
                   <Component id="buscarButton1" min="-2" pref="162" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
@@ -140,13 +143,15 @@
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="donanteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="donanteSiButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="donanteNoButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="vigenteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="vigenteSiCheck" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="vigenteNoCheck" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="vigenteNoCheck" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="donanteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="vigenteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="donanteNoButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="donanteSiButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="vigenteSiCheck" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="209" max="-2" attributes="0"/>
@@ -155,7 +160,7 @@
                   <Component id="volverButton" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="imprimirBusqueda" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="25" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
@@ -216,7 +221,7 @@
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Cursor Por defecto"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -238,7 +243,7 @@
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Cursor Por defecto"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -264,7 +269,7 @@
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Cursor Por defecto"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -276,31 +281,9 @@
         <Property name="text" type="java.lang.String" value="Donante:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="donanteSiButton">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="donanteGroup"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="S&#xed;"/>
-        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="donanteNoButton">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="donanteGroup"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="No"/>
-        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="vigenteLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Licencia vigente:"/>
+        <Property name="text" type="java.lang.String" value="Vigentes:"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -378,7 +361,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Imprimir busqueda"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Hand Cursor"/>
+          <Color id="Cursor Por defecto"/>
         </Property>
       </Properties>
       <Events>
@@ -389,7 +372,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Volver"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Hand Cursor"/>
+          <Color id="Cursor Por defecto"/>
         </Property>
       </Properties>
       <Events>
@@ -401,7 +384,7 @@
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="S&#xed;"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Cursor Por defecto"/>
         </Property>
       </Properties>
     </Component>
@@ -410,7 +393,7 @@
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="No"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Cursor Por defecto"/>
         </Property>
       </Properties>
     </Component>
@@ -418,12 +401,22 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Hand Cursor"/>
+          <Color id="Cursor Por defecto"/>
         </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarButton1ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="donanteNoButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="No"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="donanteSiButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Si"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
