@@ -107,13 +107,13 @@ public class LicenciaDao {
             String query = new String();
             
             if (dni != null) {
-                query += "l.titular.dni = " + dni.toString() + " AND ";
+                query += "l.titular.dni LIKE '%" + dni.toString() + "%'"+" AND ";
             }
             if (!nombre.isEmpty()) {
-                query += "l.titular.nombre = '" + nombre + "' AND ";
+                query += "l.titular.nombre LIKE '%" + nombre + "%'"+" AND ";
             }
             if (!apellido.isEmpty()) {
-                query += "l.titular.apellido = '" + apellido + "' AND ";
+                query += "l.titular.apellido LIKE '%" + apellido + "%'"+" AND ";
             }
             if(nroLic!=null)
             {

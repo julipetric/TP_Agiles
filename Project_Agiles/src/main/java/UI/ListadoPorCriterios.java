@@ -38,6 +38,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     Licencia elegida;
     ArrayList<Licencia> licencias;
 
+    
     public ArrayList<Licencia> getLicencias() {
         return licencias;
     }
@@ -63,6 +64,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
      */
     public ListadoPorCriterios() {
         initComponents();
+
         this.setLocationRelativeTo(null);
         imprimirBusqueda.setEnabled(false);
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
@@ -74,6 +76,8 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
             public void keyTyped(KeyEvent k) {
                 if (nombreET.getText().length() >= 26) {
                     k.consume();
+                } else{
+                    cargarTabla();
                 }
             }
         });
@@ -82,25 +86,32 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
             public void keyTyped(KeyEvent k) {
                 if (apellidoET.getText().length() >= 26) {
                     k.consume();
+                }else{
+                    cargarTabla();
                 }
             }
         });
         dniET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (dniET.getText().length() >= 8 || k.getKeyChar() < '0' || k.getKeyChar() > '9') {
+                if ((dniET.getText().length() >= 8 || k.getKeyChar() < '0' || k.getKeyChar() > '9' )&& k.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
                     k.consume();
+                }else{
+                    cargarTabla();
                 }
             }
         });
         nroLicenciaET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (nroLicenciaET.getText().length() >= 8 || k.getKeyChar() < '0' || k.getKeyChar() > '9') {
+                if ((nroLicenciaET.getText().length() >= 8 || k.getKeyChar() < '0' || k.getKeyChar() > '9')&& k.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
                     k.consume();
+                }else{
+                    cargarTabla();
                 }
             }
         });
+        cargarTabla();
     }
 
     /**
@@ -167,11 +178,21 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
 
         factorCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Positivo", "Negativo" }));
         factorCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        factorCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                factorComboActionPerformed(evt);
+            }
+        });
 
         claseLabel.setText("Clase:");
 
         claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "A", "B", "C", "E", "G" }));
-        claseCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        claseCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        claseCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                claseComboActionPerformed(evt);
+            }
+        });
 
         donanteLabel.setText("Donante:");
 
@@ -209,7 +230,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         tablaLicencias.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         imprimirBusqueda.setText("Imprimir busqueda");
-        imprimirBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imprimirBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         imprimirBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imprimirBusquedaActionPerformed(evt);
@@ -217,7 +238,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         });
 
         volverButton.setText("Volver");
-        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         volverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverButtonActionPerformed(evt);
@@ -226,14 +247,24 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
 
         vigenteSiCheck.setSelected(true);
         vigenteSiCheck.setText("Sí");
-        vigenteSiCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        vigenteSiCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        vigenteSiCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vigenteSiCheckActionPerformed(evt);
+            }
+        });
 
         vigenteNoCheck.setSelected(true);
         vigenteNoCheck.setText("No");
-        vigenteNoCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        vigenteNoCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        vigenteNoCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vigenteNoCheckActionPerformed(evt);
+            }
+        });
 
         buscarButton1.setText("Buscar");
-        buscarButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscarButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         buscarButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarButton1ActionPerformed(evt);
@@ -241,10 +272,20 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         });
 
         donanteNoButton.setText("No");
-        donanteNoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        donanteNoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        donanteNoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                donanteNoButtonActionPerformed(evt);
+            }
+        });
 
         donanteSiButton.setText("Si");
-        donanteSiButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        donanteSiButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        donanteSiButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                donanteSiButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -464,8 +505,32 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     }//GEN-LAST:event_buscarButton1ActionPerformed
 
     private void grupoComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grupoComboActionPerformed
-        // TODO add your handling code here:
+        cargarTabla();
     }//GEN-LAST:event_grupoComboActionPerformed
+
+    private void claseComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_claseComboActionPerformed
+        cargarTabla();
+    }//GEN-LAST:event_claseComboActionPerformed
+
+    private void factorComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_factorComboActionPerformed
+        cargarTabla();
+    }//GEN-LAST:event_factorComboActionPerformed
+
+    private void donanteSiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_donanteSiButtonActionPerformed
+        cargarTabla();
+    }//GEN-LAST:event_donanteSiButtonActionPerformed
+
+    private void donanteNoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_donanteNoButtonActionPerformed
+        cargarTabla();
+    }//GEN-LAST:event_donanteNoButtonActionPerformed
+
+    private void vigenteSiCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vigenteSiCheckActionPerformed
+        cargarTabla();
+    }//GEN-LAST:event_vigenteSiCheckActionPerformed
+
+    private void vigenteNoCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vigenteNoCheckActionPerformed
+        cargarTabla();
+    }//GEN-LAST:event_vigenteNoCheckActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoET;
