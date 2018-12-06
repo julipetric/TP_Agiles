@@ -64,6 +64,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     public ListadoPorCriterios() {
         initComponents();
         this.setLocationRelativeTo(null);
+        imprimirBusqueda.setEnabled(false);
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
         ImageIcon icon = new ImageIcon(image);
         setIconImage(icon.getImage());
@@ -458,6 +459,8 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                 this.getLicencias().get(i).getFechaExpiracion(), grupoFactor};
             model.addRow(fila);
         }
+        if(model.getRowCount()>0) imprimirBusqueda.setEnabled(true);
+        else imprimirBusqueda.setEnabled(false);
     }//GEN-LAST:event_buscarButton1ActionPerformed
 
     private void grupoComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grupoComboActionPerformed
