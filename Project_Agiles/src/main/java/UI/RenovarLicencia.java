@@ -53,20 +53,22 @@ public class RenovarLicencia extends javax.swing.JFrame {
      * Creates new form RenovarLicencia
      */
     public RenovarLicencia(Licencia lic, ListadoLicenciasExpirado ventanaExpirado, ListadoPorCriterios ventanaCriterio) {
+        this.setLic(lic);
+        this.setTit(this.getLic().getTitular());
         initComponents();
         this.ventanaExpirado = ventanaExpirado;
         this.ventanaCriterio = ventanaCriterio;
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
         ImageIcon icon = new ImageIcon(image);
         setIconImage(icon.getImage());
-        this.setLic(lic);
-        this.setTit(this.getLic().getTitular());
+
         borde = nombreET.getBorder();
         this.setLocationRelativeTo(null);
         fecha.setMaxSelectableDate(new Date());
         Date minDate = new Date();
         minDate.setTime(minDate.getTime() - TimeUnit.DAYS.toMillis(365 * 100));
         fecha.setMinSelectableDate(minDate);
+
 
         /*Key listeners para validar y restringir los Edit text de la interfaz
          */
@@ -272,6 +274,17 @@ public class RenovarLicencia extends javax.swing.JFrame {
         );
 
         jLabel8.setText("Fecha nacimiento:");
+
+        fecha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fechaMouseClicked(evt);
+            }
+        });
+        fecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                fechaPropertyChange(evt);
+            }
+        });
 
         jLabel9.setText("Grupo sanguineo:");
 
@@ -586,6 +599,33 @@ public class RenovarLicencia extends javax.swing.JFrame {
         }
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void fechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fechaMouseClicked
+
+    }//GEN-LAST:event_fechaMouseClicked
+
+    private void fechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fechaPropertyChange
+        /*Cada vez que cambiamos la fecha de nacimiento, se re-calcula
+        el costo y la fecha de caducidad de la misma. Para esto creamos un
+        nuevo objeto licencia (el cual no se guarda hasta que se confima
+        la operación. Solo se hace esto porque cuando se construye hacemos
+        automaticamente estos calculos.
+         */
+        Licencia lic = null;
+        try {
+            Titular tit2 = this.getTit();
+
+            if (this.getFecha().getDate() != null) {
+                tit2.setFechaNacimiento(this.getFecha().getDate());
+                lic = GestorLicencias.crearLicencia(tit2, GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem());
+                this.getCostoText().setText(((Float) lic.getCosto()).toString());
+                this.getExpiracionText().setText(lic.getFechaExpiracion().toString());
+            }
+        } catch (DatosLicenciaException ex) {
+            Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_fechaPropertyChange
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoET;

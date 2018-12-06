@@ -237,14 +237,14 @@ public class GestorArchivos {
                 
                 
 
-                Table table = new Table(UnitValue.createPercentArray(new float[]{2.5f,1,2,1,1.5f}));
+                Table table = new Table(UnitValue.createPercentArray(new float[]{2.5f,1f,2f,1f,1.3f}));
                 table.setWidth(UnitValue.createPercentValue(100));
                 
 
                 Cell cell = new Cell(4, 1).add(caritax.setAutoScale(true)).setVerticalAlignment(VerticalAlignment.MIDDLE).setBackgroundColor(Color.BLUE, 0.5f);
                 table.addCell(cell);
                 
-                cell = new Cell().add(new Paragraph("DNI").setFontSize(14)
+                cell = new Cell().add(new Paragraph("DNI").setFontSize(13)
                         .setMarginBottom(0f)
                         .setMarginLeft(0f)
                         .setMarginRight(0f)
@@ -252,7 +252,7 @@ public class GestorArchivos {
                         .setVerticalAlignment(VerticalAlignment.MIDDLE)
                         .setTextAlignment(TextAlignment.CENTER);
                 table.addCell(cell);
-                cell = new Cell().add(new Paragraph(Integer.toString(licencia.getTitular().getDni())).setFontSize(14)
+                cell = new Cell().add(new Paragraph(Integer.toString(licencia.getTitular().getDni())).setFontSize(13)
                         .setMarginBottom(0f)
                         .setMarginLeft(0f)
                         .setMarginRight(0f)
@@ -261,7 +261,7 @@ public class GestorArchivos {
                         .setTextAlignment(TextAlignment.CENTER);
                 table.addCell(cell);
                 
-                cell = new Cell().add(new Paragraph("Fecha de Nacimiento").setFontSize(14)
+                cell = new Cell().add(new Paragraph("Fecha de Nacimiento").setFontSize(13)
                         .setMarginBottom(0f)
                         .setMarginLeft(0f)
                         .setMarginRight(0f)
@@ -270,7 +270,7 @@ public class GestorArchivos {
                         .setTextAlignment(TextAlignment.CENTER);
                 table.addCell(cell);
                 DateFormat formato1 = new SimpleDateFormat("dd-MM-yyyy");
-                cell = new Cell().add(new Paragraph(formato1.format(licencia.getTitular().getFechaNacimiento())).setFontSize(14)
+                cell = new Cell().add(new Paragraph(formato1.format(licencia.getTitular().getFechaNacimiento())).setFontSize(13)
                         .setMarginBottom(0f)
                         .setMarginLeft(0f)
                         .setMarginRight(0f)
@@ -279,7 +279,7 @@ public class GestorArchivos {
                         .setTextAlignment(TextAlignment.CENTER);
                 table.addCell(cell);
                 
-                cell = new Cell().add(new Paragraph("Apellido").setFontSize(14)
+                cell = new Cell().add(new Paragraph("Apellido").setFontSize(13)
                         .setMarginBottom(0f)
                         .setMarginLeft(0f)
                         .setMarginRight(0f)
@@ -287,24 +287,7 @@ public class GestorArchivos {
                         .setVerticalAlignment(VerticalAlignment.MIDDLE)
                         .setTextAlignment(TextAlignment.CENTER);
                 table.addCell(cell);
-                cell = new Cell().add(new Paragraph(licencia.getTitular().getApellido()).setFontSize(14)
-                        .setMarginBottom(0f)
-                        .setMarginLeft(0f)
-                        .setMarginRight(0f)
-                        .setMarginTop(0f))
-                        .setVerticalAlignment(VerticalAlignment.MIDDLE)
-                        .setTextAlignment(TextAlignment.CENTER);
-                table.addCell(cell);
-                
-                cell = new Cell().add(new Paragraph("Fecha de Trámite").setFontSize(14)
-                        .setMarginBottom(0f)
-                        .setMarginLeft(0f)
-                        .setMarginRight(0f)
-                        .setMarginTop(0f))
-                        .setVerticalAlignment(VerticalAlignment.MIDDLE)
-                        .setTextAlignment(TextAlignment.CENTER);
-                table.addCell(cell);
-                cell = new Cell().add(new Paragraph(formato1.format(licencia.getFechaTramite())).setFontSize(14)
+                cell = new Cell().add(new Paragraph(licencia.getTitular().getApellido()).setFontSize(tamanioLetra(licencia.getTitular().getApellido()))
                         .setMarginBottom(0f)
                         .setMarginLeft(0f)
                         .setMarginRight(0f)
@@ -313,7 +296,7 @@ public class GestorArchivos {
                         .setTextAlignment(TextAlignment.CENTER);
                 table.addCell(cell);
                 
-                cell = new Cell().add(new Paragraph("Nombre").setFontSize(14)
+                cell = new Cell().add(new Paragraph("Fecha de Trámite").setFontSize(13)
                         .setMarginBottom(0f)
                         .setMarginLeft(0f)
                         .setMarginRight(0f)
@@ -321,24 +304,7 @@ public class GestorArchivos {
                         .setVerticalAlignment(VerticalAlignment.MIDDLE)
                         .setTextAlignment(TextAlignment.CENTER);
                 table.addCell(cell);
-                cell = new Cell().add(new Paragraph(licencia.getTitular().getNombre()).setFontSize(14)
-                        .setMarginBottom(0f)
-                        .setMarginLeft(0f)
-                        .setMarginRight(0f)
-                        .setMarginTop(0f))
-                        .setVerticalAlignment(VerticalAlignment.MIDDLE)
-                        .setTextAlignment(TextAlignment.CENTER);
-                table.addCell(cell);
-                
-                cell = new Cell().add(new Paragraph("Fecha de Vencimiento").setFontSize(14)
-                        .setMarginBottom(0f)
-                        .setMarginLeft(0f)
-                        .setMarginRight(0f)
-                        .setMarginTop(0f))
-                        .setVerticalAlignment(VerticalAlignment.MIDDLE)
-                        .setTextAlignment(TextAlignment.CENTER);
-                table.addCell(cell);
-                cell = new Cell().add(new Paragraph(formato1.format(licencia.getFechaExpiracion())).setFontSize(14)
+                cell = new Cell().add(new Paragraph(formato1.format(licencia.getFechaTramite())).setFontSize(13)
                         .setMarginBottom(0f)
                         .setMarginLeft(0f)
                         .setMarginRight(0f)
@@ -347,7 +313,7 @@ public class GestorArchivos {
                         .setTextAlignment(TextAlignment.CENTER);
                 table.addCell(cell);
                 
-                cell = new Cell().add(new Paragraph("Domicilio").setFontSize(14)
+                cell = new Cell().add(new Paragraph("Nombre").setFontSize(13)
                         .setMarginBottom(0f)
                         .setMarginLeft(0f)
                         .setMarginRight(0f)
@@ -355,7 +321,7 @@ public class GestorArchivos {
                         .setVerticalAlignment(VerticalAlignment.MIDDLE)
                         .setTextAlignment(TextAlignment.CENTER);
                 table.addCell(cell);
-                cell = new Cell().add(new Paragraph(licencia.getTitular().getDomicilio().getCalle() + " " + licencia.getTitular().getDomicilio().getNumero() + " - " + licencia.getTitular().getDomicilio().getCiudad()).setFontSize(14)
+                cell = new Cell().add(new Paragraph(licencia.getTitular().getNombre()).setFontSize(tamanioLetra(licencia.getTitular().getNombre()))
                         .setMarginBottom(0f)
                         .setMarginLeft(0f)
                         .setMarginRight(0f)
@@ -364,7 +330,7 @@ public class GestorArchivos {
                         .setTextAlignment(TextAlignment.CENTER);
                 table.addCell(cell);
                 
-                cell = new Cell().add(new Paragraph("Clase").setFontSize(14)
+                cell = new Cell().add(new Paragraph("Fecha de Vencimiento").setFontSize(13)
                         .setMarginBottom(0f)
                         .setMarginLeft(0f)
                         .setMarginRight(0f)
@@ -372,7 +338,46 @@ public class GestorArchivos {
                         .setVerticalAlignment(VerticalAlignment.MIDDLE)
                         .setTextAlignment(TextAlignment.CENTER);
                 table.addCell(cell);
-                cell = new Cell().add(new Paragraph(licencia.getClase()).setFontSize(14)
+                cell = new Cell().add(new Paragraph(formato1.format(licencia.getFechaExpiracion())).setFontSize(13)
+                        .setMarginBottom(0f)
+                        .setMarginLeft(0f)
+                        .setMarginRight(0f)
+                        .setMarginTop(0f))
+                        .setVerticalAlignment(VerticalAlignment.MIDDLE)
+                        .setTextAlignment(TextAlignment.CENTER);
+                table.addCell(cell);
+                
+                cell = new Cell().add(new Paragraph("Domicilio").setFontSize(13)
+                        .setMarginBottom(0f)
+                        .setMarginLeft(0f)
+                        .setMarginRight(0f)
+                        .setMarginTop(0f))
+                        .setVerticalAlignment(VerticalAlignment.MIDDLE)
+                        .setTextAlignment(TextAlignment.CENTER);
+                table.addCell(cell);
+                cell = new Cell().add(new Paragraph(licencia.getTitular().getDomicilio().getCalle() + "\n"  
+                                                    + "Nro: " + licencia.getTitular().getDomicilio().getNumero() + "\n" 
+                                                    +"P: "+licencia.getTitular().getDomicilio().getPiso() + " D: " + licencia.getTitular().getDomicilio().getDepartamento()+ "\n" 
+                                                    + licencia.getTitular().getDomicilio().getCiudad())
+                        .setFontSize(10)
+                        .setFixedLeading(10*1.15f)
+                        .setMarginBottom(0f)
+                        .setMarginLeft(0f)
+                        .setMarginRight(0f)
+                        .setMarginTop(0f))
+                        .setVerticalAlignment(VerticalAlignment.MIDDLE)
+                        .setTextAlignment(TextAlignment.CENTER);
+                table.addCell(cell);
+                
+                cell = new Cell().add(new Paragraph("Clase").setFontSize(13)
+                        .setMarginBottom(0f)
+                        .setMarginLeft(0f)
+                        .setMarginRight(0f)
+                        .setMarginTop(0f))
+                        .setVerticalAlignment(VerticalAlignment.MIDDLE)
+                        .setTextAlignment(TextAlignment.CENTER);
+                table.addCell(cell);
+                cell = new Cell().add(new Paragraph(licencia.getClase()).setFontSize(13)
                         .setMarginBottom(0f)
                         .setMarginLeft(0f)
                         .setMarginRight(0f)
@@ -403,5 +408,17 @@ public class GestorArchivos {
             throw new LicenciaDirectorioException();
         }
     }
-    
+    private static float tamanioLetra(String campo){
+        float tamanio= 0f;
+        
+        if(campo.length() > 20 && campo.length() <=23){
+            tamanio = (float) (100 / (campo.length()*0.4));
+        }if(campo.length() > 23){
+            tamanio = (float) (100 / (campo.length()*0.385));
+        }else{
+            tamanio = 13f;
+        }
+        
+        return tamanio;
+    }
 }

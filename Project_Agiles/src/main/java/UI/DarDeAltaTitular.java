@@ -70,7 +70,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         ciudadET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (ciudadET.getText().length() >= 50 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
+                if (ciudadET.getText().length() >= 30) {
                     k.consume();
                 }
             }
@@ -78,7 +78,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         calleET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (calleET.getText().length() >= 50 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
+                if (calleET.getText().length() >= 30) {
                     k.consume();
                 }
             }
@@ -94,7 +94,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         numeroET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (numeroET.getText().length() >= 6 || k.getKeyChar() < '0' || k.getKeyChar() > '9') {
+                if (numeroET.getText().length() >= 5 || k.getKeyChar() < '0' || k.getKeyChar() > '9') {
                     k.consume();
                 }
             }
@@ -155,8 +155,10 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre:");
 
-        nombreET.setFocusCycleRoot(true);
+        nombreET.setFocusTraversalPolicy(null);
+        nombreET.setHighlighter(null);
         nombreET.setNextFocusableComponent(apellidoET);
+        nombreET.setVerifyInputWhenFocusTarget(false);
 
         jLabel2.setText("Apellido");
 
@@ -247,10 +249,11 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
 
         factor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-" }));
         factor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        factor.setNextFocusableComponent(ciudadET);
+        factor.setNextFocusableComponent(donante);
 
         donante.setText("Donante");
         donante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        donante.setNextFocusableComponent(ciudadET);
 
         guardarButton.setText("Siguiente");
         guardarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
