@@ -73,7 +73,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         nombreET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (nombreET.getText().length() >= 26) {
+                if (nombreET.getText().length() >= 26 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
                     k.consume();
                 }
             }
@@ -81,7 +81,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         apellidoET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (apellidoET.getText().length() >= 26) {
+                if (apellidoET.getText().length() >= 26 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
                     k.consume();
                 }
             }
@@ -97,7 +97,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         ciudadET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (ciudadET.getText().length() >= 50) {
+                if (ciudadET.getText().length() >= 50 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
                     k.consume();
                 }
             }
@@ -105,7 +105,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         calleET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (calleET.getText().length() >= 50) {
+                if (calleET.getText().length() >= 50 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
                     k.consume();
                 }
             }
@@ -129,7 +129,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         departamentoET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (departamentoET.getText().length() >= 2) {
+                if (departamentoET.getText().length() >= 2 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
                     k.consume();
                 }
             }

@@ -102,7 +102,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         departamentoET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (departamentoET.getText().length() >= 2) {
+                if (departamentoET.getText().length() >= 2 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
                     k.consume();
                 }
             }
