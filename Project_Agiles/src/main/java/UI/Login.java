@@ -97,7 +97,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("Contraseña:");
 
         iniciarSesionButton.setText("Iniciar sesión");
-        iniciarSesionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        iniciarSesionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         iniciarSesionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 iniciarSesionButtonActionPerformed(evt);

@@ -240,20 +240,20 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         jLabel9.setText("Grupo sanguineo:");
 
         grupoSang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "A", "B", "AB" }));
-        grupoSang.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        grupoSang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         grupoSang.setNextFocusableComponent(factor);
 
         jLabel10.setText("Facor Rh:");
 
         factor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-" }));
-        factor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        factor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         factor.setNextFocusableComponent(ciudadET);
 
         donante.setText("Donante");
-        donante.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        donante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         guardarButton.setText("Siguiente");
-        guardarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        guardarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         guardarButton.setNextFocusableComponent(nombreET);
         guardarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,7 +262,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         });
 
         volverButton.setText("Volver");
-        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         volverButton.setNextFocusableComponent(guardarButton);
         volverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -389,12 +389,12 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         }
 
         //
-        nombreET.setBorder(borde);
-        apellidoET.setBorder(borde);
-        dniET.setBorder(borde);
-        ciudadET.setBorder(borde);
-        calleET.setBorder(borde);
-        numeroET.setBorder(borde);
+        jLabel2.setForeground(Color.BLACK);
+        jLabel1.setForeground(Color.BLACK);
+        jLabel11.setForeground(Color.BLACK);
+        jLabel7.setForeground(Color.BLACK);
+        jLabel3.setForeground(Color.BLACK);
+        jLabel4.setForeground(Color.BLACK);
         jLabel8.setForeground(Color.BLACK);
 
         Titular tit = new Titular();
@@ -407,27 +407,27 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
             this.setVisible(false);
         } catch (DatosTitularException e) {
             if (!e.getApellido()) {
-                apellidoET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                jLabel2.setForeground(Color.RED);
             }
 
             if (!e.getNombre()) {
-                nombreET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                jLabel1.setForeground(Color.RED);
             }
 
             if (!e.getDni()) {
-                dniET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                jLabel11.setForeground(Color.RED);
             }
 
             if (!e.getDomicilioException().getCiudad()) {
-                ciudadET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                jLabel7.setForeground(Color.RED);
             }
 
             if (!e.getDomicilioException().getCalle()) {
-                calleET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                jLabel3.setForeground(Color.RED);
             }
 
             if (!e.getDomicilioException().getNumero()) {
-                numeroET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                jLabel4.setForeground(Color.RED);
             }
             if (!e.getFechaNacimiento()) {
                 jLabel8.setForeground(Color.RED);
