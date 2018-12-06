@@ -35,7 +35,7 @@ public class UsuarioDao {
         List usuarios = new ArrayList<>();
         try {
             tx = sesion.beginTransaction();
-            usuarios = sesion.createQuery("FROM Usuario u WHERE u.dni ='" + dni).list();
+            usuarios = sesion.createQuery("FROM Usuario u WHERE u.dni ='" + dni+"'").list();
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -72,6 +72,27 @@ public class UsuarioDao {
         }
     }
     
+    
+    public static Usuario find(String nombreUsuario) {
+        Transaction tx = null;
+        List usuarios = new ArrayList<>();
+        try {
+            tx = sesion.beginTransaction();
+            usuarios = sesion.createQuery("FROM Usuario u WHERE u.usuarioNombre ='" + nombreUsuario+"'").list();
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }
+
+        if (usuarios.size() == 1) {
+            return (Usuario) usuarios.get(0);
+        } else {
+            return null;
+        }
+    }
     
 
     public static ArrayList<Usuario> getAllUsuarios() {

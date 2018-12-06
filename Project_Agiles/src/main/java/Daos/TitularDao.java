@@ -33,7 +33,7 @@ public class TitularDao {
         List titulares = new ArrayList<>();
         try {
             tx = sesion.beginTransaction();
-            titulares = sesion.createQuery("FROM Titular t WHERE t.dni ='" + dni).list();
+            titulares = sesion.createQuery("FROM Titular t WHERE t.dni ='" + dni+"'").list();
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {

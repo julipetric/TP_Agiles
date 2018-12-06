@@ -9,6 +9,7 @@ import Exceptions.ComprobanteDirectorioException;
 import Exceptions.ComprobanteYaExisteException;
 import Exceptions.DatosLicenciaException;
 import Exceptions.DatosTitularException;
+import Exceptions.DniRepetidoException;
 import Gestores.GestorArchivos;
 import Gestores.GestorDomicilio;
 import Gestores.GestorLicencias;
@@ -28,12 +29,15 @@ import javax.swing.JFrame;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileSystemView;
+import org.hibernate.JDBCException;
+import org.hibernate.exception.ConstraintViolationException;
 
 /**
  *
  * @author Julian
  */
 public class EmitirLicencia extends javax.swing.JFrame {
+
     private JFrame ventana;
     Titular tit;
 
@@ -44,19 +48,19 @@ public class EmitirLicencia extends javax.swing.JFrame {
     /**
      * Creates new form EmitirLicencia
      */
-    public EmitirLicencia(Titular tit,JFrame ventana) {
+    public EmitirLicencia(Titular tit, JFrame ventana) {
         this.tit = tit;
         this.ventana = ventana;
         initComponents();
-        
+
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
         ImageIcon icon = new ImageIcon(image);
         setIconImage(icon.getImage());
-        
+
         /*Generamos en primera instancia una nueva licencia (sin guardar)
         para que se calcule su fecha de caducidad y el costo, usando los datos
         ya existentes de titular y clase. Se setean donde corresponda.
-        */
+         */
         Licencia lic = null;
         try {
             lic = GestorLicencias.crearLicencia(this.getTit(), GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem());
@@ -199,31 +203,31 @@ public class EmitirLicencia extends javax.swing.JFrame {
         Licencia lic = null;
         try {
             lic = GestorLicencias.crearLicencia(this.getTit(), GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem());
-        } catch (DatosLicenciaException ex) {
-            Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        GestorDomicilio.guardarDomicilio(tit.getDomicilio());
-        GestorTitular.guardarTitular(tit);
-        GestorLicencias.guardarLicencia(lic);
 
-        try {
+            if (GestorTitular.existeDni(tit.getDni())) { //Ya hay otro titular con el mismo dni
+                throw new DniRepetidoException();
+            }
+            
+            
+            GestorDomicilio.guardarDomicilio(tit.getDomicilio());
+            GestorTitular.guardarTitular(tit);
+            GestorLicencias.guardarLicencia(lic);
+
             GestorArchivos.imprimir(lic);
-        } catch (FileNotFoundException ex) {
+
+            File escritorioDelUsuario = FileSystemView.getFileSystemView().getHomeDirectory();
+
+            showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath().toString() + "\\Comprobantes");
+
+            DarDeAltaTitular titular = new DarDeAltaTitular();
+            titular.setVisible(true);
+            this.dispose();
+            
+        } catch (DatosLicenciaException | FileNotFoundException | ComprobanteYaExisteException | ComprobanteDirectorioException ex) {
             Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ComprobanteYaExisteException ex) {
-            Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ComprobanteDirectorioException ex) {
-            Logger.getLogger(EmitirLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DniRepetidoException ex) {
+            showMessageDialog(null, "Error al guardar los datos: Ya existe un titular con el DNI indicado!");
         }
-
-        File escritorioDelUsuario = FileSystemView.getFileSystemView().getHomeDirectory();
-
-        showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath().toString() + "\\Comprobantes");
-
-        
-        DarDeAltaTitular titular = new DarDeAltaTitular();
-        titular.setVisible(true);
-        this.dispose();
 
 
     }//GEN-LAST:event_imprimirButtonActionPerformed

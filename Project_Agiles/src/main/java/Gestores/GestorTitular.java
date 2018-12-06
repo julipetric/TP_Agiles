@@ -9,6 +9,7 @@ import Daos.DomicilioDao;
 import Daos.TitularDao;
 import Exceptions.DatosDomicilioException;
 import Exceptions.DatosTitularException;
+import Exceptions.DniRepetidoException;
 import Modelo.Domicilio;
 import Modelo.Titular;
 import java.util.Date;
@@ -144,4 +145,8 @@ public class GestorTitular {
      
      return titular;
      }
+
+    public static boolean existeDni(int dni) {
+        return (TitularDao.find(dni) != null);
+    }
 }

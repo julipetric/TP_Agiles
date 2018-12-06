@@ -21,12 +21,15 @@ public class GestorUsuario {
     }
 
     public static Boolean darDeAltaUsuario(String dni, String nombre, String apellido, String user, String pass, String pass2, String permiso,
-            String ciudad, String calle, String numero, String piso, String departamento) throws DatosUsuarioException {
+String ciudad, String calle, String numero, String piso, String departamento) throws DatosUsuarioException {
         
-        boolean permisoAdmin = false;
-      
         Boolean ok=true;
         DatosUsuarioException exception = new DatosUsuarioException();
+        
+        
+    
+        
+        boolean permisoAdmin = false;
         
         try{
             validarDatosUsuario(dni,nombre,apellido,user,pass,pass2);
@@ -45,12 +48,24 @@ public class GestorUsuario {
             exception.setDomicilioException(e);
         }
         
+        boolean dniRepetido = (!dni.isEmpty() && UsuarioDao.find(Integer.valueOf(dni)) != null);
+        boolean usuarioRepetido = (!user.isEmpty() && UsuarioDao.find(user) != null);
+        
+        if (dniRepetido || usuarioRepetido) { //Si hay un usuario con el mismo dni o con el mismo nombre...
+            
+            //Explota
+            ok=false;
+            exception.setDni(!dniRepetido);
+            exception.setUsuario(!usuarioRepetido);
+        }
+        
         if (permiso.equalsIgnoreCase("administrador")) {
             permisoAdmin = true;
         }
         
-        if(!ok) throw exception;
-       else{
+        if(!ok) {
+            throw exception;
+        } else{
             Domicilio domicilio = new Domicilio(ciudad, calle, Integer.valueOf(numero),departamento, piso.isEmpty()?0:Integer.valueOf(piso));
             GestorDomicilio.guardarDomicilio(domicilio);
             Usuario usuario = new Usuario(Integer.valueOf(dni),nombre,apellido,user,pass,permisoAdmin,domicilio);
