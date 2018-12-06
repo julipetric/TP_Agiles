@@ -5,6 +5,10 @@
  */
 package UI;
 
+import Exceptions.BusquedaDirectorioException;
+import Exceptions.BusquedaYaExisteException;
+import Exceptions.ComprobanteDirectorioException;
+import Exceptions.ComprobanteYaExisteException;
 import Gestores.GestorArchivos;
 import Gestores.GestorLicencias;
 import Gestores.GestorSesion;
@@ -14,7 +18,10 @@ import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTable;
@@ -349,7 +356,15 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void imprimirBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirBusquedaActionPerformed
-        GestorArchivos.imprimirBusqueda(this.getLicencias());
+        try {
+            GestorArchivos.imprimirBusqueda(this.getLicencias());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ListadoPorCriterios.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BusquedaYaExisteException ex) {
+            Logger.getLogger(ListadoPorCriterios.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BusquedaDirectorioException ex) {
+            Logger.getLogger(ListadoPorCriterios.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         File escritorioDelUsuario = FileSystemView.getFileSystemView().getHomeDirectory();
 
