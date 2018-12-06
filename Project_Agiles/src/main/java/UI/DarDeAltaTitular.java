@@ -155,8 +155,10 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre:");
 
-        nombreET.setFocusCycleRoot(true);
+        nombreET.setFocusTraversalPolicy(null);
+        nombreET.setHighlighter(null);
         nombreET.setNextFocusableComponent(apellidoET);
+        nombreET.setVerifyInputWhenFocusTarget(false);
 
         jLabel2.setText("Apellido");
 
@@ -247,10 +249,11 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
 
         factor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-" }));
         factor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        factor.setNextFocusableComponent(ciudadET);
+        factor.setNextFocusableComponent(donante);
 
         donante.setText("Donante");
         donante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        donante.setNextFocusableComponent(ciudadET);
 
         guardarButton.setText("Siguiente");
         guardarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
