@@ -48,6 +48,12 @@ public class GestorTitular {
             exception.setDomicilioException(e);
         }
         Titular titular = new Titular();
+        
+        if (fechaNacimiento == null) {
+            ok= false;
+            exception.setFechaNacimiento(false);
+        }
+        
         if(!ok) throw exception;
         else{
             Domicilio domicilio = new Domicilio(ciudad, calle, Integer.valueOf(numero), departamento,Integer.valueOf(piso));

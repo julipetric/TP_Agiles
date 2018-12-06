@@ -267,6 +267,9 @@ public class Login extends javax.swing.JFrame {
 
     private void iniciarSesionButtonActionPerformed() {
         try {
+            txtUsuario.setBorder(borde);
+            txtContra.setBorder(borde);
+            error.setText("");
             GestorSesion.iniciarSesion(txtUsuario.getText(), new String(txtContra.getPassword()));
             if (GestorSesion.getUsuarioActual().isEsAdministrador()) {
                 MenuAdmin menu = new MenuAdmin();
@@ -278,7 +281,9 @@ public class Login extends javax.swing.JFrame {
                 this.dispose();
             }
         } catch (DatosUsuarioException ex) {
-            //Usuario o contraseña invalidos...
+            error.setText("¡Usuario o contraseña incorrecta!");
+            txtUsuario.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtContra.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
         }
     }
 }

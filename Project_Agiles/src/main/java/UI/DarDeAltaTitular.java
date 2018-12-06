@@ -16,8 +16,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
@@ -29,6 +27,7 @@ import javax.swing.border.Border;
 public class DarDeAltaTitular extends javax.swing.JFrame {
 
     private Border borde;
+    private Border bordeFecha;
 
     /**
      * Creates new form DarDeAltaAUnTitular
@@ -39,6 +38,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(image);
         setIconImage(icon.getImage());
         borde = nombreET.getBorder();
+        bordeFecha = fecha.getBorder();
         this.setLocationRelativeTo(null);
         fecha.setMaxSelectableDate(new Date());
         Date minDate = new Date();
@@ -237,6 +237,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
 
         jLabel8.setText("Fecha nacimiento:");
 
+        fecha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(187, 187, 187), 1, true));
         fecha.setNextFocusableComponent(grupoSang);
 
         jLabel9.setText("Grupo sanguineo:");
@@ -307,13 +308,13 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(donante))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel9))
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(grupoSang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(jLabel9)
+                                .addGap(18, 18, 18)
+                                .addComponent(grupoSang, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -323,7 +324,13 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(nombreET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -402,12 +409,13 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         ciudadET.setBorder(borde);
         calleET.setBorder(borde);
         numeroET.setBorder(borde);
+        fecha.setBorder(bordeFecha);
 
         Titular tit = new Titular();
 
         try {
             tit = GestorTitular.guardarTitular(nombre, apellido, dni, fechaNacimiento, grupoSanguineo, factorRh, esDonante, ciudad, calle, numero, piso, departamento);
-            EmitirLicencia emitirVentana = new EmitirLicencia(tit,this);
+            EmitirLicencia emitirVentana = new EmitirLicencia(tit, this);
             emitirVentana.setVisible(true);
             //TODO: Hacer que se cierre solo despues de haber impreso la licencia
             this.setVisible(false);
@@ -434,6 +442,9 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
 
             if (!e.getDomicilioException().getNumero()) {
                 numeroET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            }
+            if (!e.getFechaNacimiento()) {
+                fecha.setBorder(BorderFactory.createLineBorder(Color.RED));
             }
         }
 
