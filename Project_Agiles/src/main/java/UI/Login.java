@@ -14,6 +14,8 @@ import Gestores.GestorSesion;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
@@ -40,6 +42,23 @@ public class Login extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(image);
         setIconImage(icon.getImage());
         this.setLocationRelativeTo(null);
+        
+        txtUsuario.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent k) {
+                if (txtUsuario.getText().length() >= 26) {
+                    k.consume();
+                }
+            }
+        });
+        txtContra.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent k) {
+                if (txtContra.getText().length() >= 26) {
+                    k.consume();
+                }
+            }
+        });
     }
 
     /**
