@@ -614,9 +614,14 @@ public class RenovarLicencia extends javax.swing.JFrame {
          */
         Licencia lic = null;
         try {
-            lic = GestorLicencias.crearLicencia(this.getTit(), GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem());
-            this.getCostoText().setText(((Float) lic.getCosto()).toString());
-            this.getExpiracionText().setText(lic.getFechaExpiracion().toString());
+            Titular tit2 = this.getTit();
+
+            if (this.getFecha().getDate() != null) {
+                tit2.setFechaNacimiento(this.getFecha().getDate());
+                lic = GestorLicencias.crearLicencia(tit2, GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem());
+                this.getCostoText().setText(((Float) lic.getCosto()).toString());
+                this.getExpiracionText().setText(lic.getFechaExpiracion().toString());
+            }
         } catch (DatosLicenciaException ex) {
             Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
         }
