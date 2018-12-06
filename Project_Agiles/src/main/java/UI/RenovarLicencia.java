@@ -19,12 +19,10 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.Frame;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
-import static java.lang.System.exit;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -33,7 +31,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTextField;
@@ -500,7 +497,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
             GestorArchivos.imprimir(lic);
             File escritorioDelUsuario = FileSystemView.getFileSystemView().getHomeDirectory();
 
-            showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath() + "/Comprobantes");
+            showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath() + "\\Comprobantes");
             if (ventanaCriterio != null) {
                 ventanaCriterio.setVisible(true);
                 ventanaCriterio.cargarTabla();

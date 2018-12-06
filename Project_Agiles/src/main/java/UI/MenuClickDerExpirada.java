@@ -29,7 +29,7 @@ public class MenuClickDerExpirada extends JPopupMenu {
     private Licencia lic;
     private ListadoLicenciasExpirado ventanaExpirado;
     private ListadoPorCriterios ventanaCriterio;
-    
+
     public Licencia getLic() {
         return lic;
     }
@@ -37,20 +37,20 @@ public class MenuClickDerExpirada extends JPopupMenu {
     public void setLic(Licencia lic) {
         this.lic = lic;
     }
-    
-    public MenuClickDerExpirada(Licencia lic,ListadoLicenciasExpirado ventanaExpirado,ListadoPorCriterios ventanaCriterio) {
-       
+
+    public MenuClickDerExpirada(Licencia lic, ListadoLicenciasExpirado ventanaExpirado, ListadoPorCriterios ventanaCriterio) {
+
         this.setLic(lic);
         this.ventanaCriterio = ventanaCriterio;
         this.ventanaExpirado = ventanaExpirado;
-       
+
         Font f = new Font("sans-serif", Font.BOLD, 12);
 
         JMenuItem item = new JMenuItem("LICENCIA EXPIRADA");
         item.setFont(f);
         item.setEnabled(false);
         this.add(item);
-        
+
         item = new JMenuItem("Ver detalle");
         item.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
@@ -65,7 +65,6 @@ public class MenuClickDerExpirada extends JPopupMenu {
         item.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 try {
-                    //comportamiento botón
                     GestorArchivos.imprimirLicencia(lic);
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(MenuClickDerExpirada.class.getName()).log(Level.SEVERE, null, ex);
@@ -78,11 +77,11 @@ public class MenuClickDerExpirada extends JPopupMenu {
                 }
             }
         });
-        item.setEnabled(true);
+        item.setEnabled(false);
         this.add(item);
 
         item = new JMenuItem("Renovar licencia");
-        item.addActionListener(new RenovarLicenciaActionListener(this.getLic(),ventanaExpirado,ventanaCriterio));
+        item.addActionListener(new RenovarLicenciaActionListener(this.getLic(), ventanaExpirado, ventanaCriterio));
         this.add(item);
 
         item = new JMenuItem("Modificar datos");
@@ -96,7 +95,7 @@ public class MenuClickDerExpirada extends JPopupMenu {
     }
 
     public class RenovarLicenciaActionListener implements ActionListener {
-        
+
         private Licencia lic;
         private ListadoLicenciasExpirado ventanaExpirado;
         private ListadoPorCriterios ventanaCriterio;
@@ -108,7 +107,7 @@ public class MenuClickDerExpirada extends JPopupMenu {
         public void setLic(Licencia lic) {
             this.lic = lic;
         }
-        
+
         private RenovarLicenciaActionListener(Licencia lic, ListadoLicenciasExpirado ventanaExpirado, ListadoPorCriterios ventanaCriterio) {
             this.setLic(lic);
             this.ventanaCriterio = ventanaCriterio;
@@ -117,9 +116,9 @@ public class MenuClickDerExpirada extends JPopupMenu {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-           RenovarLicencia ventanaRenovar = new RenovarLicencia(this.getLic(),ventanaExpirado,ventanaCriterio);
-           ventanaRenovar.setVisible(true);
-           if (ventanaCriterio != null) {
+            RenovarLicencia ventanaRenovar = new RenovarLicencia(this.getLic(), ventanaExpirado, ventanaCriterio);
+            ventanaRenovar.setVisible(true);
+            if (ventanaCriterio != null) {
                 ventanaCriterio.setVisible(false);
             } else {
                 ventanaExpirado.setVisible(false);

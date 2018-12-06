@@ -12,14 +12,17 @@ import Modelo.Licencia;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPopupMenu;
 import javax.swing.UIManager;
+import javax.swing.filechooser.FileSystemView;
 
 /**
  *
@@ -45,7 +48,7 @@ class MenuClickDerVigente extends JPopupMenu {
         this.ventanaCriterio = ventanaCriterio;
         this.ventanaExpirado = ventanaExpirado;
         Font f = new Font("sans-serif", Font.BOLD, 12);
-        f = new Font("sans-serif", Font.BOLD + Font.ITALIC, 12);
+        f = new Font("sans-serif", Font.BOLD, 12);
 
         JMenuItem item = new JMenuItem("LICENCIA VIGENTE");
         item.setFont(f);
@@ -66,6 +69,8 @@ class MenuClickDerVigente extends JPopupMenu {
             public void actionPerformed(ActionEvent ev) {
                 try {
                     GestorArchivos.imprimirLicencia(lic);
+                    File escritorioDelUsuario = FileSystemView.getFileSystemView().getHomeDirectory();
+                    showMessageDialog(null, "Se guardó el archivo extosamente en " + escritorioDelUsuario.getAbsolutePath() + "\\Licencias");
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(MenuClickDerVigente.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (LicenciaYaExisteException ex) {
