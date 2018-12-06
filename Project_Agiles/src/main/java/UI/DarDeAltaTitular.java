@@ -72,7 +72,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         ciudadET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (ciudadET.getText().length() >= 50) {
+                if (ciudadET.getText().length() >= 30) {
                     k.consume();
                 }
             }
@@ -80,7 +80,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         calleET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (calleET.getText().length() >= 50) {
+                if (calleET.getText().length() >= 30) {
                     k.consume();
                 }
             }
@@ -96,7 +96,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         numeroET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (numeroET.getText().length() >= 6 || k.getKeyChar() < '0' || k.getKeyChar() > '9') {
+                if (numeroET.getText().length() >= 5 || k.getKeyChar() < '0' || k.getKeyChar() > '9') {
                     k.consume();
                 }
             }
