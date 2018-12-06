@@ -47,7 +47,7 @@ public class MenuOperario extends javax.swing.JFrame {
         setResizable(false);
 
         listarExpiradasButton.setText("Listar Licencias Expiradas");
-        listarExpiradasButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        listarExpiradasButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         listarExpiradasButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listarExpiradasButtonActionPerformed(evt);
@@ -55,7 +55,7 @@ public class MenuOperario extends javax.swing.JFrame {
         });
 
         cerrarSesionButton.setText("Cerrar Sesion");
-        cerrarSesionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cerrarSesionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cerrarSesionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cerrarSesionButtonActionPerformed(evt);
@@ -63,7 +63,7 @@ public class MenuOperario extends javax.swing.JFrame {
         });
 
         AltaTitularButton.setText("Dar de alta titular");
-        AltaTitularButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        AltaTitularButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         AltaTitularButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AltaTitularButtonActionPerformed(evt);
@@ -71,7 +71,7 @@ public class MenuOperario extends javax.swing.JFrame {
         });
 
         listarPorCriterioButton.setText("Listar licencias por criterio");
-        listarPorCriterioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        listarPorCriterioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         listarPorCriterioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listarPorCriterioButtonActionPerformed(evt);
@@ -84,21 +84,22 @@ public class MenuOperario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(listarExpiradasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AltaTitularButton, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(listarPorCriterioButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1)
-                .addContainerGap(30, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cerrarSesionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(listarExpiradasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AltaTitularButton, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(listarPorCriterioButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel1)))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

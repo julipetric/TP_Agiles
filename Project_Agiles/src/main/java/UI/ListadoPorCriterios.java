@@ -171,7 +171,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         claseLabel.setText("Clase:");
 
         claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "A", "B", "C", "E", "G" }));
-        claseCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        claseCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         donanteLabel.setText("Donante:");
 
@@ -209,7 +209,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         tablaLicencias.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         imprimirBusqueda.setText("Imprimir busqueda");
-        imprimirBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        imprimirBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imprimirBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imprimirBusquedaActionPerformed(evt);
@@ -217,7 +217,7 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         });
 
         volverButton.setText("Volver");
-        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         volverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverButtonActionPerformed(evt);
@@ -226,14 +226,14 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
 
         vigenteSiCheck.setSelected(true);
         vigenteSiCheck.setText("Sí");
-        vigenteSiCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        vigenteSiCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         vigenteNoCheck.setSelected(true);
         vigenteNoCheck.setText("No");
-        vigenteNoCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        vigenteNoCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         buscarButton1.setText("Buscar");
-        buscarButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        buscarButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buscarButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarButton1ActionPerformed(evt);
@@ -241,8 +241,10 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
         });
 
         donanteNoButton.setText("No");
+        donanteNoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         donanteSiButton.setText("Si");
+        donanteSiButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -302,6 +304,8 @@ public class ListadoPorCriterios extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buscarButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23))))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 863, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

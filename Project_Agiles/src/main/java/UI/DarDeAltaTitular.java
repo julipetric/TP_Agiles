@@ -26,8 +26,7 @@ import javax.swing.border.Border;
  */
 public class DarDeAltaTitular extends javax.swing.JFrame {
 
-    private Border borde;
-    private Border bordeFecha;
+    private final Border borde;
 
     /**
      * Creates new form DarDeAltaAUnTitular
@@ -38,7 +37,6 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(image);
         setIconImage(icon.getImage());
         borde = nombreET.getBorder();
-        bordeFecha = fecha.getBorder();
         this.setLocationRelativeTo(null);
         fecha.setMaxSelectableDate(new Date());
         Date minDate = new Date();
@@ -191,7 +189,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jLabel3)
@@ -211,7 +209,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(numeroET, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(ciudadET))
-                .addGap(59, 108, Short.MAX_VALUE))
+                .addGap(59, 116, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,26 +235,25 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
 
         jLabel8.setText("Fecha nacimiento:");
 
-        fecha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(187, 187, 187), 1, true));
         fecha.setNextFocusableComponent(grupoSang);
 
         jLabel9.setText("Grupo sanguineo:");
 
         grupoSang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "A", "B", "AB" }));
-        grupoSang.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        grupoSang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         grupoSang.setNextFocusableComponent(factor);
 
         jLabel10.setText("Facor Rh:");
 
         factor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-" }));
-        factor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        factor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         factor.setNextFocusableComponent(ciudadET);
 
         donante.setText("Donante");
-        donante.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        donante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         guardarButton.setText("Siguiente");
-        guardarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        guardarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         guardarButton.setNextFocusableComponent(nombreET);
         guardarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,7 +262,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         });
 
         volverButton.setText("Volver");
-        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        volverButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         volverButton.setNextFocusableComponent(guardarButton);
         volverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,7 +281,6 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -299,22 +295,22 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(dniET)
                                     .addComponent(apellidoET))))
-                        .addGap(30, 30, 30)
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(18, 18, 18)
                                 .addComponent(factor, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(donante))
+                            .addComponent(fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(grupoSang, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(grupoSang, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -328,39 +324,29 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(nombreET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(nombreET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(apellidoET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(apellidoET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(dniET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8)
-                            .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(grupoSang, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(grupoSang, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel10)
-                                .addComponent(factor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(donante))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(factor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(donante)
+                            .addComponent(jLabel10))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(volverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -403,13 +389,13 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         }
 
         //
-        nombreET.setBorder(borde);
-        apellidoET.setBorder(borde);
-        dniET.setBorder(borde);
-        ciudadET.setBorder(borde);
-        calleET.setBorder(borde);
-        numeroET.setBorder(borde);
-        fecha.setBorder(bordeFecha);
+        jLabel2.setForeground(Color.BLACK);
+        jLabel1.setForeground(Color.BLACK);
+        jLabel11.setForeground(Color.BLACK);
+        jLabel7.setForeground(Color.BLACK);
+        jLabel3.setForeground(Color.BLACK);
+        jLabel4.setForeground(Color.BLACK);
+        jLabel8.setForeground(Color.BLACK);
 
         Titular tit = new Titular();
 
@@ -421,30 +407,30 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
             this.setVisible(false);
         } catch (DatosTitularException e) {
             if (!e.getApellido()) {
-                apellidoET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                jLabel2.setForeground(Color.RED);
             }
 
             if (!e.getNombre()) {
-                nombreET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                jLabel1.setForeground(Color.RED);
             }
 
             if (!e.getDni()) {
-                dniET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                jLabel11.setForeground(Color.RED);
             }
 
             if (!e.getDomicilioException().getCiudad()) {
-                ciudadET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                jLabel7.setForeground(Color.RED);
             }
 
             if (!e.getDomicilioException().getCalle()) {
-                calleET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                jLabel3.setForeground(Color.RED);
             }
 
             if (!e.getDomicilioException().getNumero()) {
-                numeroET.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+                jLabel4.setForeground(Color.RED);
             }
             if (!e.getFechaNacimiento()) {
-                fecha.setBorder(BorderFactory.createLineBorder(Color.RED));
+                jLabel8.setForeground(Color.RED);
             }
         }
 
