@@ -53,14 +53,15 @@ public class RenovarLicencia extends javax.swing.JFrame {
      * Creates new form RenovarLicencia
      */
     public RenovarLicencia(Licencia lic, ListadoLicenciasExpirado ventanaExpirado, ListadoPorCriterios ventanaCriterio) {
+        this.setLic(lic);
+        this.setTit(this.getLic().getTitular());
         initComponents();
         this.ventanaExpirado = ventanaExpirado;
         this.ventanaCriterio = ventanaCriterio;
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/license-plate.png"));
         ImageIcon icon = new ImageIcon(image);
         setIconImage(icon.getImage());
-        this.setLic(lic);
-        this.setTit(this.getLic().getTitular());
+
         borde = nombreET.getBorder();
         this.setLocationRelativeTo(null);
         fecha.setMaxSelectableDate(new Date());
@@ -68,12 +69,13 @@ public class RenovarLicencia extends javax.swing.JFrame {
         minDate.setTime(minDate.getTime() - TimeUnit.DAYS.toMillis(365 * 100));
         fecha.setMinSelectableDate(minDate);
 
+
         /*Key listeners para validar y restringir los Edit text de la interfaz
          */
         nombreET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (nombreET.getText().length() >= 26) {
+                if (nombreET.getText().length() >= 26 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
                     k.consume();
                 }
             }
@@ -81,7 +83,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         apellidoET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (apellidoET.getText().length() >= 26) {
+                if (apellidoET.getText().length() >= 26 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
                     k.consume();
                 }
             }
@@ -97,7 +99,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         ciudadET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (ciudadET.getText().length() >= 50) {
+                if (ciudadET.getText().length() >= 50 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
                     k.consume();
                 }
             }
@@ -105,7 +107,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         calleET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (calleET.getText().length() >= 50) {
+                if (calleET.getText().length() >= 50 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
                     k.consume();
                 }
             }
@@ -129,7 +131,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         departamentoET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (departamentoET.getText().length() >= 2) {
+                if (departamentoET.getText().length() >= 2 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
                     k.consume();
                 }
             }
@@ -273,19 +275,35 @@ public class RenovarLicencia extends javax.swing.JFrame {
 
         jLabel8.setText("Fecha nacimiento:");
 
+        fecha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fechaMouseClicked(evt);
+            }
+        });
+        fecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                fechaPropertyChange(evt);
+            }
+        });
+
         jLabel9.setText("Grupo sanguineo:");
 
         grupoSang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "A", "B", "AB" }));
+        grupoSang.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel10.setText("Facor Rh:");
 
         factor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-" }));
+        factor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         donante.setText("Donante");
+        donante.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel11.setText("DNI:");
 
         dniET.setEditable(false);
+        dniET.setEnabled(false);
+        dniET.setFocusable(false);
 
         nombreLabel.setText("Clase:");
 
@@ -294,6 +312,8 @@ public class RenovarLicencia extends javax.swing.JFrame {
         dniLabel.setText("Costo:");
 
         costoText.setEditable(false);
+        costoText.setEnabled(false);
+        costoText.setFocusable(false);
 
         imprimirButton.setText("Imprimir Comprobante");
         imprimirButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -312,6 +332,7 @@ public class RenovarLicencia extends javax.swing.JFrame {
         });
 
         claseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "E", "G" }));
+        claseCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         claseCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 claseComboItemStateChanged(evt);
@@ -324,6 +345,8 @@ public class RenovarLicencia extends javax.swing.JFrame {
         });
 
         expiracionText.setEditable(false);
+        expiracionText.setEnabled(false);
+        expiracionText.setFocusable(false);
         expiracionText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 expiracionTextActionPerformed(evt);
@@ -577,6 +600,28 @@ public class RenovarLicencia extends javax.swing.JFrame {
         }
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void fechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fechaMouseClicked
+
+    }//GEN-LAST:event_fechaMouseClicked
+
+    private void fechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fechaPropertyChange
+        /*Cada vez que cambiamos la fecha de nacimiento, se re-calcula
+        el costo y la fecha de caducidad de la misma. Para esto creamos un
+        nuevo objeto licencia (el cual no se guarda hasta que se confima
+        la operación. Solo se hace esto porque cuando se construye hacemos
+        automaticamente estos calculos.
+         */
+        Licencia lic = null;
+        try {
+            lic = GestorLicencias.crearLicencia(this.getTit(), GestorSesion.getUsuarioActual(), (String) this.getClaseCombo().getSelectedItem());
+            this.getCostoText().setText(((Float) lic.getCosto()).toString());
+            this.getExpiracionText().setText(lic.getFechaExpiracion().toString());
+        } catch (DatosLicenciaException ex) {
+            Logger.getLogger(RenovarLicencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_fechaPropertyChange
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoET;

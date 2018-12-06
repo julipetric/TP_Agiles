@@ -14,6 +14,8 @@ import Gestores.GestorSesion;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
@@ -40,6 +42,23 @@ public class Login extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(image);
         setIconImage(icon.getImage());
         this.setLocationRelativeTo(null);
+        
+        txtUsuario.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent k) {
+                if (txtUsuario.getText().length() >= 26) {
+                    k.consume();
+                }
+            }
+        });
+        txtContra.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent k) {
+                if (txtContra.getText().length() >= 26) {
+                    k.consume();
+                }
+            }
+        });
     }
 
     /**
@@ -78,7 +97,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("Contraseña:");
 
         iniciarSesionButton.setText("Iniciar sesión");
-        iniciarSesionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        iniciarSesionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         iniciarSesionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 iniciarSesionButtonActionPerformed(evt);
@@ -248,6 +267,9 @@ public class Login extends javax.swing.JFrame {
 
     private void iniciarSesionButtonActionPerformed() {
         try {
+            txtUsuario.setBorder(borde);
+            txtContra.setBorder(borde);
+            error.setText("");
             GestorSesion.iniciarSesion(txtUsuario.getText(), new String(txtContra.getPassword()));
             if (GestorSesion.getUsuarioActual().isEsAdministrador()) {
                 MenuAdmin menu = new MenuAdmin();
@@ -259,7 +281,9 @@ public class Login extends javax.swing.JFrame {
                 this.dispose();
             }
         } catch (DatosUsuarioException ex) {
-            //Usuario o contraseña invalidos...
+            error.setText("¡Usuario o contraseña incorrecta!");
+            txtUsuario.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtContra.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
         }
     }
 }

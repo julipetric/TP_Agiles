@@ -41,7 +41,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         nombreET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (nombreET.getText().length() >= 26) {
+                if (nombreET.getText().length() >= 26 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
                     k.consume();
                 }
             }
@@ -49,7 +49,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         apellidoET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (apellidoET.getText().length() >= 26) {
+                if (apellidoET.getText().length() >= 26 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
                     k.consume();
                 }
             }
@@ -65,7 +65,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         usuarioET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (usuarioET.getText().length() >= 26) {
+                if (usuarioET.getText().length() >= 26 || !String.valueOf(k.getKeyChar()).matches("[A-Za-z0-9_]*")) { //Acepta tambien "_"
                     k.consume();
                 }
             }
@@ -121,7 +121,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         departamentoET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (departamentoET.getText().length() >= 2) {
+                if (departamentoET.getText().length() >= 2 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
                     k.consume();
                 }
             }
@@ -173,7 +173,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         permisosLabel.setText("Permisos:");
 
         permisosCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Operario", "Administrador" }));
-        permisosCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        permisosCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         nombreLabel.setText("Nombre:");
 
@@ -186,7 +186,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         pass2Label.setText("Repetir contraseña:");
 
         volverBtn.setText("Volver");
-        volverBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        volverBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         volverBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverBtnActionPerformed(evt);
@@ -194,7 +194,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         });
 
         aceptarBtn.setText("Aceptar");
-        aceptarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        aceptarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         aceptarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aceptarBtnActionPerformed(evt);
