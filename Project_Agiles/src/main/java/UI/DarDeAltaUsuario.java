@@ -45,7 +45,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         nombreET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (nombreET.getText().length() >= 26 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
+                if (nombreET.getText().length() >= 26 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9 ]*")) {
                     k.consume();
                 }
             }
@@ -53,7 +53,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         apellidoET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (apellidoET.getText().length() >= 26 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
+                if (apellidoET.getText().length() >= 26 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9 ]*")) {
                     k.consume();
                 }
             }
@@ -69,7 +69,7 @@ public class DarDeAltaUsuario extends javax.swing.JFrame {
         usuarioET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (usuarioET.getText().length() >= 26 || !String.valueOf(k.getKeyChar()).matches("[A-Za-z0-9_]*")) { //Acepta tambien "_"
+                if (usuarioET.getText().length() >= 26 || !String.valueOf(k.getKeyChar()).matches("[A-Za-z0-9 ]*")) { //Acepta tambien "_"
                     k.consume();
                 }
             }

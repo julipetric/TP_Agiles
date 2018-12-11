@@ -46,7 +46,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         nombreET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (nombreET.getText().length() >= 26 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
+                if (nombreET.getText().length() >= 26 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9 ]*")) {
                     k.consume();
                 }
             }
@@ -54,7 +54,7 @@ public class DarDeAltaTitular extends javax.swing.JFrame {
         apellidoET.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent k) {
-                if (apellidoET.getText().length() >= 26 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9]*")) {
+                if (apellidoET.getText().length() >= 26 || !String.valueOf(k.getKeyChar()).matches("[a-zA-Z0-9 ]*")) {
                     k.consume();
                 }
             }
